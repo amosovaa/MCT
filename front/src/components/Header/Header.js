@@ -1,13 +1,13 @@
 import React from "react";
 import Menu from "../Menu/Menu";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 
 function Header(props) {
   return (
     <header id="header">
       <nav>
-        <a href="#menu">Menu</a>
-
-        {/* <Link to="/menu">menu</Link> */}
+        <Link to="/menu">menu</Link>
 
         {/* <Menu /> */}
       </nav>
