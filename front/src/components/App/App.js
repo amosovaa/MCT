@@ -1,11 +1,35 @@
-import HomePage from '../HomePage/HomePage';
+import HomePage from "../HomePage/HomePage";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Menu from "../Menu/Menu";
 
 function App() {
   return (
-    <div className='App'>
-      <HomePage />
+    <>
+        <HomePage />
+    <Router>
+    <div className="App">
     </div>
-  );
+        <nav>
+          <ul>
+            <li>
+              <Link to="/menu">menu</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/menu">
+            <Menu/>
+          </Route>
+        </Switch>
+    </Router>
+
+
+    </>
+
+);
 }
 
 export default App;
