@@ -1,4 +1,10 @@
 import React from "react";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 function Menu(props) {
   return (
@@ -6,10 +12,9 @@ function Menu(props) {
       <ul class="links">
         <li>
           <a href="index.html">Home</a>
-          
         </li>
         <li>
-          <a href="landing.html">Landing</a>
+        <Link to="/landing">Landing</Link>
         </li>
         <li>
           <a href="generic.html">Generic</a>

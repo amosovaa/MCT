@@ -1,20 +1,21 @@
 import HomePage from "../HomePage/HomePage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Menu from "../Menu/Menu";
+import Landing from "../Landing/Landing";
 
 function App() {
   return (
     <>
-      <Router>
-        <HomePage />
-        <div className="App"></div>
-
         <Switch>
           <Route path="/menu">
             <Menu />
           </Route>
+          <Route path="/landing">
+            <Landing/>
+          </Route>
         </Switch>
-      </Router>
+        <div className="App"></div>
+        <HomePage />
     </>
   );
 }
