@@ -2,7 +2,8 @@ import express from 'express';
 import routerSignup from './routers/signUp.js';
 import routerSignin from './routers/signIn.js';
 import routerLogout from './routers/logout.js';
-import mongoose from 'mongoose'
+import routerCitypost from './routers/addCity.js';
+import mongoose from 'mongoose';
 
 const app = express();
 
@@ -15,5 +16,6 @@ app.use(express.json());
 app.use('/signup', routerSignup);
 app.use('/signin', routerSignin);
 app.use('/logout', routerLogout);
+app.use('/', routerCitypost);
 
 export default app;
