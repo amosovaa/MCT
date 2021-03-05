@@ -5,31 +5,18 @@ import Menu from "../Menu/Menu";
 function App() {
   return (
     <>
+      <Router>
         <HomePage />
-    <Router>
-    <div className="App">
-    </div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/menu">menu</Link>
-            </li>
-          </ul>
-        </nav>
+        <div className="App"></div>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/menu">
-            <Menu/>
+            <Menu />
           </Route>
         </Switch>
-    </Router>
-
-
+      </Router>
     </>
-
-);
+  );
 }
 
 export default App;
