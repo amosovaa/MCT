@@ -5,10 +5,9 @@ import Menu from "../Menu/Menu";
 function App() {
   return (
     <>
-        <HomePage />
-    <Router>
-    <div className="App">
-    </div>
+      {/* <HomePage /> */}
+      <Router>
+        <div className="App"></div>
         <nav>
           <ul>
             <li>
@@ -17,19 +16,21 @@ function App() {
           </ul>
         </nav>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+
         <Switch>
+          {/* <Route exact path="/">
+            <div>
+              ooooooooooo
+            </div>
+          </Route> */}
           <Route path="/menu">
-            <Menu/>
+            <Menu />
+            
           </Route>
         </Switch>
-    </Router>
-
-
+      </Router>
     </>
-
-);
+  );
 }
 
 export default App;

@@ -2,7 +2,7 @@ import React from "react";
 
 function Menu(props) {
   return (
-      <nav id="menu">
+      <>
       <ul class="links">
         <li>
           <a href="index.html">Home</a>
@@ -30,7 +30,7 @@ function Menu(props) {
           </a>
         </li>
       </ul>
-    </nav>
+    </>
   );
 }
 

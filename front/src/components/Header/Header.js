@@ -1,6 +1,5 @@
 import React from "react";
 import Menu from "../Menu/Menu";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function Header(props) {
   return (
@@ -10,7 +9,7 @@ function Header(props) {
 
         {/* <Link to="/menu">menu</Link> */}
 
-        <Menu />
+        {/* <Menu /> */}
       </nav>
     </header>
   );
