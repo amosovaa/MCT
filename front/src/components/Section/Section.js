@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
 function Section(props) {
   return (
     <div>
-      <section id="one" class="tiles">
+      <section id='one' class='tiles'>
         <article>
-          <span class="image">
-            <img src="images/pic01.jpg" alt="" />
+          <span class='image'>
+            <img src='images/pic01.jpg' alt='' />
           </span>
-          <header class="major">
+          <header class='major'>
             <h3>
-              <a href="landing.html" class="link">
+              <a href='landing.html' class='link'>
                 Aliquam
               </a>
             </h3>
@@ -18,12 +18,12 @@ function Section(props) {
           </header>
         </article>
         <article>
-          <span class="image">
-            <img src="images/pic02.jpg" alt="" />
+          <span class='image'>
+            <img src='images/pic02.jpg' alt='' />
           </span>
-          <header class="major">
+          <header class='major'>
             <h3>
-              <a href="landing.html" class="link">
+              <a href='landing.html' class='link'>
                 Tempus
               </a>
             </h3>
@@ -31,12 +31,12 @@ function Section(props) {
           </header>
         </article>
         <article>
-          <span class="image">
-            <img src="images/pic03.jpg" alt="" />
+          <span class='image'>
+            <img src='images/pic03.jpg' alt='' />
           </span>
-          <header class="major">
+          <header class='major'>
             <h3>
-              <a href="landing.html" class="link">
+              <a href='landing.html' class='link'>
                 Magna
               </a>
             </h3>
@@ -44,12 +44,12 @@ function Section(props) {
           </header>
         </article>
         <article>
-          <span class="image">
-            <img src="images/pic04.jpg" alt="" />
+          <span class='image'>
+            <img src='images/pic04.jpg' alt='' />
           </span>
-          <header class="major">
+          <header class='major'>
             <h3>
-              <a href="landing.html" class="link">
+              <a href='landing.html' class='link'>
                 Ipsum
               </a>
             </h3>
@@ -57,12 +57,12 @@ function Section(props) {
           </header>
         </article>
         <article>
-          <span class="image">
-            <img src="images/pic05.jpg" alt="" />
+          <span class='image'>
+            <img src='images/pic05.jpg' alt='' />
           </span>
-          <header class="major">
+          <header class='major'>
             <h3>
-              <a href="landing.html" class="link">
+              <a href='landing.html' class='link'>
                 Consequat
               </a>
             </h3>
@@ -70,12 +70,12 @@ function Section(props) {
           </header>
         </article>
         <article>
-          <span class="image">
-            <img src="images/pic06.jpg" alt="" />
+          <span class='image'>
+            <img src='images/pic06.jpg' alt='' />
           </span>
-          <header class="major">
+          <header class='major'>
             <h3>
-              <a href="landing.html" class="link">
+              <a href='landing.html' class='link'>
                 Etiam
               </a>
             </h3>
@@ -83,9 +83,9 @@ function Section(props) {
           </header>
         </article>
       </section>
-      <section id="two">
-        <div class="inner">
-          <header class="major">
+      <section id='two'>
+        <div class='inner'>
+          <header class='major'>
             <h2>Massa libero</h2>
           </header>
           <p>
@@ -97,9 +97,9 @@ function Section(props) {
             libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et
             feugiat tempus.
           </p>
-          <ul class="actions">
+          <ul class='actions'>
             <li>
-              <a href="landing.html" class="button next">
+              <a href='landing.html' class='button next'>
                 Get Started
               </a>
             </li>
