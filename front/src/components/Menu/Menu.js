@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
+import styles from './menu.module.scss'
 
 function Menu(props) {
   return (
-      <>
-      <ul class="links">
+    <>
+      <ul className={styles.links}>
         <li>
           <a href="index.html">Home</a>
-          
         </li>
         <li>
           <a href="landing.html">Landing</a>
@@ -17,18 +17,18 @@ function Menu(props) {
         <li>
           <a href="elements.html">Elements</a>
         </li>
-      </ul>
-      <ul class="actions stacked">
-        <li>
-          <a href="#" class="button primary fit">
-            Get Started
-          </a>
-        </li>
-        <li>
-          <a href="#" class="button fit">
-            Log In
-          </a>
-        </li>
+        <ul class="actions stacked">
+          <li>
+            <a href="#" class="button primary fit">
+              Get Started
+            </a>
+          </li>
+          <li>
+            <a href="#" class="button fit">
+              Log In
+            </a>
+          </li>
+        </ul>
       </ul>
     </>
   );
