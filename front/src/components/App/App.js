@@ -1,9 +1,16 @@
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './app.module.scss';
 import Signup from '../Signup';
+import Logout from '../Logout';
 function App() {
   const store = useSelector((store) => store.state);
   console.log(store);
@@ -20,7 +27,12 @@ function App() {
               <div>landing</div>
             </Route>
             <Route path="/signup">
+              <Redirect to="/" />
               <Signup />
+            </Route>
+            <Route path="/logout">
+              <Redirect to="/" />
+              <Logout />
             </Route>
           </Switch>
         </div>
