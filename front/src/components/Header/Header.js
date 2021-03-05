@@ -1,17 +1,23 @@
-import React from "react";
-import Menu from "../Menu/Menu";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styles from './header.module.scss'
 function Header(props) {
   return (
     <header id="header">
-      <nav>
-        <a href="#menu">Menu</a>
-
-        {/* <Link to="/menu">menu</Link> */}
-
-        <Menu />
-      </nav>
+      <ul className={styles.wrapper}>
+        <li>
+          <Link className={styles.wrapper__link} to="/">Home</Link>
+        </li>
+        <li>
+          <Link className={styles.wrapper__link} to="/Landing">Landing</Link>
+        </li>
+        <li>
+          <Link className={styles.wrapper__link} to="#">Generic</Link>
+        </li>
+        <li>
+          <Link className={styles.wrapper__link} to="/signup">Signup</Link>
+        </li>
+      </ul>
     </header>
   );
 }

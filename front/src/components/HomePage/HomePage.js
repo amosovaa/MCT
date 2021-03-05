@@ -6,7 +6,6 @@ import Main from '../Main/Main';
 function HomePage(props) {
     return (
         <div>
-            <Header/>
             <Banner/>
             <Main/>
         </div>

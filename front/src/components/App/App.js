@@ -1,35 +1,32 @@
-import HomePage from "../HomePage/HomePage";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Menu from "../Menu/Menu";
-
+import HomePage from '../HomePage/HomePage';
+import Header from '../Header/Header';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import styles from './app.module.scss';
+import Signup from '../Signup';
 function App() {
+  const store = useSelector((store) => store.state);
+  console.log(store);
   return (
     <>
-        <HomePage />
-    <Router>
-    <div className="App">
-    </div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/menu">menu</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/menu">
-            <Menu/>
-          </Route>
-        </Switch>
-    </Router>
-
-
+      <Router>
+        <div className={styles.wrapper}>
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route path="/landing">
+              <div>landing</div>
+            </Route>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </>
-
-);
+  );
 }
 
 export default App;
