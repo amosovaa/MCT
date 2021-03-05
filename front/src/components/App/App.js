@@ -4,6 +4,7 @@ import Menu from "../Menu/Menu";
 import Landing from "../Landing/Landing";
 
 function App() {
+  const store = useSelector((store) => store.state);
   return (
     <>
         <Switch>
