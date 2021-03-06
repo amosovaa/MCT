@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 
 const app = express();
 
-mongoose.connect('mongodb+srv://andrew:crosbyfabregas1@cluster0.asauj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://andrew:crosbyfabregas1@cluster0.asauj.mongodb.net/MCT?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -19,3 +19,4 @@ app.use('/logout', routerLogout);
 app.use('/', routerCitypost);
 
 export default app;
+            

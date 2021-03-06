@@ -10,6 +10,7 @@ import {
 import { useSelector } from 'react-redux';
 import styles from './app.module.scss';
 import Signup from '../Signup';
+import Signin from '../Signin';
 import Logout from '../Logout';
 function App() {
   const store = useSelector((store) => store.state);
@@ -29,6 +30,9 @@ function App() {
             <Route path="/signup">
               <Signup />
               {/* <Redirect to="/" /> */}
+            </Route>
+            <Route path="/signin">
+              <Signin />
             </Route>
             <Route path="/logout">
               <Redirect to="/" />

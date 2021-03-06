@@ -18,6 +18,9 @@ function Header(props) {
           <Link className={styles.wrapper__link} to="/signup">Signup</Link>
         </li>
         <li>
+          <Link className={styles.wrapper__link} to="/signin">Signin</Link>
+        </li>
+        <li>
           <Link className={styles.wrapper__link} to="/logout">Logout</Link>
         </li>
       </ul>
