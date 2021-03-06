@@ -15,6 +15,7 @@ import Logout from '../Logout';
 import Cabinet from '../Cabinet/Cabinet';
 import Schedule from '../Schedule/Schedule';
 import AdminCabinet from '../AdminCabinet/AdminCabinet';
+import Team from '../Team/Team';
 
 function App() {
   const store = useSelector((store) => store.state);
@@ -35,8 +36,11 @@ function App() {
               <Signup />
               {/* <Redirect to="/" /> */}
             </Route>
-            <Route path="/signin">
+            <Route path='/signin'>
               <Signin />
+            </Route>
+            <Route path='/team'>
+              <Team />
             </Route>
             <Route path='/logout'>
               <Redirect to='/' />

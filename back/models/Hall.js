@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const hallSchema = mongoose.Schema({
-  address: String,
+  name: String,
   timeConcert: Date,
   timeRepetition: Date,
   timeRepetitionEnd: Date,
