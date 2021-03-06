@@ -3,30 +3,35 @@ import { Link } from 'react-router-dom';
 import styles from './header.module.scss';
 function Header(props) {
   return (
-    <header id='header'>
+    <header id="header">
       <ul className={styles.wrapper}>
         <li>
-          <Link className={styles.wrapper__link} to='/'>
+          <Link className={styles.wrapper__link} to="/">
             Home
           </Link>
         </li>
         <li>
-          <Link className={styles.wrapper__link} to='/cabinet'>
+          <Link className={styles.wrapper__link} to="/cabinet">
             Cabinet
           </Link>
         </li>
         <li>
-          <Link className={styles.wrapper__link} to='#'>
+          <Link className={styles.wrapper__link} to="#">
             Generic
           </Link>
         </li>
         <li>
-          <Link className={styles.wrapper__link} to='/signup'>
+          <Link className={styles.wrapper__link} to="/signup">
             Signup
           </Link>
         </li>
         <li>
-          <Link className={styles.wrapper__link} to='/logout'>
+          <Link className={styles.wrapper__link} to="/signin">
+            Signin
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.wrapper__link} to="/logout">
             Logout
           </Link>
         </li>
