@@ -12,6 +12,10 @@ import styles from './app.module.scss';
 import Signup from '../Signup';
 import Signin from '../Signin';
 import Logout from '../Logout';
+import Cabinet from '../Cabinet/Cabinet';
+import Schedule from '../Schedule/Schedule';
+import AdminCabinet from '../AdminCabinet/AdminCabinet';
+
 function App() {
   const store = useSelector((store) => store.state);
   console.log(store);
@@ -21,22 +25,28 @@ function App() {
         <div className={styles.wrapper}>
           <Header />
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <HomePage />
             </Route>
-            <Route path="/landing">
-              <div>landing</div>
+            <Route path='/cabinet'>
+              <Cabinet />
             </Route>
-            <Route path="/signup">
+            <Route path='/signup'>
               <Signup />
               {/* <Redirect to="/" /> */}
             </Route>
             <Route path="/signin">
               <Signin />
             </Route>
-            <Route path="/logout">
-              <Redirect to="/" />
+            <Route path='/logout'>
+              <Redirect to='/' />
               <Logout />
+            </Route>
+            <Route path='/cabinets/schedule'>
+              <Schedule />
+            </Route>
+            <Route path='/cabinets/admincabinet'>
+              <AdminCabinet />
             </Route>
           </Switch>
         </div>
