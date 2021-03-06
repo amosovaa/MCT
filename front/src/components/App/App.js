@@ -27,8 +27,8 @@ function App() {
               <div>landing</div>
             </Route>
             <Route path="/signup">
-              <Redirect to="/" />
               <Signup />
+              {/* <Redirect to="/" /> */}
             </Route>
             <Route path="/logout">
               <Redirect to="/" />
