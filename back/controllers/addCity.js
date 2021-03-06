@@ -34,12 +34,14 @@ export const citiAdd_post = async (req, res) => {
   const resp = await response.json();
 
   //координаты города по res
+
   const location =
     resp.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
   const longitudeCity = location.split(" ")[0]; //долгота
   const latitudeCity = location.split(" ")[1]; //широта
 
-  //адекватный адрес города
+
+  //адекватный адрес города>>>>>>> master
   const addressCity =
     resp.response.GeoObjectCollection.featureMember[0].GeoObject
       .metaDataProperty.GeocoderMetaData.text;
@@ -151,6 +153,7 @@ export const citiAdd_post = async (req, res) => {
   });
 
   console.log(city);
+
   // console.log(city.dateIn.toLocaleTimeString(), city.dateIn);
 
   res.status(200).json({ success: true });
