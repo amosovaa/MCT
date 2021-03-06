@@ -4,6 +4,7 @@ import { signinAC } from '../../redux/actionCreators';
 import { fetchSignInAC } from '../../redux/thunkAC';
 import styles from './signin.module.scss';
 
+
 function Signin(props) {
   const dispatch = useDispatch();
   const handlerSignin = (e) => {
@@ -21,13 +22,13 @@ function Signin(props) {
   return (
     <div className={styles.wrapper}>
       <form onSubmit={handlerSignin}>
-        <label htmlFor='email'>
+        <label htmlFor="email">
           Email
-          <input type='email' name='email' />
+          <input type="email" name="email" />
         </label>
-        <label htmlFor='password'>
+        <label htmlFor="password">
           Password
-          <input type='password' name='password' />
+          <input type="password" name="password" />
         </label>
         <button>Signin</button>
       </form>
