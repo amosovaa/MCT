@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function AdminCabinet(props) {
+  // const time = useRef();
+  const [input, setInput] = useState('');
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
+
+  const buttonHandler = (event) => {
+    event.preventDefault();
+    console.log(input);
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={buttonHandler}>
         <br />
         <br />
         <br />
@@ -23,7 +34,12 @@ function AdminCabinet(props) {
             <input type='date' placeholder='Дата приезда' />
           </label>
           <label>
-            <input type='time' placeholder='Время приезда' />
+            <input
+              onChange={handleInput}
+              value={input}
+              type='time'
+              placeholder='Время приезда'
+            />
           </label>
           <label>
             <input type='date' placeholder='Дата выезда' />
