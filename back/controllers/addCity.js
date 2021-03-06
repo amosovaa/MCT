@@ -2,9 +2,9 @@ import fetch from "node-fetch";
 import urlencode from "urlencode";
 import City from "../models/City.js";
 import Tour from "../models/Tour.js";
-import Hotel from '../models/Hotel.js';
-import Lunch from '../models/Lunch.js';
-import Hall from '../models/Hall.js';
+import Hotel from "../models/Hotel.js";
+import Lunch from "../models/Lunch.js";
+import Hall from "../models/Hall.js";
 
 export const citiAdd_post = async (req, res) => {
   const { name, dateIn, dateOut, timeOut, hotel } = req.body;
@@ -24,34 +24,31 @@ export const citiAdd_post = async (req, res) => {
     resp.response.GeoObjectCollection.featureMember[0].GeoObject
       .metaDataProperty.GeocoderMetaData.text;
 
-      
-      const Hotel = new Hotel({
-        name: "name",
-        time: "time",
-        longitudeHotel,
-        latitudeHotel,
-        adressHotel,
-      });
+  const Hotel = new Hotel({
+    name: "name",
+    time: "time",
+    longitudeHotel,
+    latitudeHotel,
+    adressHotel,
+  });
 
-      const lunch = new Lunch({
-        name: addressLunch,
-        time:'time',
-        longitudeLunch,
-        latitudeLunch,
-      })
-      
-      const city = new City({
-        name: addressCity,
-        dateIn,
-        dateOut,
-        timeOut,
-        longitudeCity,
-        latitudeCity,
-        hotel,
-        lunch,
-      });
+  const lunch = new Lunch({
+    name: addressLunch,
+    time: "time",
+    longitudeLunch,
+    latitudeLunch,
+  });
 
-      
+  const city = new City({
+    name: addressCity,
+    dateIn,
+    dateOut,
+    timeOut,
+    longitudeCity,
+    latitudeCity,
+    hotel,
+    lunch,
+  });
 
   // console.log(city);
   // console.log(city.dateIn.toLocaleTimeString(), city.dateIn);
