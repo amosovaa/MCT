@@ -18,7 +18,7 @@ import AdminCabinet from '../AdminCabinet/AdminCabinet';
 import Team from '../Team/Team';
 
 function App() {
-  const store = useSelector((store) => store.state);
+  const store = useSelector((store) => store.auth);
   console.log(store);
   return (
     <>

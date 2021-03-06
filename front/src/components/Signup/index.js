@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signupAC } from '../../redux/actionCreators';
 import { fetchSignUpAC } from '../../redux/thunkAC';
 import styles from './signup.module.scss';
@@ -23,7 +23,6 @@ function Signup(props) {
     e.target.email.value = ``;
     e.target.password.value = ``;
   };
-  console.log(store);
   return (
     <div className={styles.wrapper}>
       <form onSubmit={handlerSignup}>
