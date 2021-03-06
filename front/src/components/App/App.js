@@ -17,7 +17,7 @@ import Schedule from '../Schedule/Schedule';
 import AdminCabinet from '../AdminCabinet/AdminCabinet';
 
 function App() {
-  const store = useSelector((store) => store.state);
+  const store = useSelector((store) => store.auth);
   console.log(store);
   return (
     <>

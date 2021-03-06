@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { signinAC } from '../../redux/actionCreators';
-import styles from './signin.module.scss'
+import { Link } from 'react-router-dom';
+import styles from './signin.module.scss';
 
 function Signin(props) {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function Signin(props) {
   };
   return (
     <div className={styles.wrapper}>
-      <form onSubmit={handlerSignin}>
+      <form className={styles.wrapper__form} onSubmit={handlerSignin}>
         <label htmlFor="email">
           Email
           <input type="email" name="email" />
@@ -38,6 +39,11 @@ function Signin(props) {
           <input type="password" name="password" />
         </label>
         <button>Signin</button>
+        <button className={styles.wrapper__else}>
+          <Link className={styles.wrapper__link} to="/signup">
+            Create Accaunt
+          </Link>
+        </button>
       </form>
     </div>
   );

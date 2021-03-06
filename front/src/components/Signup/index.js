@@ -1,11 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signupAC } from '../../redux/actionCreators';
 import styles from './signup.module.scss';
 
 function Signup(props) {
   const dispatch = useDispatch();
-  const store = useSelector(store => store)
   const handlerSignup = (e) => {
     e.preventDefault();
     const {
@@ -32,10 +31,9 @@ function Signup(props) {
     e.target.email.value = ``;
     e.target.password.value = ``;
   };
-  console.log(store);
   return (
     <div className={styles.wrapper}>
-      <form onSubmit={handlerSignup}>
+      <form className={styles.wrapper__form} onSubmit={handlerSignup}>
         <label htmlFor="username">
           Username
           <input type="text" name="username" />
