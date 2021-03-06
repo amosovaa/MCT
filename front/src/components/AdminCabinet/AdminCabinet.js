@@ -57,7 +57,7 @@ function AdminCabinet(props) {
         <fieldset>
           <legend>Еда</legend>
           <label>
-            <input type='text' placeholder='Адрес еды' name='addressLunch' />
+            <input type='text' placeholder='Адрес еды' name='lunchAddress' />
           </label>
           <label>
             <input type='time' placeholder='Время еды' name='timeLunch'/>

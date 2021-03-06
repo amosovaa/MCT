@@ -7,43 +7,43 @@ function Section(props) {
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Aliquam</h3>
-            <p>Ipsum dolor sit amet</p>
+            <h3>Hotel</h3>
+            <p>Know more about your hotel for today</p>
           </header>
         </article>
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Tempus</h3>
-            <p>feugiat amet tempus</p>
+            <h3>Bus</h3>
+            <p>Bus parking information</p>
           </header>
         </article>
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Magna</h3>
-            <p>Lorem etiam nullam</p>
+            <h3>Schedule</h3>
+            <p>Be aware of the schedule</p>
           </header>
         </article>
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Ipsum</h3>
-            <p>Nisl sed aliquam</p>
+            <h3>Restaurants</h3>
+            <p>Find out your place to eat</p>
           </header>
         </article>
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Consequat</h3>
-            <p>Ipsum dolor sit amet</p>
+            <h3>Plan</h3>
+            <p>Plan your free time in advance</p>
           </header>
         </article>
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Etiam</h3>
-            <p>Feugiat amet tempus</p>
+            <h3>Forgotten things</h3>
+            <p>Don't worry about forgotten things</p>
           </header>
         </article>
       </section>

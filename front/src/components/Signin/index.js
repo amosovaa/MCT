@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { signinAC } from '../../redux/actionCreators';
-import { Link } from 'react-router-dom';
+import { fetchSignInAC } from '../../redux/thunkAC';
 import styles from './signin.module.scss';
+
 
 function Signin(props) {
   const dispatch = useDispatch();
@@ -14,16 +15,7 @@ function Signin(props) {
     const {
       password: { value: password },
     } = e.target;
-    fetch('/signin', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => dispatch(signinAC(data)));
+    dispatch(fetchSignInAC(email, password));
     e.target.email.value = ``;
     e.target.password.value = ``;
   };
