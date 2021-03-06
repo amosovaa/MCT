@@ -5,7 +5,7 @@ let preState = {};
 
 if (state) {
   preState = {
-    auth: state.user,
+    auth: state.user
   };
 }
 // } else {
