@@ -7,8 +7,8 @@ import Lunch from '../models/Lunch.js';
 import Hall from '../models/Hall.js';
 
 export const citiAdd_get = async (req, res) => {
-  const citles = await City.find()
-  console.log(citles);
+  const citles = await City.find({}).populate('hotel').populate('lunch').populate('hall')
+  // console.log(citles);
   res.json(citles);
 };
 
