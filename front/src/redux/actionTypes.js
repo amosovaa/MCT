@@ -4,3 +4,4 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const NAVBAR = 'NAVBAR';
 export const ADD_CITY = 'ADD_CITY';
 export const INIT_CITIES = 'INIT_CITIES';
+export const SET_DEFAULT_CITY = 'SET_DEFAULT_CITY';

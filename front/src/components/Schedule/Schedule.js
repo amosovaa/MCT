@@ -1,31 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { INIT_CITIES } from '../../redux/actionTypes';
+import { setDefaultCityAC } from '../../redux/actionCreators';
 
 function Schedule(props) {
   const dispatch = useDispatch();
-  const defaultCity = useSelector((state) => state.cities.cities[0]);
-  const arrCity = useSelector((state) => state.cities.cities);
+  const defaultCity = useSelector((state) => state.cities.defaultCity);
+  const cities = useSelector((state) => state.cities.cities);
 
   useEffect(() => {
     fetch('/cities')
       .then((response) => response.json())
-      .then((data) => dispatch({ type: INIT_CITIES, payload: data }));
+      .then((data) => {
+        dispatch({ type: INIT_CITIES, payload: data });
+      });
   }, [dispatch]);
 
-  // const [city, setCity] = useState({});
-  console.log(defaultCity);
-  // console.log(city);
+  const selectHandler = (event) => {
+    dispatch(setDefaultCityAC(event.target.value));
+  };
+
   return (
     <div>
       <br />
       <br />
       <br />
       <h3> Выберите город </h3>
-      <div class='col-12'>
-        <select name='demo-category' id='demo-category'>
-          {arrCity.map((el) => (
-            <option value=''>{el.name}</option>
+      <div className='col-12'>
+        <select
+          name='demo-category'
+          id='demo-category'
+          onChange={selectHandler}
+        >
+          {cities.map((el) => (
+            <option key={el._id} value={el._id}>
+              {el.name}
+            </option>
           ))}
         </select>
       </div>
