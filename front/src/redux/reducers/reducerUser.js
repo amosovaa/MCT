@@ -5,23 +5,23 @@ let preState = {};
 
 if (state) {
   preState = {
-    user: state.user,
-    isAuth: false,
+    auth: state.auth,
+    isAuth: state.auth.isAuth,
   };
 } else {
-  preState = { auth: {} };
+  preState = { auth: {}, isAuth: false };
 }
 
 const reducer = (state = preState, action) => {
   switch (action.type) {
     case SIGNUP_SUCCESS:
-      return { ...state, isAuth: true, user: action.payload };
+      return { ...state, isAuth: true, auth: action.payload };
     case SIGNIN_SUCCESS:
-      return { ...state, isAuth: true, user: action.payload };
+      return { ...state, isAuth: true, auth: action.payload };
     case LOGOUT_SUCCESS:
       window.localStorage.removeItem('state');
       window.localStorage.removeItem('token');
-      return { ...state, isAuth: false, auth: {} };
+      return { ...state, auth: {}, isAuth: false };
     default:
       return state;
   }
