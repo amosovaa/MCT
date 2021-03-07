@@ -18,38 +18,38 @@ import AdminCabinet from '../AdminCabinet/AdminCabinet';
 import Team from '../Team/Team';
 
 function App() {
-  const store = useSelector((store) => store.auth);
-  console.log(store);
+  const isAuth = useSelector((store) => store.auth.isAuth);
+  console.log(isAuth);
   return (
     <>
       <Router>
         <div className={styles.wrapper}>
           <Header />
           <Switch>
-            <Route exact path='/'>
+            <Route exact path="/">
               <HomePage />
             </Route>
-            <Route path='/cabinet'>
-              <Cabinet />
+            <Route path="/cabinet">
+              {isAuth === false ? <Redirect to="/signin" /> : <Cabinet />}
             </Route>
-            <Route path='/signup'>
+            <Route path="/signup">
               <Signup />
               {/* <Redirect to="/" /> */}
             </Route>
-            <Route path='/signin'>
+            <Route path="/signin">
               <Signin />
             </Route>
-            <Route path='/team'>
+            <Route path="/team">
               <Team />
             </Route>
-            <Route path='/logout'>
-              <Redirect to='/' />
+            <Route path="/logout">
+              <Redirect to="/" />
               <Logout />
             </Route>
-            <Route path='/cabinets/schedule'>
+            <Route path="/cabinets/schedule">
               <Schedule />
             </Route>
-            <Route path='/cabinets/admincabinet'>
+            <Route path="/cabinets/admincabinet">
               <AdminCabinet />
             </Route>
           </Switch>

@@ -1,8 +1,9 @@
-import { createStore } from 'redux';
+import { createStore,applyMiddleware } from 'redux';
 import rootReducer from './reducers/rootReducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
-const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 store.subscribe(() => {
   const state = store.getState();
