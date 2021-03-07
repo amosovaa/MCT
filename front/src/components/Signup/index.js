@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { signupAC } from '../../redux/actionCreators';
 import { fetchSignUpAC } from '../../redux/thunkAC';
 import styles from './signup.module.scss';
+import {useSelector} from 'react-redux'
+
 
 function Signup(props) {
   const dispatch = useDispatch();

@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { signinAC } from '../../redux/actionCreators';
 import { fetchSignInAC } from '../../redux/thunkAC';
-import {Link} from 'react-router-dom'
 import styles from './signin.module.scss';
+import {Link} from 'react-router-dom'
 
 
 function Signin(props) {

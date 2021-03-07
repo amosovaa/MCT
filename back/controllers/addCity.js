@@ -1,10 +1,10 @@
-import fetch from "node-fetch";
-import urlencode from "urlencode";
-import City from "../models/City.js";
-import Tour from "../models/Tour.js";
-import Hotel from "../models/Hotel.js";
-import Lunch from "../models/Lunch.js";
-import Hall from "../models/Hall.js";
+import fetch from 'node-fetch';
+import urlencode from 'urlencode';
+import City from '../models/City.js';
+import Tour from '../models/Tour.js';
+import Hotel from '../models/Hotel.js';
+import Lunch from '../models/Lunch.js';
+import Hall from '../models/Hall.js';
 
 export const citiAdd_post = async (req, res) => {
   const {
@@ -37,9 +37,8 @@ export const citiAdd_post = async (req, res) => {
 
   const location =
     resp.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeCity = location.split(" ")[0]; //долгота
-  const latitudeCity = location.split(" ")[1]; //широта
-
+  const longitudeCity = location.split(' ')[0]; //долгота
+  const latitudeCity = location.split(' ')[1]; //широта
 
   //адекватный адрес города>>>>>>> master
   const addressCity =
@@ -57,8 +56,8 @@ export const citiAdd_post = async (req, res) => {
 
   const locationHotel =
     respHotel.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeHotel = locationHotel.split(" ")[0]; //долгота
-  const latitudeHotel = locationHotel.split(" ")[1]; //широта
+  const longitudeHotel = locationHotel.split(' ')[0]; //долгота
+  const latitudeHotel = locationHotel.split(' ')[1]; //широта
 
   const addressHotel =
     respHotel.response.GeoObjectCollection.featureMember[0].GeoObject
@@ -75,8 +74,8 @@ export const citiAdd_post = async (req, res) => {
 
   const locationHall =
     respHall.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeHall = locationHall.split(" ")[0]; //долгота
-  const latitudeHall = locationHall.split(" ")[1]; //широта
+  const longitudeHall = locationHall.split(' ')[0]; //долгота
+  const latitudeHall = locationHall.split(' ')[1]; //широта
 
   const addressHall =
     respHall.response.GeoObjectCollection.featureMember[0].GeoObject
@@ -93,8 +92,8 @@ export const citiAdd_post = async (req, res) => {
 
   const locationLunch =
     respLunch.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeLunch = locationLunch.split(" ")[0]; //долгота
-  const latitudeLunch = locationLunch.split(" ")[1]; //широта
+  const longitudeLunch = locationLunch.split(' ')[0]; //долгота
+  const latitudeLunch = locationLunch.split(' ')[1]; //широта
 
   const addressLunch =
     respLunch.response.GeoObjectCollection.featureMember[0].GeoObject
@@ -102,18 +101,18 @@ export const citiAdd_post = async (req, res) => {
 
   // TIMING________________________________________
 
-  const dateTimeIn = dateIn + " " + timeIn;
-  const dateTimeOut = dateOut + " " + timeOut;
+  const dateTimeIn = dateIn + ' ' + timeIn;
+  const dateTimeOut = dateOut + ' ' + timeOut;
 
   console.log(dateTimeIn);
 
-  const timeLunchDate = dateIn + " " + timeLunch;
+  const timeLunchDate = dateIn + ' ' + timeLunch;
 
-  const timeRepetitionDate = dateIn + " " + timeRepetition;
-  const timeRepetitionDateEnd = dateIn + " " + timeRepetitionEnd;
+  const timeRepetitionDate = dateIn + ' ' + timeRepetition;
+  const timeRepetitionDateEnd = dateIn + ' ' + timeRepetitionEnd;
 
-  const timeConcertDate = dateIn + " " + timeConcert;
-  const timeConcertSecondDate = dateIn + " " + timeConcertSecond;
+  const timeConcertDate = dateIn + ' ' + timeConcert;
+  const timeConcertSecondDate = dateIn + ' ' + timeConcertSecond;
 
   // MODELS________________________________________
 
@@ -126,6 +125,8 @@ export const citiAdd_post = async (req, res) => {
     latitude: latitudeHall,
   });
 
+  // await hall.save();
+
   const hotel = new Hotel({
     name: hotelName,
     time: timeLunchDate,
@@ -134,12 +135,16 @@ export const citiAdd_post = async (req, res) => {
     address: addressHotel,
   });
 
+  // await hotel.save();
+
   const lunch = new Lunch({
     name: addressLunch,
     time: timeLunchDate,
-    longitude:longitudeLunch,
-    latitude:latitudeLunch,
+    longitude: longitudeLunch,
+    latitude: latitudeLunch,
   });
+
+  // await lunch.save();
 
   const city = new City({
     name: addressCity,
@@ -152,9 +157,9 @@ export const citiAdd_post = async (req, res) => {
     hall: hall,
   });
 
-  console.log(city);
+  await city.save();
 
   // console.log(city.dateIn.toLocaleTimeString(), city.dateIn);
 
-  res.status(200).json({ success: true });
+  res.status(200).json({ success: true, city });
 };
