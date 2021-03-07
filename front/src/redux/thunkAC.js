@@ -51,7 +51,7 @@ export const fetchAdminFormAC = (
   timeLunch
 ) => {
   return (dispatch) => {
-    fetch('/', {
+    fetch('/cities', {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
