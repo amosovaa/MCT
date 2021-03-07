@@ -3,6 +3,7 @@ import {
   SIGNIN_SUCCESS,
   LOGOUT_SUCCESS,
   NAVBAR,
+  ADD_CITY,
 } from './actionTypes';
 
 export const signupAC = (payload) => {
@@ -29,6 +30,13 @@ export const logoutAC = (payload) => {
 export const navAC = (payload) => {
   return {
     type: NAVBAR,
+    payload,
+  };
+};
+
+export const adminFormAC = (payload) => {
+  return {
+    type: ADD_CITY,
     payload,
   };
 };
