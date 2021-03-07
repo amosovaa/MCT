@@ -14,7 +14,7 @@ function Schedule(props) {
   }, [dispatch]);
 
   // const [city, setCity] = useState({});
-  // console.log(defaultCity);
+  console.log(defaultCity);
   // console.log(city);
   return (
     <div>
@@ -32,18 +32,26 @@ function Schedule(props) {
       <h2>{defaultCity && defaultCity.name}</h2>
       <div class='box'>
         <h3> Отель </h3>
-        <p>Название отеля</p>
+        <p>Название отеля: {defaultCity && defaultCity.hotel.name}</p>
         <p>Время и дата заезда: {defaultCity && defaultCity.dateIn}</p>
         <p>Время и дата выезда: {defaultCity && defaultCity.dateOut}</p>
-        <p> Адрес </p>
+        <p>
+          Адрес: {defaultCity && defaultCity.latitude}
+          {defaultCity && defaultCity.longitude}
+        </p>
         <p> Уточнения </p>
       </div>
       <div class='box'>
         <h3> Концертный зал </h3>
-        <p>Время первого концерта:</p>
+        <p>
+          Время первого концерта: {defaultCity && defaultCity.hall.timeConcert}
+        </p>
         <p>Время второго концерта:</p>
-        <p> Репетиция с ... до ... </p>
-        <p> Адрес: </p>
+        <p>
+          Репетиция с {defaultCity && defaultCity.hall.timeRepetition} до
+          {defaultCity && defaultCity.hall.timeRepetitionEnd}
+        </p>
+        <p> Адрес: {defaultCity && defaultCity.hall.name}</p>
         <p> Уточнения </p>
       </div>
       <div class='box'>
@@ -55,7 +63,7 @@ function Schedule(props) {
         </div>
         <div class='box'>
           <h4> Обед </h4>
-          <p>Время с ... до ...</p>
+          <p>Время с {defaultCity && defaultCity.lunch.time} до ...</p>
           <p> Адрес: </p>
         </div>
         <div class='box'>

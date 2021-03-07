@@ -67,20 +67,20 @@ function AdminCabinet(props) {
         timeLunch
       )
     );
-    // event.target.cityName.value = '';
-    // event.target.hotelName.value = '';
-    // event.target.dateIn.value = '';
-    // event.target.timeIn.value = '';
-    // event.target.dateOut.value = '';
-    // event.target.timeOut.value = '';
-    // event.target.hotelAddress.value = '';
-    // event.target.hallAddress.value = '';
-    // event.target.timeRepetition.value = '';
-    // event.target.timeRepetitionEnd.value = '';
-    // event.target.timeConcert.value = '';
-    // event.target.timeConcertSecond.value = '';
-    // event.target.lunchAddress.value = '';
-    // event.target.timeLunch.value = '';
+    event.target.cityName.value = '';
+    event.target.hotelName.value = '';
+    event.target.dateIn.value = '';
+    event.target.timeIn.value = '';
+    event.target.dateOut.value = '';
+    event.target.timeOut.value = '';
+    event.target.hotelAddress.value = '';
+    event.target.hallAddress.value = '';
+    event.target.timeRepetition.value = '';
+    event.target.timeRepetitionEnd.value = '';
+    event.target.timeConcert.value = '';
+    event.target.timeConcertSecond.value = '';
+    event.target.lunchAddress.value = '';
+    event.target.timeLunch.value = '';
   };
 
   return (
