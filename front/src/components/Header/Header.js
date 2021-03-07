@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import styles from './header.module.scss';
 function Header(props) {
   const isAuth = useSelector((store) => store.auth.isAuth);
+  const test = useSelector(store => store.auth)
+  console.log(test);
   console.log(isAuth);
   return (
     <header id="header">
@@ -33,14 +35,18 @@ function Header(props) {
           )}
         </li>
         <li>
-          {isAuth === false && <Link className={styles.wrapper__link} to="/signin">
-            Signin
-          </Link>}
+          {isAuth === false && (
+            <Link className={styles.wrapper__link} to="/signin">
+              Signin
+            </Link>
+          )}
         </li>
         <li>
-          {isAuth === true && <Link className={styles.wrapper__link} to="/logout">
-            Logout
-          </Link>}
+          {isAuth === true && (
+            <Link className={styles.wrapper__link} to="/logout">
+              Logout
+            </Link>
+          )}
         </li>
       </ul>
     </header>

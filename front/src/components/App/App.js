@@ -34,16 +34,18 @@ function App() {
             </Route>
             <Route path="/signup">
               <Signup />
+              {isAuth === true && <Redirect to="/cabinet" />}
               {/* <Redirect to="/" /> */}
             </Route>
             <Route path="/signin">
+              {isAuth === true && <Redirect to="/cabinet" />}
               <Signin />
             </Route>
             <Route path="/team">
               <Team />
             </Route>
             <Route path="/logout">
-              <Redirect to="/" />
+              {isAuth === false && <Redirect to="/" />}
               <Logout />
             </Route>
             <Route path="/cabinets/schedule">
