@@ -6,6 +6,11 @@ import Hotel from '../models/Hotel.js';
 import Lunch from '../models/Lunch.js';
 import Hall from '../models/Hall.js';
 
+export const citiAdd_get = async (req, res) => {
+  const citles = await City.find({});
+  res.json(citles);
+};
+
 export const citiAdd_post = async (req, res) => {
   const {
     cityName,
