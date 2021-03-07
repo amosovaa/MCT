@@ -7,7 +7,8 @@ import Lunch from '../models/Lunch.js';
 import Hall from '../models/Hall.js';
 
 export const citiAdd_get = async (req, res) => {
-  const citles = await City.find({});
+  const citles = await City.find()
+  console.log(citles);
   res.json(citles);
 };
 
@@ -131,7 +132,7 @@ export const citiAdd_post = async (req, res) => {
     latitude: latitudeHall,
   });
 
-  // await hall.save();
+  await hall.save();
 
   const hotel = new Hotel({
     name: hotelName,
@@ -141,7 +142,7 @@ export const citiAdd_post = async (req, res) => {
     address: addressHotel,
   });
 
-  // await hotel.save();
+  await hotel.save();
 
   const lunch = new Lunch({
     name: addressLunch,
@@ -150,7 +151,7 @@ export const citiAdd_post = async (req, res) => {
     latitude: latitudeLunch,
   });
 
-  // await lunch.save();
+  await lunch.save();
 
   const city = new City({
     name: addressCity,

@@ -16,7 +16,7 @@ app.use(express.json());
 app.use('/signup', routerSignup);
 app.use('/signin', routerSignin);
 app.use('/logout', routerLogout);
-app.use('/', routerCitypost);
+app.use('/cities', routerCitypost);
 
 export default app;
             
