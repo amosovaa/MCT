@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { INIT_CITIES } from '../../redux/actionTypes';
 
 function Schedule(props) {
   const dispatch = useDispatch();
-  const cities = useSelector((state) => state);
+  const defaultCity = useSelector((state) => state.cities.cities[0]);
+  const arrCity = useSelector((state) => state.cities.cities);
 
   useEffect(() => {
     fetch('/cities')
@@ -12,7 +13,9 @@ function Schedule(props) {
       .then((data) => dispatch({ type: INIT_CITIES, payload: data }));
   }, [dispatch]);
 
-  console.log(cities);
+  // const [city, setCity] = useState({});
+  // console.log(defaultCity);
+  // console.log(city);
   return (
     <div>
       <br />
@@ -21,19 +24,17 @@ function Schedule(props) {
       <h3> Выберите город </h3>
       <div class='col-12'>
         <select name='demo-category' id='demo-category'>
-          <option value=''>- City -</option>
-          <option value='1'> Moscow </option>
-          <option value='1'> Saint-Petersburg </option>
-          <option value='1'> Omsk </option>
-          <option value='1'> Ufa </option>
+          {arrCity.map((el) => (
+            <option value=''>{el.name}</option>
+          ))}
         </select>
       </div>
-      <h2>Moscow</h2>
+      <h2>{defaultCity && defaultCity.name}</h2>
       <div class='box'>
         <h3> Отель </h3>
         <p>Название отеля</p>
-        <p>Время и дата заезда:</p>
-        <p>Время и дата выезда:</p>
+        <p>Время и дата заезда: {defaultCity && defaultCity.dateIn}</p>
+        <p>Время и дата выезда: {defaultCity && defaultCity.dateOut}</p>
         <p> Адрес </p>
         <p> Уточнения </p>
       </div>
