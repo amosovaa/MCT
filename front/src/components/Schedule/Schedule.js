@@ -1,6 +1,18 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { INIT_CITIES } from '../../redux/actionTypes';
 
 function Schedule(props) {
+  const dispatch = useDispatch();
+  const cities = useSelector((state) => state);
+
+  useEffect(() => {
+    fetch('/cities')
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: INIT_CITIES, payload: data }));
+  }, [dispatch]);
+
+  console.log(cities);
   return (
     <div>
       <br />
