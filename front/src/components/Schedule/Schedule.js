@@ -50,6 +50,8 @@ function Schedule(props) {
         </p>
         <p> Уточнения </p>
       </div>
+            
+
       <div class='box'>
         <h3> Концертный зал </h3>
         <p>
