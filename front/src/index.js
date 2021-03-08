@@ -5,9 +5,8 @@ import App from './components/App/App';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 ReactDOM.render(
-  <Router>
-  <App />
-  </Router>,
-  
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );

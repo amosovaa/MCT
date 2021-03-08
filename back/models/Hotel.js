@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
 
 const hotelSchema = mongoose.Schema({
-  time: Date,
   name: String,
+  time: Date,
   longitude: Number,
   latitude: Number,
+  address:String,
 });
 
 export default mongoose.model("hotels", hotelSchema);

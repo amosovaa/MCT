@@ -1,14 +1,14 @@
 import React from 'react';
 import Banner from '../Banner/Banner';
-import Header from '../Header/Header';
 import Main from '../Main/Main';
+import Footer from '../Footer/Footer'
 
 function HomePage(props) {
     return (
         <div>
-            <Header/>
             <Banner/>
             <Main/>
+            <Footer/>
         </div>
     );
 }

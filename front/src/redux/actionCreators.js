@@ -1,4 +1,11 @@
-import { SIGNUP_SUCCESS, SIGNIN_SUCCESS, NAVBAR } from './actionTypes';
+import {
+  SIGNUP_SUCCESS,
+  SIGNIN_SUCCESS,
+  LOGOUT_SUCCESS,
+  NAVBAR,
+  ADD_CITY,
+  SET_DEFAULT_CITY,
+} from './actionTypes';
 
 export const signupAC = (payload) => {
   return {
@@ -14,9 +21,30 @@ export const signinAC = (payload) => {
   };
 };
 
+export const logoutAC = (payload) => {
+  return {
+    type: LOGOUT_SUCCESS,
+    payload,
+  };
+};
+
 export const navAC = (payload) => {
   return {
     type: NAVBAR,
     payload,
+  };
+};
+
+export const adminFormAC = (payload) => {
+  return {
+    type: ADD_CITY,
+    payload,
+  };
+};
+
+export const setDefaultCityAC = (Idcity) => {
+  return {
+    type: SET_DEFAULT_CITY,
+    payload: Idcity,
   };
 };
