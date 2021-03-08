@@ -64,7 +64,8 @@ function Schedule(props) {
         </p>
         <p> Уточнения </p>
       </div>
-      <div className="box">
+
+      <div class='box'>
         <h3> Концертный зал </h3>
         <p>
           Время первого концерта:{' '}
