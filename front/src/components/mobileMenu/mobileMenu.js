@@ -1,34 +1,80 @@
 import React from 'react';
 import styles from './menu.module.scss';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { navAC } from '../../redux/actionCreators';
 
 function Menu(props) {
+  const isAuth = useSelector((store) => store.auth.isAuth);
+  const nav = useSelector((store) => store.state);
+  const dispatch = useDispatch();
+
+  const handlerMobile = () => {
+    nav.nav = !nav.nav;
+    dispatch(navAC());
+  };
   return (
     <>
       <ul className={styles.links}>
         <li>
-          <a href='index.html'>Home</a>
+          <Link onClick={handlerMobile} className={styles.links__link} to="/">
+            Home
+          </Link>
         </li>
         <li>
-          <a href='landing.html'>Landing</a>
+          {isAuth === true && (
+            <Link
+              onClick={handlerMobile}
+              className={styles.links__link}
+              to="/cabinet"
+            >
+              Cabinet
+            </Link>
+          )}
         </li>
         <li>
-          <a href='generic.html'>Generic</a>
+          <Link
+            onClick={handlerMobile}
+            className={styles.links__link}
+            to="/team"
+          >
+            Team
+          </Link>
         </li>
         <li>
-          <a href='elements.html'>Elements</a>
+          {isAuth === false && (
+            <Link
+              onClick={handlerMobile}
+              className={styles.links__link}
+              to="/signup"
+            >
+              Signup
+            </Link>
+          )}
         </li>
-        <ul className='actions stacked'>
-          <li>
-            <a href='#' className='button primary fit'>
-              Get Started
-            </a>
-          </li>
-          <li>
-            <a href='#' className='button fit'>
-              Log In
-            </a>
-          </li>
-        </ul>
+        <li>
+          {isAuth === false && (
+            <Link
+              onClick={handlerMobile}
+              className={styles.links__link}
+              to="/signin"
+            >
+              Signin
+            </Link>
+          )}
+        </li>
+        <li>
+          {isAuth === true && (
+            <Link
+              onClick={handlerMobile}
+              className={styles.links__link}
+              to="/logout"
+            >
+              Logout
+            </Link>
+          )}
+        </li>
       </ul>
     </>
   );
