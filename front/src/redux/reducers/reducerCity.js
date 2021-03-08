@@ -1,4 +1,9 @@
-import { ADD_CITY, INIT_CITIES, SET_DEFAULT_CITY } from '../actionTypes';
+import {
+  ADD_CITY,
+  INIT_CITIES,
+  SET_DEFAULT_CITY,
+  DELETE_CITY,
+} from '../actionTypes';
 
 const reducer = (state = { cities: [], defaultCity: null }, action) => {
   switch (action.type) {
@@ -15,6 +20,12 @@ const reducer = (state = { cities: [], defaultCity: null }, action) => {
       return {
         ...state,
         defaultCity: state.cities.find((el) => el._id === action.payload),
+      };
+    case DELETE_CITY:
+      return {
+        ...state,
+        defaultCity:null,
+        cities: [...state.cities.filter((el) => el._id !== action.payload)],
       };
     default:
       return state;

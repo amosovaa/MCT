@@ -1,13 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchSignUpAC } from '../../redux/thunkAC';
 import styles from './signup.module.scss';
-import {useSelector} from 'react-redux'
-
 
 function Signup(props) {
   const dispatch = useDispatch();
-  const store = useSelector((store) => store);
+  const error = useSelector((store) => store.auth.error);
+  console.log(error);
   const handlerSignup = (e) => {
     e.preventDefault();
     const {
@@ -24,22 +23,24 @@ function Signup(props) {
     e.target.email.value = ``;
     e.target.password.value = ``;
   };
+  console.log(error);
   return (
     <div className={styles.wrapper}>
       <form onSubmit={handlerSignup}>
-        <label htmlFor='username'>
+        <label htmlFor="username">
           Username
-          <input type='text' name='username' />
+          <input type="text" name="username" required />
         </label>
-        <label htmlFor='email'>
+        <label htmlFor="email">
           Email
-          <input type='email' name='email' />
+          <input type="email" name="email" required />
         </label>
-        <label htmlFor='password'>
+        <label htmlFor="password">
           Password
-          <input type='password' name='password' />
+          <input type="password" name="password" required />
         </label>
         <button>Signup</button>
+        <div className={styles.error}>{error.msg}</div>
       </form>
     </div>
   );

@@ -7,9 +7,17 @@ import Lunch from '../models/Lunch.js';
 import Hall from '../models/Hall.js';
 
 export const citiAdd_get = async (req, res) => {
-  const citles = await City.find({}).populate('hotel').populate('lunch').populate('hall')
-  // console.log(citles);
+  const citles = await City.find({})
+    .populate('hotel')
+    .populate('lunch')
+    .populate('hall');
   res.json(citles);
+};
+
+export const citi_delete = async (req, res) => {
+  const { id } = req.params;
+  const city = await City.findByIdAndDelete(id);
+  res.json(city.id);
 };
 
 export const citiAdd_post = async (req, res) => {
