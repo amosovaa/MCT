@@ -31,7 +31,7 @@ export const citiAdd_post = async (req, res) => {
   } = req.body;
 
   // CITY
-  console.log(req.body);
+  // console.log(req.body);
 
   const response = await fetch(
     `https://geocode-maps.yandex.ru/1.x/?apikey=c3411918-5071-411a-bf06-4a1ae2d170ab&format=json&geocode=${urlencode(
@@ -111,7 +111,7 @@ export const citiAdd_post = async (req, res) => {
   const dateTimeIn = dateIn + ' ' + timeIn;
   const dateTimeOut = dateOut + ' ' + timeOut;
 
-  console.log(dateTimeIn);
+  // console.log(dateTimeIn);
 
   const timeLunchDate = dateIn + ' ' + timeLunch;
 
