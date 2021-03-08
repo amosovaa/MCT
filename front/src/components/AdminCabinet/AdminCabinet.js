@@ -84,7 +84,7 @@ function AdminCabinet(props) {
     event.target.timeConcertSecond.value = '';
     event.target.lunchAddress.value = '';
     event.target.timeLunch.value = '';
-    history.push('/cabinets');
+    history.push('/cabinet');
   };
 
   return (
