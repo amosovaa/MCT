@@ -10,3 +10,16 @@
     padding-left: 0;
   }
 }
+
+.mobile{
+    display: none;
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    display: none;
+  }
+  .mobile{
+      display: block;
+  }
+}

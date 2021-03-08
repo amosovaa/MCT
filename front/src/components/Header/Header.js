@@ -1,14 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './header.module.scss';
+import { navAC } from '../../redux/actionCreators';
+
 function Header(props) {
   const isAuth = useSelector((store) => store.auth.isAuth);
-  const test = useSelector(store => store.auth)
-  console.log(test);
-  console.log(isAuth);
+  const dispatch = useDispatch();
+  const nav = useSelector((store) => store.state);
+  const handlerMobile = () => {
+    nav.nav = !nav.nav;
+    dispatch(navAC());
+  };
+
   return (
-    <header id="header">
+    <header className={styles.visibleMenu} id="header">
       <ul className={styles.wrapper}>
         <li>
           <Link className={styles.wrapper__link} to="/">
@@ -49,6 +55,9 @@ function Header(props) {
           )}
         </li>
       </ul>
+      <div onClick={handlerMobile} className={styles.mobile}>
+        MenuMobile
+      </div>
     </header>
   );
 }
