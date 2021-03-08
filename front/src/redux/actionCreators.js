@@ -4,6 +4,8 @@ import {
   LOGOUT_SUCCESS,
   NAVBAR,
   ADD_CITY,
+  DELETE_CITY,
+  ERROR,
   SET_DEFAULT_CITY,
 } from './actionTypes';
 
@@ -17,6 +19,13 @@ export const signupAC = (payload) => {
 export const signinAC = (payload) => {
   return {
     type: SIGNIN_SUCCESS,
+    payload,
+  };
+};
+
+export const errorAC = (payload) => {
+  return {
+    type: ERROR,
     payload,
   };
 };
@@ -48,3 +57,10 @@ export const setDefaultCityAC = (Idcity) => {
     payload: Idcity,
   };
 };
+
+export const deleteAC = (payload) => {
+  return {
+    type: DELETE_CITY,
+    payload, 
+  }
+}

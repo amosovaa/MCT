@@ -1,5 +1,5 @@
 import { signupAC } from '../redux/actionCreators';
-import { signinAC } from '../redux/actionCreators';
+import { signinAC, errorAC, deleteAC } from '../redux/actionCreators';
 import { adminFormAC } from '../redux/actionCreators';
 
 // thunk AC
@@ -15,7 +15,13 @@ export const fetchSignUpAC = (username, email, password) => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => dispatch(signupAC(data)));
+      .then((data) => {
+        if (data.success === true) {
+          dispatch(signupAC(data)) && dispatch(errorAC(''));
+        } else {
+          dispatch(errorAC(data));
+        }
+      });
   };
 };
 
@@ -30,7 +36,13 @@ export const fetchSignInAC = (email, password) => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => dispatch(signinAC(data)));
+      .then((data) => {
+        if (data.success === true) {
+          dispatch(signinAC(data));
+        } else {
+          dispatch(errorAC(data));
+        }
+      });
   };
 };
 
@@ -73,5 +85,16 @@ export const fetchAdminFormAC = (
     })
       .then((res) => res.json())
       .then((data) => dispatch(adminFormAC(data)));
+  };
+};
+
+export const fetchDelete = (id) => {
+  return (dispatch) => {
+    fetch(`/cities/${id}`, {
+      method: 'DELETE',
+      headers: { 'Content-type': 'application/json' },
+    })
+      .then((res) => res.json())
+      .then((data) => dispatch(deleteAC(data)));
   };
 };
