@@ -7,14 +7,14 @@ import { useHistory } from 'react-router-dom';
 
 function Schedule(props) {
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   const defaultCity = useSelector((state) => state.cities.defaultCity);
   const cities = useSelector((state) => state.cities.cities);
   const handlerDelete = (e) => {
     e.preventDefault();
     const { id } = e.target;
-    history.push('/cabinet')
-    dispatch(fetchDelete(id))
+    history.push('/cabinet');
+    dispatch(fetchDelete(id));
   };
   useEffect(() => {
     fetch('/cities')
@@ -33,10 +33,10 @@ function Schedule(props) {
       <br />
       <br />
       <h3> Выберите город </h3>
-      <div className="col-12">
+      <div className='col-12'>
         <select
-          name="demo-category"
-          id="demo-category"
+          name='demo-category'
+          id='demo-category'
           onChange={selectHandler}
         >
           {cities.map((el) => (
@@ -47,7 +47,7 @@ function Schedule(props) {
         </select>
       </div>
       <h2>{defaultCity && defaultCity.name}</h2>
-      <div className="box">
+      <div className='box'>
         <h3> Отель </h3>
         <p>Название отеля: {defaultCity && defaultCity.hotel.name}</p>
         <p>
@@ -65,7 +65,7 @@ function Schedule(props) {
         <p> Уточнения </p>
       </div>
 
-      <div class='box'>
+      <div className='box'>
         <h3> Концертный зал </h3>
         <p>
           Время первого концерта:{' '}
@@ -84,14 +84,14 @@ function Schedule(props) {
         <p> Адрес: {defaultCity && defaultCity.hall.name}</p>
         <p> Уточнения </p>
       </div>
-      <div className="box">
+      <div className='box'>
         <h3> Еда </h3>
-        <div className="box">
+        <div className='box'>
           <h4> Завтрак </h4>
           <p>Время с ... до ...</p>
           <p> Адрес: </p>
         </div>
-        <div className="box">
+        <div className='box'>
           <h4> Обед </h4>
           <p>
             Время с{' '}
@@ -100,21 +100,22 @@ function Schedule(props) {
           </p>
           <p> Адрес: </p>
         </div>
-        <div className="box">
+        <div className='box'>
           <h4> Ужин </h4>
           <p>Время с ... до ...</p>
           <p> Адрес: </p>
         </div>
         <p> Уточнения </p>
       </div>
-      { defaultCity &&
-      <button
-        type="button"
-        onClick={handlerDelete}
-        id={defaultCity && defaultCity._id}
-      >
-        delete
-      </button>}
+      {defaultCity && (
+        <button
+          type='button'
+          onClick={handlerDelete}
+          id={defaultCity && defaultCity._id}
+        >
+          delete
+        </button>
+      )}
     </div>
   );
 }
