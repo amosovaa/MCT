@@ -4,6 +4,7 @@ import {
   LOGOUT_SUCCESS,
   NAVBAR,
   ADD_CITY,
+  CARD,
   DELETE_CITY,
   ERROR,
   SET_DEFAULT_CITY,
@@ -43,6 +44,14 @@ export const navAC = (payload) => {
     payload,
   };
 };
+
+export const cardAC = (payload) => {
+  return {
+    type: CARD,
+    payload,
+  };
+};
+
 
 export const adminFormAC = (payload) => {
   return {
