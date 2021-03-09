@@ -1,11 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchSignInAC } from '../../redux/thunkAC';
 import { Link } from 'react-router-dom';
 import styles from './signin.module.scss';
 
 function Signin(props) {
   const dispatch = useDispatch();
+  const error = useSelector(store => store.auth.error)
   const handlerSignin = (e) => {
     e.preventDefault();
     const {
@@ -21,11 +22,11 @@ function Signin(props) {
   return (
     <div className={styles.wrapper}>
       <form className={styles.wrapper__form} onSubmit={handlerSignin}>
-        <label htmlFor='email'>
+        <label htmlFor="email">
           Email
           <input type="email" name="email" required />
         </label>
-        <label htmlFor='password'>
+        <label htmlFor="password">
           Password
           <input type="password" name="password" required />
         </label>
@@ -33,6 +34,7 @@ function Signin(props) {
         <Link className={styles.wrapper__link} to="/signup">
           <button className={styles.wrapper__else}>Create Account</button>
         </Link>
+        <div className={styles.error}>{error.msg}</div>
       </form>
     </div>
   );

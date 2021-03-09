@@ -8,11 +8,16 @@ import Hall from "../models/Hall.js";
 
 export const citiAdd_get = async (req, res) => {
   const citles = await City.find({})
-    .populate("hotel")
-    .populate("lunch")
-    .populate("hall");
-  // console.log(citles);
+    .populate('hotel')
+    .populate('lunch')
+    .populate('hall');
   res.json(citles);
+};
+
+export const citi_delete = async (req, res) => {
+  const { id } = req.params;
+  const city = await City.findByIdAndDelete(id);
+  res.json(city.id);
 };
 
 export const citiAdd_post = async (req, res) => {
@@ -144,7 +149,7 @@ export const citiAdd_post = async (req, res) => {
     latitude: latitudeHall,
   });
 
-  // await hall.save();
+  await hall.save();
 
   const hotel = new Hotel({
     name: hotelName,
@@ -154,7 +159,7 @@ export const citiAdd_post = async (req, res) => {
     address: addressHotel,
   });
 
-  // await hotel.save();
+  await hotel.save();
 
   const lunch = new Lunch({
     name: addressLunch,
@@ -163,7 +168,7 @@ export const citiAdd_post = async (req, res) => {
     latitude: latitudeLunch,
   });
 
-  // await lunch.save();
+  await lunch.save();
 
   const city = new City({
     name: addressCity,
@@ -176,8 +181,7 @@ export const citiAdd_post = async (req, res) => {
     hall: hall,
   });
 
-  // await city.save();
-  console.log(city);
+  await city.save();
 
   // console.log(city.dateIn.toLocaleTimeString(), city.dateIn);
 

@@ -1,8 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { fetchAdminFormAC } from '../../redux/thunkAC';
+import styles from './adminCabinet.module.scss';
 
 function AdminCabinet(props) {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handlerCityForm = (event) => {
@@ -81,101 +84,148 @@ function AdminCabinet(props) {
     event.target.timeConcertSecond.value = '';
     event.target.lunchAddress.value = '';
     event.target.timeLunch.value = '';
+    history.push('/cabinet');
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <form onSubmit={handlerCityForm}>
         <br />
         <br />
         <br />
         <h2> Создать новый город </h2>
-        <fieldset>
-          <legend>Город</legend>
-          <label htmlFor='cityName'>
+        <fieldset className={styles.fieldset}>
+          <label htmlFor="cityName">
             Название города
-            <input type='text' placeholder='Город' name='cityName' />
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Город"
+              name="cityName"
+            />
           </label>
         </fieldset>
         <fieldset>
-          <legend>Отель</legend>
-          <label htmlFor='hotelName'>
+          <label htmlFor="hotelName">
             Название отеля
-            <input type='text' placeholder='Название отеля' name='hotelName' />
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Название отеля"
+              name="hotelName"
+            />
           </label>
-          <label htmlFor='dateIn'>
+          <label htmlFor="dateIn">
             Дата въезда
-            <input type='date' placeholder='Дата приезда' name='dateIn' />
+            <input
+              className={styles.date}
+              type="date"
+              placeholder="Дата приезда"
+              name="dateIn"
+            />
           </label>
-          <label htmlFor='timeIn'>
+          <label htmlFor="timeIn">
             Время въезда
-            <input type='time' placeholder='Время приезда' name='timeIn' />
+            <input
+              className={styles.date}
+              type="time"
+              placeholder="Время приезда"
+              name="timeIn"
+            />
           </label>
-          <label htmlFor='dateOut'>
+          <label htmlFor="dateOut">
             Дата выезда
-            <input type='date' placeholder='Дата выезда' name='dateOut' />
+            <input
+              className={styles.date}
+              type="date"
+              placeholder="Дата выезда"
+              name="dateOut"
+            />
           </label>
-          <label htmlFor='timeOut'>
+          <label htmlFor="timeOut">
             Время выезда
-            <input type='time' placeholder='Время выезда' name='timeOut' />
+            <input
+              className={styles.date}
+              type="time"
+              placeholder="Время выезда"
+              name="timeOut"
+            />
           </label>
-          <label htmlFor='hotelAddress'>
+          <label htmlFor="hotelAddress">
             Адрес отеля
-            <input type='text' placeholder='Адрес отеля' name='hotelAddress' />
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Адрес отеля"
+              name="hotelAddress"
+            />
           </label>
         </fieldset>
-        <fieldset>
-          <legend>Концертный зал</legend>
-          <label htmlFor='hallAddress'>
+        <fieldset className={styles.fieldset}>
+          <label htmlFor="hallAddress">
             Адрес концертного зала
             <input
-              type='text'
-              placeholder='Адрес концертного зала'
-              name='hallAddress'
+              className={styles.input}
+              type="text"
+              placeholder="Адрес концертного зала"
+              name="hallAddress"
             />
           </label>
-          <label htmlFor='timeRepetition'>
+          <label htmlFor="timeRepetition">
             Время начала репетиции
             <input
-              type='time'
-              placeholder='Время начала репетиции'
-              name='timeRepetition'
+              className={styles.date}
+              type="time"
+              placeholder="Время начала репетиции"
+              name="timeRepetition"
             />
           </label>
-          <label htmlFor='timeRepetitionEnd'>
+          <label htmlFor="timeRepetitionEnd">
             Время конца репетиции
             <input
-              type='time'
-              placeholder='Время конца репетиции'
-              name='timeRepetitionEnd'
+              className={styles.date}
+              type="time"
+              placeholder="Время конца репетиции"
+              name="timeRepetitionEnd"
             />
           </label>
-          <label htmlFor='timeConcert'>
+          <label htmlFor="timeConcert">
             Время начала первого концерта
             <input
-              type='time'
-              placeholder='Время начала первого концерта'
-              name='timeConcert'
+              className={styles.date}
+              type="time"
+              placeholder="Время начала первого концерта"
+              name="timeConcert"
             />
           </label>
-          <label htmlFor='timeConcertSecond'>
+          <label htmlFor="timeConcertSecond">
             Время начала второго концерта
             <input
-              type='time'
-              placeholder='Время начала второго концерта'
-              name='timeConcertSecond'
+              className={styles.date}
+              type="time"
+              placeholder="Время начала второго концерта"
+              name="timeConcertSecond"
             />
           </label>
         </fieldset>
-        <fieldset>
-          <legend>Еда</legend>
-          <label htmlFor='lunchAddress'>
+        <fieldset className={styles.fieldset}>
+          <label htmlFor="lunchAddress">
             Адрес еды
-            <input type='text' placeholder='Адрес еды' name='lunchAddress' />
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Адрес еды"
+              name="lunchAddress"
+            />
           </label>
-          <label htmlFor='timeLunch'>
+          <label htmlFor="timeLunch">
             Время еды
-            <input type='time' placeholder='Время еды' name='timeLunch' />
+            <input
+              className={styles.date}
+              type="time"
+              placeholder="Время еды"
+              name="timeLunch"
+            />
           </label>
         </fieldset>
         <button> Создать город </button>
