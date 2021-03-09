@@ -17,6 +17,7 @@ import Schedule from '../Schedule/Schedule';
 import AdminCabinet from '../AdminCabinet/AdminCabinet';
 import Team from '../Team/Team';
 import {GoogleLogin} from 'react-google-login'
+import ForgottenThings from '../ForgottenThings/ForgottenThings';
 
 
 function App() {
@@ -47,6 +48,10 @@ function App() {
             <Route path="/team">
               <Team />
             </Route>
+            <Route path="/forgottenThings">
+              <ForgottenThings/>
+            </Route>
+            {/* forgottenThings */}
             <Route path="/logout">
               {isAuth === false && <Redirect to="/" />}
               <Logout />

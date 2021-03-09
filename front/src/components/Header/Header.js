@@ -34,6 +34,11 @@ function Header(props) {
           </Link>
         </li>
         <li>
+          <Link className={styles.wrapper__link} to="/forgottenThings">
+            ForgottenThings
+          </Link>
+        </li>
+        <li>
           {isAuth === false && (
             <Link Link className={styles.wrapper__link} to="/signup">
               Signup
