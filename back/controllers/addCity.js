@@ -1,15 +1,23 @@
-import fetch from 'node-fetch';
-import urlencode from 'urlencode';
-import City from '../models/City.js';
-import Tour from '../models/Tour.js';
-import Hotel from '../models/Hotel.js';
-import Lunch from '../models/Lunch.js';
-import Hall from '../models/Hall.js';
+import fetch from "node-fetch";
+import urlencode from "urlencode";
+import City from "../models/City.js";
+import Tour from "../models/Tour.js";
+import Hotel from "../models/Hotel.js";
+import Lunch from "../models/Lunch.js";
+import Hall from "../models/Hall.js";
 
 export const citiAdd_get = async (req, res) => {
-  const citles = await City.find({}).populate('hotel').populate('lunch').populate('hall')
-  // console.log(citles);
+  const citles = await City.find({})
+    .populate('hotel')
+    .populate('lunch')
+    .populate('hall');
   res.json(citles);
+};
+
+export const citi_delete = async (req, res) => {
+  const { id } = req.params;
+  const city = await City.findByIdAndDelete(id);
+  res.json(city.id);
 };
 
 export const citiAdd_post = async (req, res) => {
@@ -31,7 +39,7 @@ export const citiAdd_post = async (req, res) => {
   } = req.body;
 
   // CITY
-  console.log(req.body);
+  // console.log(req.body);
 
   const response = await fetch(
     `https://geocode-maps.yandex.ru/1.x/?apikey=c3411918-5071-411a-bf06-4a1ae2d170ab&format=json&geocode=${urlencode(
@@ -40,12 +48,21 @@ export const citiAdd_post = async (req, res) => {
   );
   const resp = await response.json();
 
+  if (
+    resp.response.GeoObjectCollection.metaDataProperty.GeocoderResponseMetaData
+      .found === 0
+  ) {
+    console.log("hi");
+    res.end({ error: "Что-то пошло не так" });
+    console.log("hijj");
+  }
+
   //координаты города по res
 
   const location =
     resp.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeCity = location.split(' ')[0]; //долгота
-  const latitudeCity = location.split(' ')[1]; //широта
+  const longitudeCity = location.split(" ")[0]; //долгота
+  const latitudeCity = location.split(" ")[1]; //широта
 
   //адекватный адрес города>>>>>>> master
   const addressCity =
@@ -63,8 +80,8 @@ export const citiAdd_post = async (req, res) => {
 
   const locationHotel =
     respHotel.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeHotel = locationHotel.split(' ')[0]; //долгота
-  const latitudeHotel = locationHotel.split(' ')[1]; //широта
+  const longitudeHotel = locationHotel.split(" ")[0]; //долгота
+  const latitudeHotel = locationHotel.split(" ")[1]; //широта
 
   const addressHotel =
     respHotel.response.GeoObjectCollection.featureMember[0].GeoObject
@@ -81,8 +98,8 @@ export const citiAdd_post = async (req, res) => {
 
   const locationHall =
     respHall.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeHall = locationHall.split(' ')[0]; //долгота
-  const latitudeHall = locationHall.split(' ')[1]; //широта
+  const longitudeHall = locationHall.split(" ")[0]; //долгота
+  const latitudeHall = locationHall.split(" ")[1]; //широта
 
   const addressHall =
     respHall.response.GeoObjectCollection.featureMember[0].GeoObject
@@ -99,8 +116,8 @@ export const citiAdd_post = async (req, res) => {
 
   const locationLunch =
     respLunch.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeLunch = locationLunch.split(' ')[0]; //долгота
-  const latitudeLunch = locationLunch.split(' ')[1]; //широта
+  const longitudeLunch = locationLunch.split(" ")[0]; //долгота
+  const latitudeLunch = locationLunch.split(" ")[1]; //широта
 
   const addressLunch =
     respLunch.response.GeoObjectCollection.featureMember[0].GeoObject
@@ -108,18 +125,18 @@ export const citiAdd_post = async (req, res) => {
 
   // TIMING________________________________________
 
-  const dateTimeIn = dateIn + ' ' + timeIn;
-  const dateTimeOut = dateOut + ' ' + timeOut;
+  const dateTimeIn = dateIn + " " + timeIn;
+  const dateTimeOut = dateOut + " " + timeOut;
 
-  console.log(dateTimeIn);
+  // console.log(dateTimeIn);
 
-  const timeLunchDate = dateIn + ' ' + timeLunch;
+  const timeLunchDate = dateIn + " " + timeLunch;
 
-  const timeRepetitionDate = dateIn + ' ' + timeRepetition;
-  const timeRepetitionDateEnd = dateIn + ' ' + timeRepetitionEnd;
+  const timeRepetitionDate = dateIn + " " + timeRepetition;
+  const timeRepetitionDateEnd = dateIn + " " + timeRepetitionEnd;
 
-  const timeConcertDate = dateIn + ' ' + timeConcert;
-  const timeConcertSecondDate = dateIn + ' ' + timeConcertSecond;
+  const timeConcertDate = dateIn + " " + timeConcert;
+  const timeConcertSecondDate = dateIn + " " + timeConcertSecond;
 
   // MODELS________________________________________
 
