@@ -13,13 +13,13 @@ const containerStyle = {
   borderRadius: "3px",
 };
 
-function Map({ props }) {
-  const coard = useSelector((store) => store.cities.defaultCity);
-  console.log(coard);
-  // const center = {
-  //   lat: null ? 20 : coard.latitude,
-  //   lng: null ? 20 : coard.longitude
-  // };
+function Map({ defaultCity }) {
+  // const coard = useSelector((store) => store.cities.defaultCity);
+  // console.log(coard);
+  const center = {
+    lat: defaultCity && defaultCity.latitude,
+    lng: defaultCity && defaultCity.longitude
+  };
   const [map, setMap] = React.useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
@@ -39,19 +39,19 @@ function Map({ props }) {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      // center={center}
-      zoom={13}
+      center={center}
+      zoom={defaultCity && 17}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
       {/* Child components, such as markers, info windows, etc. */}
       <></>
 
-      {/* <Marker position={center} /> */}
+      <Marker position={center} />
     </GoogleMap>
   ) : (
     <></>
-  );
+  )
 }
 
 export default React.memo(Map);
