@@ -35,10 +35,10 @@ function Schedule(props) {
       <br />
       <br />
       <h3> Выберите город </h3>
-      <div className="col-12">
+      <div className='col-12'>
         <select
-          name="demo-category"
-          id="demo-category"
+          name='demo-category'
+          id='demo-category'
           onChange={selectHandler}
         >
           {cities.map((el) => (
@@ -49,7 +49,7 @@ function Schedule(props) {
         </select>
       </div>
       <h2>{defaultCity && defaultCity.name}</h2>
-      <div className="box">
+      <div className='box'>
         <h3> Отель </h3>
         <p>Название отеля: {defaultCity && defaultCity.hotel.name}</p>
         <p>
@@ -68,7 +68,7 @@ function Schedule(props) {
         <Map defaultCity={defaultCity && defaultCity.hotel} />
       </div>
 
-      <div class="box">
+      <div className="box">
         <h3> Концертный зал </h3>
         <p>
           Время первого концерта:{' '}
@@ -88,14 +88,14 @@ function Schedule(props) {
         <p> Уточнения </p>
         <Map defaultCity={defaultCity && defaultCity.hall} />
       </div>
-      <div className="box">
+      <div className='box'>
         <h3> Еда </h3>
-        <div className="box">
+        <div className='box'>
           <h4> Завтрак </h4>
           <p>Время с ... до ...</p>
           <p> Адрес: </p>
         </div>
-        <div className="box">
+        <div className='box'>
           <h4> Обед </h4>
           <p>
             Время с{' '}
@@ -104,7 +104,7 @@ function Schedule(props) {
           </p>
           <p> Адрес: </p>
         </div>
-        <div className="box">
+        <div className='box'>
           <h4> Ужин </h4>
           <p>Время с ... до ...</p>
           <p> Адрес: </p>
@@ -114,7 +114,7 @@ function Schedule(props) {
       </div>
       {defaultCity && (
         <button
-          type="button"
+          type='button'
           onClick={handlerDelete}
           id={defaultCity && defaultCity._id}
         >
