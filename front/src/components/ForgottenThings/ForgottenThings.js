@@ -19,7 +19,7 @@ function ForgottenThings(props) {
     const upload = ({ target: { files } }) => {
       let data = new FormData();
       data.append('categoryImage', files[0]);
-      data.append('name', files[0].name);
+      data.append('name', files[0] && files[0].name);
       setFormData(data);
     };
   
@@ -100,11 +100,11 @@ function ForgottenThings(props) {
               aria-describedby="inputGroupFileAddon04"
               onChange={upload}
             />
-            <label className="custom-file-label" htmlFor="inputGroupFile04">
+            {/* <label className="custom-file-label" htmlFor="inputGroupFile04">
               Choose file
-            </label>
+            </label> */}
           </div>
-          <button type="submit" className="btn btn-primary w-100">
+          <button type="submit" className="btn btn-primary w-100" style={{marginTop: '20px'}}>
             Submit
           </button>
         </form>
