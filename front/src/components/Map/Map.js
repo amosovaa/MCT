@@ -16,10 +16,10 @@ const containerStyle = {
 function Map({ props }) {
   const coard = useSelector((store) => store.cities.defaultCity);
   console.log(coard);
-  // const center = {
-  //   lat: null ? 20 : coard.latitude,
-  //   lng: null ? 20 : coard.longitude
-  // };
+  const center = {
+    lat: 20,
+    lng: 20,
+  };
   const [map, setMap] = React.useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
@@ -39,7 +39,7 @@ function Map({ props }) {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      // center={center}
+      center={center}
       zoom={13}
       onLoad={onLoad}
       onUnmount={onUnmount}
@@ -47,7 +47,7 @@ function Map({ props }) {
       {/* Child components, such as markers, info windows, etc. */}
       <></>
 
-      {/* <Marker position={center} /> */}
+      <Marker position={center} />
     </GoogleMap>
   ) : (
     <></>
