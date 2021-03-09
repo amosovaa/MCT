@@ -16,6 +16,8 @@ import Cabinet from '../Cabinet/Cabinet';
 import Schedule from '../Schedule/Schedule';
 import AdminCabinet from '../AdminCabinet/AdminCabinet';
 import Team from '../Team/Team';
+import {GoogleLogin} from 'react-google-login'
+
 
 function App() {
   const isAuth = useSelector((store) => store.auth.isAuth);
