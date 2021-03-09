@@ -4,6 +4,7 @@ import { INIT_CITIES } from '../../redux/actionTypes';
 import { setDefaultCityAC } from '../../redux/actionCreators';
 import { fetchDelete } from '../../redux/thunkAC';
 import { useHistory } from 'react-router-dom';
+import Map from '../Map/Map';
 
 function Schedule(props) {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function Schedule(props) {
         dispatch({ type: INIT_CITIES, payload: data });
       });
   }, [dispatch]);
+  console.log(cities)
 
   const selectHandler = (event) => {
     dispatch(setDefaultCityAC(event.target.value));
@@ -63,6 +65,7 @@ function Schedule(props) {
           {/* {defaultCity && defaultCity.longitude} */}
         </p>
         <p> Уточнения </p>
+        <Map />
       </div>
 
       <div class='box'>
