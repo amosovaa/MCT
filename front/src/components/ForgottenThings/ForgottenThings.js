@@ -63,7 +63,7 @@ function ForgottenThings(props) {
           .then(response => response.json())
           .then(data => dispatch(initPhotosAC(data)))
       }, [dispatch])
-      
+      console.log(initPicture);
     return (
       <div
         style={{ width: "100%", height: "100%"}}
