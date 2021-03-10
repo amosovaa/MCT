@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { INIT_CITIES } from '../../redux/actionTypes';
 import { setDefaultCityAC } from '../../redux/actionCreators';
 import { fetchDelete } from '../../redux/thunkAC';
-import {cardAC} from '../../redux/actionCreators'
+import { cardAC } from '../../redux/actionCreators';
 import { useHistory } from 'react-router-dom';
 import Map from '../Map/Map';
 import styles from './schedule.module.scss';
@@ -13,7 +13,7 @@ function Schedule(props) {
   const history = useHistory();
   const defaultCity = useSelector((state) => state.cities.defaultCity);
   const cities = useSelector((state) => state.cities.cities);
-  const card = useSelector(state => state.state)
+  const card = useSelector((state) => state.state);
   console.log(card);
   const handlerDelete = (e) => {
     e.preventDefault();
@@ -33,10 +33,10 @@ function Schedule(props) {
     dispatch(setDefaultCityAC(event.target.value));
   };
   const handlerMap = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     card.card = !card.card;
     dispatch(cardAC());
-  }
+  };
   return (
     <div>
       <br />
@@ -75,9 +75,9 @@ function Schedule(props) {
           {/* {defaultCity && defaultCity.longitude} */}
         </p>
         <p> Уточнения </p>
-        <div className={styles.card} onClick={handlerMap}>
-          Показать на карте
-          {card.card &&  <Map defaultCity={defaultCity && defaultCity.hotel} />}
+        <div className={styles.card}>
+          <button onClick={handlerMap}>Показать на карте</button>
+          {card.card && <Map defaultCity={defaultCity && defaultCity.hotel} />}
         </div>
       </div>
 
