@@ -7,4 +7,5 @@ export const CARD = 'CARD';
 export const ADD_CITY = 'ADD_CITY';
 export const INIT_CITIES = 'INIT_CITIES';
 export const SET_DEFAULT_CITY = 'SET_DEFAULT_CITY';
-export const DELETE_CITY = 'DELETE_CITY'
+export const DELETE_CITY = 'DELETE_CITY';
+export const INIT_COORDS = 'INIT_COORDS';
