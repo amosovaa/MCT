@@ -8,8 +8,8 @@ import {
 } from "@react-google-maps/api";
 
 const containerStyle = {
-  width: "400px",
-  height: "400px",
+  width: "70vw",
+  height: "70vh",
   borderRadius: "4px",
 };
 const options = {

@@ -9,14 +9,15 @@ function Header(props) {
   const dispatch = useDispatch();
   const nav = useSelector((store) => store.state);
   const handlerMobile = () => {
-    
+    nav.nav = !nav.nav;
+    dispatch(navAC());
   };
 
   return (
     <header className={styles.visibleMenu} id="header">
       <ul className={styles.wrapper}>
         <li>
-          <Link className={styles.wrapper__link} to="/">
+          <Link className={styles.wrapper__linkFirst} to="/">
             Home
           </Link>
         </li>
