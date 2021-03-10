@@ -77,18 +77,14 @@ function ForgottenThings(props) {
 
       const [photo, setPhoto] = useState([])
       useEffect(() => {
-        // axios 
-        // .get('http://localhost:3000/api/category')
-        // .then(response => console.log(response))
         fetch('http://localhost:4000/api/category')
           .then(response => response.json())
           .then(data => setPhoto(data))
-          // .then(data => console.log(data.uploadFiles))
       })
       
     return (
       <div
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: "100%", height: "100%"}}
         className="d-flex justify-content-center align-items-center flex-column"
       >
         {/* {error.found && (
@@ -149,7 +145,9 @@ function ForgottenThings(props) {
           alt={`${name && name.name}`}
           style={{ width: "359px" }}
         />
-        {photo.uploadFiles && photo.uploadFiles.map(el => <div><img src={el.image} style={{ display: 'flex', flexWrap: 'wrap',width: '200px', height: '200px'}}></img><button>Delete</button></div>)}
+        <div style={{display: 'flex', flexWrap: 'wrap', alignContent: 'space-between'}}>
+        {photo.uploadFiles && photo.uploadFiles.map(el =><> <div><img src={el.image} style={{ width: '200px', height: '200px', marginTop: '40px'}}></img><button>Delete</button></div></>)}
+        </div>
       </div>
     );
 }
