@@ -1,8 +1,9 @@
 import React from 'react';
-import Anton from './Anton.jpg';
-import Asya from './Asya.jpeg';
-import KGB from './KGB.jpg';
-import Andrey from './Andrey.jpg';
+import Anton from './img/Anton.jpg';
+import Asya from './img/Asya.jpeg';
+import KGB from './img/KGB.jpg';
+import Andrey from './img/Andrey.jpg';
+import styles from './team.module.scss';
 import translate from '../i18n/translate';
 
 function Team(props) {
@@ -10,15 +11,18 @@ function Team(props) {
     <div>
       <br />
       <br />
-      <h2>{translate('developers')}</h2>
-      <div className='box alt'>
-        <div className='row gtr-50 gtr-uniform'>
-          <div className='col-3'>
+      <div>
+        <h2 className={styles.title}> {translate('developers')}</h2>
+        <div className={styles.wrapper}>
+          <div className={styles.wrapper__col}>
             <span className='image fit'>
-              <img src={Andrey} alt='' />
-              <h4>{translate('Andrey')}</h4>
-              <div>
-                <a href='https://t.me/Andrey1087'>
+              <img className={styles.wrapper__img} src={Andrey} alt='' />
+              <h4 className={styles.wrapper__name}>{translate('Andrey')}</h4>
+              <div className={styles.wrapper__linkCont}>
+                <a
+                  className={styles.wrapper__link}
+                  href='https://t.me/Andrey1087'
+                >
                   <svg width='24px' height='24px'>
                     <path
                       id='telegram-3'
@@ -28,9 +32,10 @@ function Team(props) {
                     />
                   </svg>
                 </a>
-                <a href='#'>
+                <a className={styles.wrapper__link} href='#'>
                   {' '}
                   <svg
+                    className={styles.wrapper__svg}
                     xmlns='http://www.w3.org/2000/svg'
                     width='24'
                     height='24'
@@ -42,12 +47,15 @@ function Team(props) {
               </div>
             </span>
           </div>
-          <div className='col-3'>
+          <div className={styles.wrapper__col}>
             <span className='image fit'>
-              <img src={Anton} alt='' />
-              <h4>{translate('Anton')}</h4>
-              <div>
-                <a href='https://t.me/antonryskin'>
+              <img className={styles.wrapper__img} src={Anton} alt='' />
+              <h4 className={styles.wrapper__name}>{translate('Anton')}</h4>
+              <div className={styles.wrapper__linkCont}>
+                <a
+                  className={styles.wrapper__link}
+                  href='https://t.me/antonryskin'
+                >
                   <svg width='24px' height='24px'>
                     <path
                       id='telegram-3'
@@ -57,9 +65,10 @@ function Team(props) {
                     />
                   </svg>
                 </a>
-                <a href='#'>
+                <a className={styles.wrapper__link} href='#'>
                   {' '}
                   <svg
+                    className={styles.wrapper__svg}
                     xmlns='http://www.w3.org/2000/svg'
                     width='24'
                     height='24'
@@ -71,12 +80,15 @@ function Team(props) {
               </div>
             </span>
           </div>
-          <div className='col-3'>
+          <div className={styles.wrapper__col}>
             <span className='image fit'>
-              <img src={Asya} alt='' />
-              <h4>{translate('Asya')}</h4>
-              <div>
-                <a href='https://t.me/aamosova'>
+              <img className={styles.wrapper__img} src={Asya} alt='' />
+              <h4 className={styles.wrapper__name}>{translate('Asya')}</h4>
+              <div className={styles.wrapper__linkCont}>
+                <a
+                  className={styles.wrapper__link}
+                  href='https://t.me/aamosova'
+                >
                   <svg width='24px' height='24px'>
                     <path
                       id='telegram-3'
@@ -86,9 +98,10 @@ function Team(props) {
                     />
                   </svg>
                 </a>
-                <a href='#'>
+                <a className={styles.wrapper__link} href='#'>
                   {' '}
                   <svg
+                    className={styles.wrapper__svg}
                     xmlns='http://www.w3.org/2000/svg'
                     width='24'
                     height='24'
@@ -100,12 +113,15 @@ function Team(props) {
               </div>
             </span>
           </div>
-          <div className='col-3'>
+          <div className={styles.wrapper__col}>
             <span className='image fit'>
-              <img src={KGB} alt='' />
-              <h4>{translate('Alex')}</h4>
-              <div>
-                <a href='https://t.me/polonsky13'>
+              <img className={styles.wrapper__img} src={KGB} alt='' />
+              <h4 className={styles.wrapper__name}>{translate('Alex')}</h4>
+              <div className={styles.wrapper__linkCont}>
+                <a
+                  className={styles.wrapper__link}
+                  href='https://t.me/polonsky13'
+                >
                   <svg width='24px' height='24px'>
                     <path
                       id='telegram-3'
@@ -115,9 +131,10 @@ function Team(props) {
                     />
                   </svg>
                 </a>
-                <a href='#'>
+                <a className={styles.wrapper__link} href='#'>
                   {' '}
                   <svg
+                    className={styles.wrapper__svg}
                     xmlns='http://www.w3.org/2000/svg'
                     width='24'
                     height='24'

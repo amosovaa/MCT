@@ -94,10 +94,10 @@ function AdminCabinet(props) {
         <br />
         <br />
         <br />
-        <h2> Создать новый город </h2>
+        <h2> {translate('createCity')} </h2>
         <fieldset className={styles.fieldset}>
           <label htmlFor='cityName'>
-            Название города
+            {translate('cityname')}
             <input
               className={styles.input}
               type='text'
@@ -117,7 +117,7 @@ function AdminCabinet(props) {
             />
           </label>
           <label htmlFor='dateIn'>
-            Дата въезда
+            {translate('dateIn')}
             <input
               className={styles.date}
               type='date'
@@ -126,7 +126,7 @@ function AdminCabinet(props) {
             />
           </label>
           <label htmlFor='timeIn'>
-            Время въезда
+            {translate('timeIn')}
             <input
               className={styles.date}
               type='time'
@@ -135,7 +135,7 @@ function AdminCabinet(props) {
             />
           </label>
           <label htmlFor='dateOut'>
-            Дата выезда
+            {translate('dateOut')}
             <input
               className={styles.date}
               type='date'
@@ -144,7 +144,7 @@ function AdminCabinet(props) {
             />
           </label>
           <label htmlFor='timeOut'>
-            Время выезда
+            {translate('timeOut')}
             <input
               className={styles.date}
               type='time'
@@ -153,7 +153,7 @@ function AdminCabinet(props) {
             />
           </label>
           <label htmlFor='hotelAddress'>
-            Адрес отеля
+            {translate('hallAddress')}
             <input
               className={styles.input}
               type='text'
@@ -164,7 +164,7 @@ function AdminCabinet(props) {
         </fieldset>
         <fieldset className={styles.fieldset}>
           <label htmlFor='hallAddress'>
-            Адрес концертного зала
+            {translate('hallAddress')}
             <input
               className={styles.input}
               type='text'
@@ -173,7 +173,8 @@ function AdminCabinet(props) {
             />
           </label>
           <label htmlFor='timeRepetition'>
-            Время начала репетиции
+            {translate('rehearsal')} &nbsp;
+            {translate('from')}
             <input
               className={styles.date}
               type='time'
@@ -182,7 +183,8 @@ function AdminCabinet(props) {
             />
           </label>
           <label htmlFor='timeRepetitionEnd'>
-            Время конца репетиции
+            {translate('rehearsal')} &nbsp;
+            {translate('to')}
             <input
               className={styles.date}
               type='time'
@@ -191,7 +193,7 @@ function AdminCabinet(props) {
             />
           </label>
           <label htmlFor='timeConcert'>
-            Время начала первого концерта
+            {translate('firstConcert')}
             <input
               className={styles.date}
               type='time'
@@ -200,7 +202,7 @@ function AdminCabinet(props) {
             />
           </label>
           <label htmlFor='timeConcertSecond'>
-            Время начала второго концерта
+            {translate('secondConcert')}
             <input
               className={styles.date}
               type='time'
@@ -211,7 +213,7 @@ function AdminCabinet(props) {
         </fieldset>
         <fieldset className={styles.fieldset}>
           <label htmlFor='lunchAddress'>
-            Адрес еды
+            {translate('address')}
             <input
               className={styles.input}
               type='text'
@@ -220,7 +222,7 @@ function AdminCabinet(props) {
             />
           </label>
           <label htmlFor='timeLunch'>
-            Время еды
+            {translate('lunchTime')}
             <input
               className={styles.date}
               type='time'
@@ -229,7 +231,7 @@ function AdminCabinet(props) {
             />
           </label>
         </fieldset>
-        <button> Создать город </button>
+        <button>{translate('createSchedule')} </button>
       </form>
     </div>
   );
