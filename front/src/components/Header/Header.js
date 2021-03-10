@@ -31,6 +31,11 @@ function Header({ locale, setLocale }) {
           )}
         </li>
         <li>
+          <Link className={styles.wrapper__link} to='/bus'>
+            {translate('bus')}
+          </Link>
+        </li>
+        <li>
           <Link className={styles.wrapper__link} to='/team'>
             {translate('team')}
           </Link>

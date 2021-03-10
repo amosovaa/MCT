@@ -3,6 +3,7 @@ import routerSignup from './routers/signUp.js';
 import routerSignin from './routers/signIn.js';
 import routerLogout from './routers/logout.js';
 import routerCitypost from './routers/addCity.js';
+import routerBus from './routers/location.js'
 import mongoose from 'mongoose';
 import cors from 'cors'
 import path from 'path'
@@ -29,5 +30,6 @@ app.use('/signup', routerSignup);
 app.use('/signin', routerSignin);
 app.use('/logout', routerLogout);
 app.use('/cities', routerCitypost);
+app.use('/location', routerBus)
 
 export default app;
