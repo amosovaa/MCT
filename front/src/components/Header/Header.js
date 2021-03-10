@@ -10,7 +10,10 @@ function Header({ locale, setLocale }) {
   const isAuth = useSelector((store) => store.auth.isAuth);
   const dispatch = useDispatch();
   const nav = useSelector((store) => store.state);
-  const handlerMobile = () => {};
+  const handlerMobile = () => {
+    nav.nav = !nav.nav;
+    dispatch(navAC());
+  };
 
   return (
     <header className={styles.visibleMenu} id='header'>

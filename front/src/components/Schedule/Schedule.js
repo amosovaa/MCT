@@ -1,20 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { INIT_CITIES } from '../../redux/actionTypes';
 import { setDefaultCityAC } from '../../redux/actionCreators';
 import { fetchDelete } from '../../redux/thunkAC';
-import {cardAC} from '../../redux/actionCreators'
 import { useHistory } from 'react-router-dom';
 import Map from '../Map/Map';
 import styles from './schedule.module.scss';
+import Modal from 'react-modal';
+
+const customStyles = {
+  overlay: {  
+    backgroundColor: '#2a2f4a',
+  },
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
+Modal.setAppElement('*');
 
 function Schedule(props) {
+  // modal
+  const [modalIsOpen, setIsOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   const dispatch = useDispatch();
   const history = useHistory();
   const defaultCity = useSelector((state) => state.cities.defaultCity);
   const cities = useSelector((state) => state.cities.cities);
-  const card = useSelector(state => state.state)
-  console.log(card);
+
   const handlerDelete = (e) => {
     e.preventDefault();
     const { id } = e.target;
@@ -32,11 +57,6 @@ function Schedule(props) {
   const selectHandler = (event) => {
     dispatch(setDefaultCityAC(event.target.value));
   };
-  const handlerMap = (e) => {
-    e.preventDefault()
-    card.card = !card.card;
-    dispatch(cardAC());
-  }
   return (
     <div>
       <br />
@@ -75,9 +95,21 @@ function Schedule(props) {
           {/* {defaultCity && defaultCity.longitude} */}
         </p>
         <p> Уточнения </p>
-        <div className={styles.card} onClick={handlerMap}>
-          Показать на карте
-          {card.card &&  <Map defaultCity={defaultCity && defaultCity.hotel} />}
+        <div className={styles.card}>
+          <button onClick={openModal}>Показать на карте</button>
+          <Modal
+            isOpen={modalIsOpen}
+            // onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+            <Map
+              id="map"
+              className={styles.map}
+              defaultCity={defaultCity && defaultCity.hotel}
+            />
+          </Modal>
         </div>
       </div>
 
@@ -99,7 +131,21 @@ function Schedule(props) {
         </p>
         <p> Адрес: {defaultCity && defaultCity.hall.name}</p>
         <p> Уточнения </p>
-        <Map defaultCity={defaultCity && defaultCity.hall} />
+        <div className={styles.card}>
+          <button onClick={openModal}>Показать на карте</button>
+          <Modal
+            isOpen={modalIsOpen}
+            // onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+            <Map
+              className={styles.map}
+              defaultCity={defaultCity && defaultCity.hall}
+            />
+          </Modal>
+        </div>
       </div>
       <div className="box">
         <h3> Еда </h3>
@@ -123,7 +169,21 @@ function Schedule(props) {
           <p> Адрес: </p>
         </div>
         <p> Уточнения </p>
-        <Map defaultCity={defaultCity && defaultCity.lunch} />
+        <div className={styles.card}>
+          <button onClick={openModal}>Показать на карте</button>
+          <Modal
+            isOpen={modalIsOpen}
+            // onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+            <Map
+              className={styles.map}
+              defaultCity={defaultCity && defaultCity.lunch}
+            />
+          </Modal>
+        </div>
       </div>
       <div className={styles.wrapperBtn}>
         {defaultCity && (

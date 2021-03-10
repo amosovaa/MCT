@@ -1,7 +1,11 @@
 .wrapper {
   list-style: none;
   display: flex;
-  
+  &__linkFirst{
+    text-decoration: none;
+    border: 0;
+    margin-left: 14px;
+  }
   &__link {
     text-decoration: none;
     border: 0;
