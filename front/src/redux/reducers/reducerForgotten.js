@@ -1,4 +1,4 @@
-import {ADD_PICTURE, ADD_NAME, ADD_IMAGE, CHANGE_PROGRESS, ERROR_FOUND, ERROR_MESSAGE} from '../actionTypes'
+import {ADD_PICTURE, ADD_NAME, ADD_IMAGE, CHANGE_PROGRESS, ERROR_FOUND, ERROR_MESSAGE, INIT_PHOTOS} from '../actionTypes'
 
 let initialState = {
     formData: '',
@@ -6,7 +6,8 @@ let initialState = {
     image: '',
     progressPercent: 0,
     errorFound: false,
-    errorMessage: ''
+    errorMessage: '',
+    photos: []
 }
 
 function reducerForgotten(state = initialState, action) {
@@ -28,6 +29,9 @@ function reducerForgotten(state = initialState, action) {
 
         case ERROR_MESSAGE:
             return {...state, errorMessage: action.payload}
+        
+        case INIT_PHOTOS:
+            return {...state, photos: [...state.photos, action.payload]}
                 
         default:
             return state

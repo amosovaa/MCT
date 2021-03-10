@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import {addPictureAC, addNameAC, addImageAC, progressAC, errorFoundAC, errorMessageAC} from '../../redux/actionCreators'
+import {addPictureAC, addNameAC, addImageAC, progressAC, errorFoundAC, errorMessageAC, initPhotosAC} from '../../redux/actionCreators'
 
 function ForgottenThings(props) {
     const dispatch = useDispatch()
@@ -11,13 +11,8 @@ function ForgottenThings(props) {
     const progress = useSelector(state => state.pictures.progressPercent)
     const errorFound = useSelector(state => state.pictures.errorFound)
     const errorMessage = useSelector(state => state.pictures.errorMessage)
-  
-    // const [progressPercent, setProgressPercent] = useState(0);
-  
-    // const [error, setError] = useState({
-    //   found: false,
-    //   message: "",
-    // });
+    // rewrite photos[0] to photos (need to use null instead [] in reducerForgotten)
+    const initPicture = useSelector(state => state.pictures.photos[0])
   
     const upload = ({ target: { files } }) => {
       let data = new FormData();
@@ -31,14 +26,12 @@ function ForgottenThings(props) {
       dispatch(addNameAC(name))
       dispatch(addImageAC(storeImage))
       dispatch(progressAC(0))
-      // setProgressPercent(0);
       const options = {
         onUploadProgress: (progressEvent) => {
           const { loaded, total } = progressEvent;
           let percent = Math.floor((loaded * 100) / total);
           console.log(`${loaded}kb of ${total}kb | ${percent}%`);
           dispatch(progressAC(percent))
-          // setProgressPercent(percent);
         },
       };
   
@@ -49,53 +42,33 @@ function ForgottenThings(props) {
             dispatch(addNameAC(res.data.category))
             dispatch(addImageAC(res.data.category))
             dispatch(progressAC(0))
-            // setProgressPercent(0);
           }, 1000);
         })
         .catch((err) => {
           console.log(err.response);
-          // setError({
-          //   found: true,
-          //   message: err.response.data.errors,
-          // });
           dispatch(errorFoundAC(true))
           dispatch(errorMessageAC(err.response.data.errors))
   
           setTimeout(() => {
-            // setError({
-            //   found: false,
-            //   message: "",
-            // });
             dispatch(errorFoundAC(false))
             dispatch(errorMessageAC(''))
             dispatch(progressAC(0))
-            // setProgressPercent(0);
           }, 3000);
         });
 
       }
 
-      const [photo, setPhoto] = useState([])
       useEffect(() => {
         fetch('http://localhost:4000/api/category')
           .then(response => response.json())
-          .then(data => setPhoto(data))
-      })
+          .then(data => dispatch(initPhotosAC(data)))
+      }, [dispatch])
       
     return (
       <div
         style={{ width: "100%", height: "100%"}}
         className="d-flex justify-content-center align-items-center flex-column"
       >
-        {/* {error.found && (
-          <div
-            className="alert alert-danger"
-            role="alert"
-            style={{ width: "359px"}}
-          >
-            {error.message}
-          </div>
-        )} */}
         {errorFound && (
           <div
             className="alert alert-danger"
@@ -103,7 +76,6 @@ function ForgottenThings(props) {
             style={{ width: "359px"}}
           >
             {errorMessage}
-            {/* {data.errors} */}
           </div>
         )}
   
@@ -112,14 +84,11 @@ function ForgottenThings(props) {
             <div
               className="progress-bar"
               role="progressbar"
-              // style={{ width: `${progressPercent}%` }}
-              // aria-valuenow={progressPercent}
               style={{ width: `${progress}%` }}
               aria-valuenow={progress}
               aria-valuemin={0}
               aria-valuemax={100}
             >
-              {/* {progressPercent} */}
               {progress}
             </div>
           </div>
@@ -131,9 +100,6 @@ function ForgottenThings(props) {
               aria-describedby="inputGroupFileAddon04"
               onChange={upload}
             />
-            {/* <label className="custom-file-label" htmlFor="inputGroupFile04">
-              Choose file
-            </label> */}
           </div>
           <button type="submit" className="btn btn-primary w-100" style={{marginTop: '20px'}}>
             Submit
@@ -146,7 +112,7 @@ function ForgottenThings(props) {
           style={{ width: "359px" }}
         />
         <div style={{display: 'flex', flexWrap: 'wrap', alignContent: 'space-between'}}>
-        {photo.uploadFiles && photo.uploadFiles.map(el =><> <div><img src={el.image} style={{ width: '200px', height: '200px', marginTop: '40px'}}></img><button>Delete</button></div></>)}
+        {initPicture.uploadFiles && initPicture.uploadFiles.map(el =><> <div><img src={el.image} style={{ width: '200px', height: '200px', marginTop: '40px'}}></img><button>Delete</button></div></>)}
         </div>
       </div>
     );

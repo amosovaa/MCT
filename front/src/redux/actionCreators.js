@@ -12,12 +12,20 @@ import {
   ADD_IMAGE,
   CHANGE_PROGRESS,
   ERROR_FOUND,
-  ERROR_MESSAGE
+  ERROR_MESSAGE,
+  INIT_PHOTOS
 } from './actionTypes';
 
 export const addPictureAC = (payload) => {
   return {
     type: ADD_PICTURE,
+    payload,
+  };
+};
+
+export const initPhotosAC = (payload) => {
+  return {
+    type: INIT_PHOTOS,
     payload,
   };
 };
