@@ -18,6 +18,7 @@ import Schedule from '../Schedule/Schedule';
 import AdminCabinet from '../AdminCabinet/AdminCabinet';
 import Team from '../Team/Team';
 import ForgottenThings from '../ForgottenThings/ForgottenThings'
+import Bus from '../Bus/Bus'
 import { I18Provider, LOCALES } from '../i18n';
 import translate from '../i18n/translate';
 
@@ -41,7 +42,10 @@ function App() {
             <Route path="/cabinet">
               {isAuth === false ? <Redirect to="/signin" /> : <Cabinet />}
             </Route>
-            <Route path="/signup">
+            <Route path='/bus'>
+              <Bus/>
+            </Route>
+            <Route path='/signup'>
               <Signup />
               {isAuth === true && <Redirect to="/cabinet" />}
               {/* <Redirect to="/" /> */}
