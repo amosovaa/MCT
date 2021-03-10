@@ -112,7 +112,7 @@ function ForgottenThings(props) {
           style={{ width: "359px" }}
         />
         <div style={{display: 'flex', flexWrap: 'wrap', alignContent: 'space-between'}}>
-        {initPicture.uploadFiles && initPicture.uploadFiles.map(el =><> <div><img src={el.image} style={{ width: '200px', height: '200px', marginTop: '40px'}}></img><button>Delete</button></div></>)}
+        {initPicture && initPicture.uploadFiles.map(el =><> <div><img src={el.image} style={{ width: '200px', height: '200px', marginTop: '40px'}}></img><button>Delete</button></div></>)}
         </div>
       </div>
     );
