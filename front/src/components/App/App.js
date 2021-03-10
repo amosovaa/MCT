@@ -22,9 +22,11 @@ import translate from '../i18n/translate';
 
 function App() {
   const isAuth = useSelector((store) => store.auth.isAuth);
+  // const isAdmin = useSelector((store => store.auth.auth.user.isAdmin))
   const nav = useSelector((store) => store.state);
   const [locale, setLocale] = useState(LOCALES.ENGLISH);
 
+  // console.log(isAdmin);
   return (
     <I18Provider locale={locale}>
       <Router>
