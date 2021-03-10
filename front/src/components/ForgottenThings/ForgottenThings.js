@@ -1,17 +1,13 @@
 import React, {useState} from 'react';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import {addPictureAC} from '../../redux/actionCreators'
+import {addPictureAC, addNameAC, addImageAC} from '../../redux/actionCreators'
 
 function ForgottenThings(props) {
-    // const [formData, setFormData] = useState("");
     const dispatch = useDispatch()
-    const store = useSelector(state => state.pictures.formData)
-    // const store = useSelector(state => state.pictures)
-    const [info, setInfo] = useState({
-      name: "",
-      image: "",
-    });
+    const name = useSelector(state => state.pictures.name)
+    const image = useSelector(state => state.pictures.image)
+    const store = useSelector(state => state.pictures)
   
     const [progressPercent, setProgressPercent] = useState(0);
   
@@ -24,17 +20,13 @@ function ForgottenThings(props) {
       let data = new FormData();
       data.append('categoryImage', files[0]);
       data.append('name', files[0] && files[0].name);
-      // setFormData(data);
-      // dispatch({type: 'ADD_PICTURE', payload: data})
       dispatch(addPictureAC(data))
     };
   
     function handleSubmit(event) {
       event.preventDefault();
-      setInfo({
-        image: "",
-        name: "",
-      });
+      dispatch(addNameAC(name))
+      dispatch(addImageAC(image))
       setProgressPercent(0);
       const options = {
         onUploadProgress: (progressEvent) => {
@@ -46,11 +38,11 @@ function ForgottenThings(props) {
       };
   
       axios
-        // .post("http://localhost:3000/api/category", formData, options)
-        .post("http://localhost:3000/api/category", store, options)
+        .post("http://localhost:3000/api/category", store.formData, options)
         .then((res) => {
           setTimeout(() => {
-            setInfo(res.data.category);
+            dispatch(addNameAC(res.data.category))
+            dispatch(addImageAC(res.data.category))
             setProgressPercent(0);
           }, 1000);
         })
@@ -117,8 +109,8 @@ function ForgottenThings(props) {
         </form>
         <img
           className="mt-3"
-          src={`http://localhost:3000/${info.image}`}
-          alt={`${info.name}`}
+          src={`http://localhost:3000/${image && image.image}`}
+          alt={`${name && name.name}`}
           style={{ width: "359px" }}
         />
       </div>

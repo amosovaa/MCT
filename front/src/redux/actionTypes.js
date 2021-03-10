@@ -8,3 +8,5 @@ export const INIT_CITIES = 'INIT_CITIES';
 export const SET_DEFAULT_CITY = 'SET_DEFAULT_CITY';
 export const DELETE_CITY = 'DELETE_CITY'
 export const ADD_PICTURE = 'ADD_PICTURE'
+export const ADD_NAME = 'ADD_NAME'
+export const ADD_IMAGE = 'ADD_IMAGE'

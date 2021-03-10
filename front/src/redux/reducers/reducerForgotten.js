@@ -1,4 +1,4 @@
-import {ADD_PICTURE} from '../actionTypes'
+import {ADD_PICTURE, ADD_NAME, ADD_IMAGE} from '../actionTypes'
 
 let initialState = {
     formData: '',
@@ -11,10 +11,10 @@ function reducerForgotten(state = initialState, action) {
         case ADD_PICTURE:
             return {...state, formData: action.payload}
 
-        case 'ADD_NAME':
+        case ADD_NAME:
             return {...state, name: action.payload}
 
-        case 'ADD_IMAGE':
+        case ADD_IMAGE:
             return {...state, image: action.payload}
                 
         default:

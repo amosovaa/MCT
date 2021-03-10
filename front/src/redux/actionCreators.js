@@ -7,12 +7,28 @@ import {
   DELETE_CITY,
   ERROR,
   SET_DEFAULT_CITY,
-  ADD_PICTURE
+  ADD_PICTURE,
+  ADD_NAME,
+  ADD_IMAGE
 } from './actionTypes';
 
 export const addPictureAC = (payload) => {
   return {
     type: ADD_PICTURE,
+    payload,
+  };
+};
+
+export const addNameAC = (payload) => {
+  return {
+    type: ADD_NAME,
+    payload,
+  };
+};
+
+export const addImageAC = (payload) => {
+  return {
+    type: ADD_IMAGE,
     payload,
   };
 };
