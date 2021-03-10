@@ -9,7 +9,10 @@ import {
   SET_DEFAULT_CITY,
   ADD_PICTURE,
   ADD_NAME,
-  ADD_IMAGE
+  ADD_IMAGE,
+  CHANGE_PROGRESS,
+  ERROR_FOUND,
+  ERROR_MESSAGE
 } from './actionTypes';
 
 export const addPictureAC = (payload) => {
@@ -18,6 +21,28 @@ export const addPictureAC = (payload) => {
     payload,
   };
 };
+
+export const errorFoundAC = (payload) => {
+  return {
+    type: ERROR_FOUND,
+    payload,
+  };
+};
+
+export const errorMessageAC = (payload) => {
+  return {
+    type: ERROR_MESSAGE,
+    payload,
+  };
+};
+
+export const progressAC = (payload) => {
+  return {
+    type: CHANGE_PROGRESS,
+    payload,
+  };
+};
+
 
 export const addNameAC = (payload) => {
   return {

@@ -1,20 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import {addPictureAC, addNameAC, addImageAC} from '../../redux/actionCreators'
+import {addPictureAC, addNameAC, addImageAC, progressAC, errorFoundAC, errorMessageAC} from '../../redux/actionCreators'
 
 function ForgottenThings(props) {
     const dispatch = useDispatch()
     const name = useSelector(state => state.pictures.name)
-    const image = useSelector(state => state.pictures.image)
+    const storeImage = useSelector(state => state.pictures.image)
     const store = useSelector(state => state.pictures)
+    const progress = useSelector(state => state.pictures.progressPercent)
+    const errorFound = useSelector(state => state.pictures.errorFound)
+    const errorMessage = useSelector(state => state.pictures.errorMessage)
   
-    const [progressPercent, setProgressPercent] = useState(0);
+    // const [progressPercent, setProgressPercent] = useState(0);
   
-    const [error, setError] = useState({
-      found: false,
-      message: "",
-    });
+    // const [error, setError] = useState({
+    //   found: false,
+    //   message: "",
+    // });
   
     const upload = ({ target: { files } }) => {
       let data = new FormData();
@@ -26,55 +29,85 @@ function ForgottenThings(props) {
     function handleSubmit(event) {
       event.preventDefault();
       dispatch(addNameAC(name))
-      dispatch(addImageAC(image))
-      setProgressPercent(0);
+      dispatch(addImageAC(storeImage))
+      dispatch(progressAC(0))
+      // setProgressPercent(0);
       const options = {
         onUploadProgress: (progressEvent) => {
           const { loaded, total } = progressEvent;
           let percent = Math.floor((loaded * 100) / total);
           console.log(`${loaded}kb of ${total}kb | ${percent}%`);
-          setProgressPercent(percent);
+          dispatch(progressAC(percent))
+          // setProgressPercent(percent);
         },
       };
   
       axios
-        .post("http://localhost:3000/api/category", store.formData, options)
+        .post("http://localhost:4000/api/category", store.formData, options)
         .then((res) => {
           setTimeout(() => {
             dispatch(addNameAC(res.data.category))
             dispatch(addImageAC(res.data.category))
-            setProgressPercent(0);
+            dispatch(progressAC(0))
+            // setProgressPercent(0);
           }, 1000);
         })
         .catch((err) => {
           console.log(err.response);
-          setError({
-            found: true,
-            message: err.response.data.errors,
-          });
+          // setError({
+          //   found: true,
+          //   message: err.response.data.errors,
+          // });
+          dispatch(errorFoundAC(true))
+          dispatch(errorMessageAC(err.response.data.errors))
   
           setTimeout(() => {
-            setError({
-              found: false,
-              message: "",
-            });
-            setProgressPercent(0);
+            // setError({
+            //   found: false,
+            //   message: "",
+            // });
+            dispatch(errorFoundAC(false))
+            dispatch(errorMessageAC(''))
+            dispatch(progressAC(0))
+            // setProgressPercent(0);
           }, 3000);
         });
-    }
-  
+
+      }
+
+      const [photo, setPhoto] = useState([])
+      useEffect(() => {
+        // axios 
+        // .get('http://localhost:3000/api/category')
+        // .then(response => console.log(response))
+        fetch('http://localhost:4000/api/category')
+          .then(response => response.json())
+          .then(data => setPhoto(data))
+          // .then(data => console.log(data.uploadFiles))
+      })
+      
     return (
       <div
-        style={{ width: "100vw", height: "100vh" }}
+        style={{ width: "100%", height: "100%" }}
         className="d-flex justify-content-center align-items-center flex-column"
       >
-        {error.found && (
+        {/* {error.found && (
           <div
             className="alert alert-danger"
             role="alert"
             style={{ width: "359px"}}
           >
             {error.message}
+          </div>
+        )} */}
+        {errorFound && (
+          <div
+            className="alert alert-danger"
+            role="alert"
+            style={{ width: "359px"}}
+          >
+            {errorMessage}
+            {/* {data.errors} */}
           </div>
         )}
   
@@ -83,12 +116,15 @@ function ForgottenThings(props) {
             <div
               className="progress-bar"
               role="progressbar"
-              style={{ width: `${progressPercent}%` }}
-              aria-valuenow={progressPercent}
+              // style={{ width: `${progressPercent}%` }}
+              // aria-valuenow={progressPercent}
+              style={{ width: `${progress}%` }}
+              aria-valuenow={progress}
               aria-valuemin={0}
               aria-valuemax={100}
             >
-              {progressPercent}
+              {/* {progressPercent} */}
+              {progress}
             </div>
           </div>
           <div className="custom-file mb-3">
@@ -109,10 +145,11 @@ function ForgottenThings(props) {
         </form>
         <img
           className="mt-3"
-          src={`http://localhost:3000/${image && image.image}`}
+          src={`http://localhost:3000/${storeImage && storeImage.image}`}
           alt={`${name && name.name}`}
           style={{ width: "359px" }}
         />
+        {photo.uploadFiles && photo.uploadFiles.map(el => <div><img src={el.image} style={{ display: 'flex', flexWrap: 'wrap',width: '200px', height: '200px'}}></img><button>Delete</button></div>)}
       </div>
     );
 }
