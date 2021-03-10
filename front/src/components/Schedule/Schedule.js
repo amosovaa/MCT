@@ -75,9 +75,9 @@ function Schedule(props) {
           {/* {defaultCity && defaultCity.longitude} */}
         </p>
         <p> Уточнения </p>
-        <div onClick={handlerMap}>
+        <div className={styles.card} onClick={handlerMap}>
           Показать на карте
-          {card.card && <Map defaultCity={defaultCity && defaultCity.hotel} />}
+          {card.card &&  <Map defaultCity={defaultCity && defaultCity.hotel} />}
         </div>
       </div>
 
