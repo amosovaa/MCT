@@ -26,7 +26,7 @@ function Signup(props) {
   console.log(error);
   return (
     <div className={styles.wrapper}>
-      <form onSubmit={handlerSignup}>
+      <form className={styles.wrapper__form} onSubmit={handlerSignup}>
         <label htmlFor="username">
           Username
           <input type="text" name="username" required />

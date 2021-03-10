@@ -3,14 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { INIT_CITIES } from '../../redux/actionTypes';
 import { setDefaultCityAC } from '../../redux/actionCreators';
 import { fetchDelete } from '../../redux/thunkAC';
+import {cardAC} from '../../redux/actionCreators'
 import { useHistory } from 'react-router-dom';
 import Map from '../Map/Map';
+import styles from './schedule.module.scss';
 
 function Schedule(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   const defaultCity = useSelector((state) => state.cities.defaultCity);
   const cities = useSelector((state) => state.cities.cities);
+  const card = useSelector(state => state.state)
+  console.log(card);
   const handlerDelete = (e) => {
     e.preventDefault();
     const { id } = e.target;
@@ -24,32 +28,38 @@ function Schedule(props) {
         dispatch({ type: INIT_CITIES, payload: data });
       });
   }, [dispatch]);
-  console.log(cities);
 
   const selectHandler = (event) => {
     dispatch(setDefaultCityAC(event.target.value));
   };
+  const handlerMap = (e) => {
+    e.preventDefault()
+    card.card = !card.card;
+    dispatch(cardAC());
+  }
   return (
     <div>
       <br />
       <br />
       <br />
-      <h3> Выберите город </h3>
-      <div className='col-12'>
-        <select
-          name='demo-category'
-          id='demo-category'
-          onChange={selectHandler}
-        >
-          {cities.map((el) => (
-            <option key={el._id} value={el._id}>
-              {el.name}
-            </option>
-          ))}
-        </select>
+      <div className={styles.wrapper}>
+        <h3> Выберите город </h3>
+        <div className="col-12">
+          <select
+            name="demo-category"
+            id="demo-category"
+            onChange={selectHandler}
+          >
+            {cities.map((el) => (
+              <option key={el._id} value={el._id}>
+                {el.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <h2>{defaultCity && defaultCity.name}</h2>
       </div>
-      <h2>{defaultCity && defaultCity.name}</h2>
-      <div className='box'>
+      <div className="box">
         <h3> Отель </h3>
         <p>Название отеля: {defaultCity && defaultCity.hotel.name}</p>
         <p>
@@ -65,7 +75,10 @@ function Schedule(props) {
           {/* {defaultCity && defaultCity.longitude} */}
         </p>
         <p> Уточнения </p>
-        <Map defaultCity={defaultCity && defaultCity.hotel} />
+        <div className={styles.card} onClick={handlerMap}>
+          Показать на карте
+          {card.card &&  <Map defaultCity={defaultCity && defaultCity.hotel} />}
+        </div>
       </div>
 
       <div className="box">
@@ -88,14 +101,14 @@ function Schedule(props) {
         <p> Уточнения </p>
         <Map defaultCity={defaultCity && defaultCity.hall} />
       </div>
-      <div className='box'>
+      <div className="box">
         <h3> Еда </h3>
-        <div className='box'>
+        <div className="box">
           <h4> Завтрак </h4>
           <p>Время с ... до ...</p>
           <p> Адрес: </p>
         </div>
-        <div className='box'>
+        <div className="box">
           <h4> Обед </h4>
           <p>
             Время с{' '}
@@ -104,7 +117,7 @@ function Schedule(props) {
           </p>
           <p> Адрес: </p>
         </div>
-        <div className='box'>
+        <div className="box">
           <h4> Ужин </h4>
           <p>Время с ... до ...</p>
           <p> Адрес: </p>
@@ -112,15 +125,17 @@ function Schedule(props) {
         <p> Уточнения </p>
         <Map defaultCity={defaultCity && defaultCity.lunch} />
       </div>
-      {defaultCity && (
-        <button
-          type='button'
-          onClick={handlerDelete}
-          id={defaultCity && defaultCity._id}
-        >
-          delete
-        </button>
-      )}
+      <div className={styles.wrapperBtn}>
+        {defaultCity && (
+          <button
+            type="button"
+            onClick={handlerDelete}
+            id={defaultCity && defaultCity._id}
+          >
+            delete
+          </button>
+        )}
+      </div>
     </div>
   );
 }

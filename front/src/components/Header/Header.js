@@ -9,8 +9,7 @@ function Header(props) {
   const dispatch = useDispatch();
   const nav = useSelector((store) => store.state);
   const handlerMobile = () => {
-    nav.nav = !nav.nav;
-    dispatch(navAC());
+    
   };
 
   return (
