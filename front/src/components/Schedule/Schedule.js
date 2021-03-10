@@ -9,7 +9,7 @@ import styles from './schedule.module.scss';
 import Modal from 'react-modal';
 
 const customStyles = {
-  overlay: {  
+  overlay: {
     backgroundColor: '#2a2f4a',
   },
   content: {
