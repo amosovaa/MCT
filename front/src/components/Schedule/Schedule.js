@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import Map from '../Map/Map';
 import styles from './schedule.module.scss';
 import Modal from 'react-modal';
+import translate from '../i18n/translate';
 
 const customStyles = {
   overlay: {
@@ -63,11 +64,11 @@ function Schedule(props) {
       <br />
       <br />
       <div className={styles.wrapper}>
-        <h3> Выберите город </h3>
-        <div className="col-12">
+        <h3> {translate('city')} </h3>
+        <div className='col-12'>
           <select
-            name="demo-category"
-            id="demo-category"
+            name='demo-category'
+            id='demo-category'
             onChange={selectHandler}
           >
             {cities.map((el) => (
@@ -79,33 +80,35 @@ function Schedule(props) {
         </div>
         <h2>{defaultCity && defaultCity.name}</h2>
       </div>
-      <div className="box">
-        <h3> Отель </h3>
-        <p>Название отеля: {defaultCity && defaultCity.hotel.name}</p>
+      <div className='box'>
+        <h3> {translate('hotel')} </h3>
         <p>
-          Время и дата заезда:{' '}
+          {translate('hotelName')} {defaultCity && defaultCity.hotel.name}
+        </p>
+        <p>
+          {translate('checkinTime')}{' '}
           {defaultCity && new Date(defaultCity.dateIn).toLocaleString()}
         </p>
         <p>
-          Время и дата выезда:{' '}
+          {translate('checkoutTime')}{' '}
           {defaultCity && new Date(defaultCity.dateOut).toLocaleString()}
         </p>
         <p>
-          Адрес: {defaultCity && defaultCity.hotel.address}
+          {translate('address')} {defaultCity && defaultCity.hotel.address}
           {/* {defaultCity && defaultCity.longitude} */}
         </p>
-        <p> Уточнения </p>
+        <p> {translate('moreInfo')} </p>
         <div className={styles.card}>
-          <button onClick={openModal}>Показать на карте</button>
+          <button onClick={openModal}>{translate('map')}</button>
           <Modal
             isOpen={modalIsOpen}
             // onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}
-            contentLabel="Example Modal"
+            contentLabel='Example Modal'
           >
             <Map
-              id="map"
+              id='map'
               className={styles.map}
               defaultCity={defaultCity && defaultCity.hotel}
             />
@@ -113,32 +116,34 @@ function Schedule(props) {
         </div>
       </div>
 
-      <div className="box">
-        <h3> Концертный зал </h3>
+      <div className='box'>
+        <h3> {translate('hall')} </h3>
         <p>
-          Время первого концерта:{' '}
+          {translate('firstConcert')}
           {defaultCity &&
             new Date(defaultCity.hall.timeConcert).toLocaleString()}
         </p>
-        <p>Время второго концерта:</p>
+        <p>{translate('secondConcert')} </p>
         <p>
-          Репетиция с{' '}
+          {translate('rehearsal')} {translate('from')}
           {defaultCity &&
             new Date(defaultCity.hall.timeRepetition).toLocaleString()}{' '}
-          до
+          {translate('to')}
           {defaultCity &&
             new Date(defaultCity.hall.timeRepetitionEnd).toLocaleString()}
         </p>
-        <p> Адрес: {defaultCity && defaultCity.hall.name}</p>
-        <p> Уточнения </p>
+        <p>
+          {translate('address')} {defaultCity && defaultCity.hall.name}
+        </p>
+        <p> {translate('moreInfo')} </p>
         <div className={styles.card}>
-          <button onClick={openModal}>Показать на карте</button>
+          <button onClick={openModal}>{translate('map')}</button>
           <Modal
             isOpen={modalIsOpen}
             // onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}
-            contentLabel="Example Modal"
+            contentLabel='Example Modal'
           >
             <Map
               className={styles.map}
@@ -147,36 +152,41 @@ function Schedule(props) {
           </Modal>
         </div>
       </div>
-      <div className="box">
-        <h3> Еда </h3>
-        <div className="box">
-          <h4> Завтрак </h4>
-          <p>Время с ... до ...</p>
-          <p> Адрес: </p>
-        </div>
-        <div className="box">
-          <h4> Обед </h4>
+      <div className='box'>
+        <h3> {translate('meal')} </h3>
+        <div className='box'>
+          <h4> {translate('breakfast')} </h4>
           <p>
-            Время с{' '}
-            {defaultCity && new Date(defaultCity.lunch.time).toLocaleString()}{' '}
-            до ...
+            {translate('from')} ... {translate('to')} ...
           </p>
-          <p> Адрес: </p>
+          <p> {translate('address')} </p>
         </div>
-        <div className="box">
-          <h4> Ужин </h4>
-          <p>Время с ... до ...</p>
-          <p> Адрес: </p>
+        <div className='box'>
+          <h4> {translate('dinner')} </h4>
+          <p>
+            {translate('from')}
+            {defaultCity &&
+              new Date(defaultCity.lunch.time).toLocaleString()}{' '}
+            {translate('to')}...
+          </p>
+          <p> {translate('address')} </p>
         </div>
-        <p> Уточнения </p>
+        <div className='box'>
+          <h4> {translate('supper')} </h4>
+          <p>
+            {translate('from')} ... {translate('to')} ...
+          </p>
+          <p> {translate('address')} </p>
+        </div>
+        <p> {translate('moreInfo')} </p>
         <div className={styles.card}>
-          <button onClick={openModal}>Показать на карте</button>
+          <button onClick={openModal}>{translate('map')}</button>
           <Modal
             isOpen={modalIsOpen}
             // onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}
-            contentLabel="Example Modal"
+            contentLabel='Example Modal'
           >
             <Map
               className={styles.map}
@@ -188,11 +198,11 @@ function Schedule(props) {
       <div className={styles.wrapperBtn}>
         {defaultCity && (
           <button
-            type="button"
+            type='button'
             onClick={handlerDelete}
             id={defaultCity && defaultCity._id}
           >
-            delete
+            {translate('delete')}
           </button>
         )}
       </div>

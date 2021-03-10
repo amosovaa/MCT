@@ -8,9 +8,9 @@ import Hall from "../models/Hall.js";
 
 export const citiAdd_get = async (req, res) => {
   const citles = await City.find({})
-    .populate('hotel')
-    .populate('lunch')
-    .populate('hall');
+    .populate("hotel")
+    .populate("lunch")
+    .populate("hall");
   res.json(citles);
 };
 
@@ -38,9 +38,6 @@ export const citiAdd_post = async (req, res) => {
     timeLunch,
   } = req.body;
 
-  // CITY
-  // console.log(req.body);
-
   const response = await fetch(
     `https://geocode-maps.yandex.ru/1.x/?apikey=c3411918-5071-411a-bf06-4a1ae2d170ab&format=json&geocode=${urlencode(
       cityName
@@ -50,140 +47,151 @@ export const citiAdd_post = async (req, res) => {
 
   if (
     resp.response.GeoObjectCollection.metaDataProperty.GeocoderResponseMetaData
-      .found === 0
+      .found == 0
   ) {
-    console.log("hi");
-    res.end({ error: "Что-то пошло не так" });
-    console.log("hijj");
+    res.json({ error: "Что-то пошло не так" });
+  } else {
+    const location =
+      resp.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
+    const longitudeCity = location.split(" ")[0]; //долгота
+    const latitudeCity = location.split(" ")[1]; //широта
+
+    //адекватный адрес города>>>>>>> master
+    const addressCity =
+      resp.response.GeoObjectCollection.featureMember[0].GeoObject
+        .metaDataProperty.GeocoderMetaData.text;
+
+    // HOTEL________________________________________
+
+    const responseHotel = await fetch(
+      `https://geocode-maps.yandex.ru/1.x/?apikey=c3411918-5071-411a-bf06-4a1ae2d170ab&format=json&geocode=${urlencode(
+        hotelAddress
+      )}&results=1`
+    );
+    const respHotel = await responseHotel.json();
+
+    if (
+      respHotel.response.GeoObjectCollection.metaDataProperty
+        .GeocoderResponseMetaData.found == 0
+    ) {
+      res.json({ error: "Что-то пошло не так" });
+    } else {
+      const locationHotel =
+        respHotel.response.GeoObjectCollection.featureMember[0].GeoObject.Point
+          .pos;
+      const longitudeHotel = locationHotel.split(" ")[0]; //долгота
+      const latitudeHotel = locationHotel.split(" ")[1]; //широта
+
+      const addressHotel =
+        respHotel.response.GeoObjectCollection.featureMember[0].GeoObject
+          .metaDataProperty.GeocoderMetaData.text;
+
+      // HALL________________________________________
+      const responseHall = await fetch(
+        `https://geocode-maps.yandex.ru/1.x/?apikey=c3411918-5071-411a-bf06-4a1ae2d170ab&format=json&geocode=${urlencode(
+          hallAddress
+        )}&results=1`
+      );
+      const respHall = await responseHall.json();
+      if (
+        respHall.response.GeoObjectCollection.metaDataProperty
+          .GeocoderResponseMetaData.found == 0
+      ) {
+        res.json({ error: "Что-то пошло не так" });
+      } else {
+        const locationHall =
+          respHall.response.GeoObjectCollection.featureMember[0].GeoObject.Point
+            .pos;
+        const longitudeHall = locationHall.split(" ")[0]; //долгота
+        const latitudeHall = locationHall.split(" ")[1]; //широта
+
+        const addressHall =
+          respHall.response.GeoObjectCollection.featureMember[0].GeoObject
+            .metaDataProperty.GeocoderMetaData.text;
+        // LUNCH________________________________________
+        const responseLunch = await fetch(
+          `https://geocode-maps.yandex.ru/1.x/?apikey=c3411918-5071-411a-bf06-4a1ae2d170ab&format=json&geocode=${urlencode(
+            lunchAddress
+          )}&results=1`
+        );
+        const respLunch = await responseLunch.json();
+        if (
+          respLunch.response.GeoObjectCollection.metaDataProperty
+            .GeocoderResponseMetaData.found == 0
+        ) {
+          res.json({ error: "Что-то пошло не так" });
+        } else {
+          const locationLunch =
+            respLunch.response.GeoObjectCollection.featureMember[0].GeoObject
+              .Point.pos;
+          const longitudeLunch = locationLunch.split(" ")[0]; //долгота
+          const latitudeLunch = locationLunch.split(" ")[1]; //широта
+
+          const addressLunch =
+            respLunch.response.GeoObjectCollection.featureMember[0].GeoObject
+              .metaDataProperty.GeocoderMetaData.text;
+
+          // TIMING________________________________________
+
+          const dateTimeIn = dateIn + " " + timeIn;
+          const dateTimeOut = dateOut + " " + timeOut;
+
+          const timeLunchDate = dateIn + " " + timeLunch;
+
+          const timeRepetitionDate = dateIn + " " + timeRepetition;
+          const timeRepetitionDateEnd = dateIn + " " + timeRepetitionEnd;
+
+          const timeConcertDate = dateIn + " " + timeConcert;
+          const timeConcertSecondDate = dateIn + " " + timeConcertSecond;
+
+          // MODELS________________________________________
+
+          const hall = new Hall({
+            name: addressHall,
+            timeConcert: timeConcertDate,
+            timeRepetition: timeRepetitionDate,
+            timeRepetitionEnd: timeRepetitionDateEnd,
+            longitude: longitudeHall,
+            latitude: latitudeHall,
+          });
+
+          await hall.save();
+
+          const hotel = new Hotel({
+            name: hotelName,
+            time: timeLunchDate,
+            longitude: longitudeHotel,
+            latitude: latitudeHotel,
+            address: addressHotel,
+          });
+
+          await hotel.save();
+
+          const lunch = new Lunch({
+            name: addressLunch,
+            time: timeLunchDate,
+            longitude: longitudeLunch,
+            latitude: latitudeLunch,
+          });
+
+          await lunch.save();
+
+          const city = new City({
+            name: addressCity,
+            dateIn: dateTimeIn,
+            dateOut: dateTimeOut,
+            longitude: longitudeCity,
+            latitude: latitudeCity,
+            hotel: hotel,
+            lunch: lunch,
+            hall: hall,
+          });
+
+          await city.save();
+
+          res.status(200).json({ success: true, city });
+        }
+      }
+    }
   }
-
-  //координаты города по res
-
-  const location =
-    resp.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeCity = location.split(" ")[0]; //долгота
-  const latitudeCity = location.split(" ")[1]; //широта
-
-  //адекватный адрес города>>>>>>> master
-  const addressCity =
-    resp.response.GeoObjectCollection.featureMember[0].GeoObject
-      .metaDataProperty.GeocoderMetaData.text;
-
-  // HOTEL________________________________________
-
-  const responseHotel = await fetch(
-    `https://geocode-maps.yandex.ru/1.x/?apikey=c3411918-5071-411a-bf06-4a1ae2d170ab&format=json&geocode=${urlencode(
-      hotelAddress
-    )}&results=1`
-  );
-  const respHotel = await responseHotel.json();
-
-  const locationHotel =
-    respHotel.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeHotel = locationHotel.split(" ")[0]; //долгота
-  const latitudeHotel = locationHotel.split(" ")[1]; //широта
-
-  const addressHotel =
-    respHotel.response.GeoObjectCollection.featureMember[0].GeoObject
-      .metaDataProperty.GeocoderMetaData.text;
-
-  // HALL________________________________________
-
-  const responseHall = await fetch(
-    `https://geocode-maps.yandex.ru/1.x/?apikey=c3411918-5071-411a-bf06-4a1ae2d170ab&format=json&geocode=${urlencode(
-      hallAddress
-    )}&results=1`
-  );
-  const respHall = await responseHall.json();
-
-  const locationHall =
-    respHall.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeHall = locationHall.split(" ")[0]; //долгота
-  const latitudeHall = locationHall.split(" ")[1]; //широта
-
-  const addressHall =
-    respHall.response.GeoObjectCollection.featureMember[0].GeoObject
-      .metaDataProperty.GeocoderMetaData.text;
-
-  // LUNCH________________________________________
-
-  const responseLunch = await fetch(
-    `https://geocode-maps.yandex.ru/1.x/?apikey=c3411918-5071-411a-bf06-4a1ae2d170ab&format=json&geocode=${urlencode(
-      lunchAddress
-    )}&results=1`
-  );
-  const respLunch = await responseLunch.json();
-
-  const locationLunch =
-    respLunch.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-  const longitudeLunch = locationLunch.split(" ")[0]; //долгота
-  const latitudeLunch = locationLunch.split(" ")[1]; //широта
-
-  const addressLunch =
-    respLunch.response.GeoObjectCollection.featureMember[0].GeoObject
-      .metaDataProperty.GeocoderMetaData.text;
-
-  // TIMING________________________________________
-
-  const dateTimeIn = dateIn + " " + timeIn;
-  const dateTimeOut = dateOut + " " + timeOut;
-
-  // console.log(dateTimeIn);
-
-  const timeLunchDate = dateIn + " " + timeLunch;
-
-  const timeRepetitionDate = dateIn + " " + timeRepetition;
-  const timeRepetitionDateEnd = dateIn + " " + timeRepetitionEnd;
-
-  const timeConcertDate = dateIn + " " + timeConcert;
-  const timeConcertSecondDate = dateIn + " " + timeConcertSecond;
-
-  // MODELS________________________________________
-
-  const hall = new Hall({
-    name: addressHall,
-    timeConcert: timeConcertDate,
-    timeRepetition: timeRepetitionDate,
-    timeRepetitionEnd: timeRepetitionDateEnd,
-    longitude: longitudeHall,
-    latitude: latitudeHall,
-  });
-
-  await hall.save();
-
-  const hotel = new Hotel({
-    name: hotelName,
-    time: timeLunchDate,
-    longitude: longitudeHotel,
-    latitude: latitudeHotel,
-    address: addressHotel,
-  });
-
-  await hotel.save();
-
-  const lunch = new Lunch({
-    name: addressLunch,
-    time: timeLunchDate,
-    longitude: longitudeLunch,
-    latitude: latitudeLunch,
-  });
-
-  await lunch.save();
-
-  const city = new City({
-    name: addressCity,
-    dateIn: dateTimeIn,
-    dateOut: dateTimeOut,
-    longitude: longitudeCity,
-    latitude: latitudeCity,
-    hotel: hotel,
-    lunch: lunch,
-    hall: hall,
-  });
-
-  await city.save();
-
-  // console.log(city.dateIn.toLocaleTimeString(), city.dateIn);
-
-  res.status(200).json({ success: true, city });
 };
