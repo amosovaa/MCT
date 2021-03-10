@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSignUpAC } from '../../redux/thunkAC';
 import styles from './signup.module.scss';
+import translate from '../i18n/translate';
 
 function Signup(props) {
   const dispatch = useDispatch();
@@ -26,20 +27,20 @@ function Signup(props) {
   console.log(error);
   return (
     <div className={styles.wrapper}>
-      <form onSubmit={handlerSignup}>
-        <label htmlFor="username">
-          Username
-          <input type="text" name="username" required />
+      <form className={styles.wrapper__form} onSubmit={handlerSignup}>
+        <label htmlFor='username'>
+          {translate('username')}
+          <input type='text' name='username' required />
         </label>
-        <label htmlFor="email">
-          Email
-          <input type="email" name="email" required />
+        <label htmlFor='email'>
+          {translate('email')}
+          <input type='email' name='email' required />
         </label>
-        <label htmlFor="password">
-          Password
-          <input type="password" name="password" required />
+        <label htmlFor='password'>
+          {translate('password')}
+          <input type='password' name='password' required />
         </label>
-        <button>Signup</button>
+        <button>{translate('signup')}</button>
         <div className={styles.error}>{error.msg}</div>
       </form>
     </div>

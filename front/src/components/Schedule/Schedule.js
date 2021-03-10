@@ -1,16 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { INIT_CITIES } from '../../redux/actionTypes';
 import { setDefaultCityAC } from '../../redux/actionCreators';
 import { fetchDelete } from '../../redux/thunkAC';
 import { useHistory } from 'react-router-dom';
 import Map from '../Map/Map';
+import styles from './schedule.module.scss';
+import Modal from 'react-modal';
+import translate from '../i18n/translate';
+
+const customStyles = {
+  overlay: {
+    backgroundColor: '#2a2f4a',
+  },
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
+Modal.setAppElement('*');
 
 function Schedule(props) {
+  // modal
+  const [modalIsOpen, setIsOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   const dispatch = useDispatch();
   const history = useHistory();
   const defaultCity = useSelector((state) => state.cities.defaultCity);
   const cities = useSelector((state) => state.cities.cities);
+
   const handlerDelete = (e) => {
     e.preventDefault();
     const { id } = e.target;
@@ -24,7 +54,6 @@ function Schedule(props) {
         dispatch({ type: INIT_CITIES, payload: data });
       });
   }, [dispatch]);
-  console.log(cities);
 
   const selectHandler = (event) => {
     dispatch(setDefaultCityAC(event.target.value));
@@ -34,93 +63,149 @@ function Schedule(props) {
       <br />
       <br />
       <br />
-      <h3> Выберите город </h3>
-      <div className='col-12'>
-        <select
-          name='demo-category'
-          id='demo-category'
-          onChange={selectHandler}
-        >
-          {cities.map((el) => (
-            <option key={el._id} value={el._id}>
-              {el.name}
-            </option>
-          ))}
-        </select>
+      <div className={styles.wrapper}>
+        <h3> {translate('city')} </h3>
+        <div className='col-12'>
+          <select
+            name='demo-category'
+            id='demo-category'
+            onChange={selectHandler}
+          >
+            {cities.map((el) => (
+              <option key={el._id} value={el._id}>
+                {el.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <h2>{defaultCity && defaultCity.name}</h2>
       </div>
-      <h2>{defaultCity && defaultCity.name}</h2>
       <div className='box'>
-        <h3> Отель </h3>
-        <p>Название отеля: {defaultCity && defaultCity.hotel.name}</p>
+        <h3> {translate('hotel')} </h3>
         <p>
-          Время и дата заезда:{' '}
+          {translate('hotelName')} {defaultCity && defaultCity.hotel.name}
+        </p>
+        <p>
+          {translate('checkinTime')}{' '}
           {defaultCity && new Date(defaultCity.dateIn).toLocaleString()}
         </p>
         <p>
-          Время и дата выезда:{' '}
+          {translate('checkoutTime')}{' '}
           {defaultCity && new Date(defaultCity.dateOut).toLocaleString()}
         </p>
         <p>
-          Адрес: {defaultCity && defaultCity.hotel.address}
+          {translate('address')} {defaultCity && defaultCity.hotel.address}
           {/* {defaultCity && defaultCity.longitude} */}
         </p>
-        <p> Уточнения </p>
-        <Map defaultCity={defaultCity && defaultCity.hotel} />
+        <p> {translate('moreInfo')} </p>
+        <div className={styles.card}>
+          <button onClick={openModal}>{translate('map')}</button>
+          <Modal
+            isOpen={modalIsOpen}
+            // onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel='Example Modal'
+          >
+            <Map
+              id='map'
+              className={styles.map}
+              defaultCity={defaultCity && defaultCity.hotel}
+            />
+          </Modal>
+        </div>
       </div>
 
-      <div className="box">
-        <h3> Концертный зал </h3>
+      <div className='box'>
+        <h3> {translate('hall')} </h3>
         <p>
-          Время первого концерта:{' '}
+          {translate('firstConcert')}
           {defaultCity &&
             new Date(defaultCity.hall.timeConcert).toLocaleString()}
         </p>
-        <p>Время второго концерта:</p>
+        <p>{translate('secondConcert')} </p>
         <p>
-          Репетиция с{' '}
+          {translate('rehearsal')} {translate('from')}
           {defaultCity &&
             new Date(defaultCity.hall.timeRepetition).toLocaleString()}{' '}
-          до
+          {translate('to')}
           {defaultCity &&
             new Date(defaultCity.hall.timeRepetitionEnd).toLocaleString()}
         </p>
-        <p> Адрес: {defaultCity && defaultCity.hall.name}</p>
-        <p> Уточнения </p>
-        <Map defaultCity={defaultCity && defaultCity.hall} />
+        <p>
+          {translate('address')} {defaultCity && defaultCity.hall.name}
+        </p>
+        <p> {translate('moreInfo')} </p>
+        <div className={styles.card}>
+          <button onClick={openModal}>{translate('map')}</button>
+          <Modal
+            isOpen={modalIsOpen}
+            // onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel='Example Modal'
+          >
+            <Map
+              className={styles.map}
+              defaultCity={defaultCity && defaultCity.hall}
+            />
+          </Modal>
+        </div>
       </div>
       <div className='box'>
-        <h3> Еда </h3>
+        <h3> {translate('meal')} </h3>
         <div className='box'>
-          <h4> Завтрак </h4>
-          <p>Время с ... до ...</p>
-          <p> Адрес: </p>
-        </div>
-        <div className='box'>
-          <h4> Обед </h4>
+          <h4> {translate('breakfast')} </h4>
           <p>
-            Время с{' '}
-            {defaultCity && new Date(defaultCity.lunch.time).toLocaleString()}{' '}
-            до ...
+            {translate('from')} ... {translate('to')} ...
           </p>
-          <p> Адрес: </p>
+          <p> {translate('address')} </p>
         </div>
         <div className='box'>
-          <h4> Ужин </h4>
-          <p>Время с ... до ...</p>
-          <p> Адрес: </p>
+          <h4> {translate('dinner')} </h4>
+          <p>
+            {translate('from')}
+            {defaultCity &&
+              new Date(defaultCity.lunch.time).toLocaleString()}{' '}
+            {translate('to')}...
+          </p>
+          <p> {translate('address')} </p>
         </div>
-        <p> Уточнения </p>
-        <Map defaultCity={defaultCity && defaultCity.lunch} />
+        <div className='box'>
+          <h4> {translate('supper')} </h4>
+          <p>
+            {translate('from')} ... {translate('to')} ...
+          </p>
+          <p> {translate('address')} </p>
+        </div>
+        <p> {translate('moreInfo')} </p>
+        <div className={styles.card}>
+          <button onClick={openModal}>{translate('map')}</button>
+          <Modal
+            isOpen={modalIsOpen}
+            // onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel='Example Modal'
+          >
+            <Map
+              className={styles.map}
+              defaultCity={defaultCity && defaultCity.lunch}
+            />
+          </Modal>
+        </div>
       </div>
-      {defaultCity && (
-        <button
-          type='button'
-          onClick={handlerDelete}
-          id={defaultCity && defaultCity._id}
-        >
-          delete
-        </button>
-      )}
+      <div className={styles.wrapperBtn}>
+        {defaultCity && (
+          <button
+            type='button'
+            onClick={handlerDelete}
+            id={defaultCity && defaultCity._id}
+          >
+            {translate('delete')}
+          </button>
+        )}
+      </div>
     </div>
   );
 }

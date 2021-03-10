@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import {
@@ -16,58 +17,55 @@ import Cabinet from '../Cabinet/Cabinet';
 import Schedule from '../Schedule/Schedule';
 import AdminCabinet from '../AdminCabinet/AdminCabinet';
 import Team from '../Team/Team';
-import {GoogleLogin} from 'react-google-login'
-import ForgottenThings from '../ForgottenThings/ForgottenThings';
-
+import { I18Provider, LOCALES } from '../i18n';
+import translate from '../i18n/translate';
 
 function App() {
   const isAuth = useSelector((store) => store.auth.isAuth);
   const nav = useSelector((store) => store.state);
+  const [locale, setLocale] = useState(LOCALES.ENGLISH);
+
   return (
-    <>
+    <I18Provider locale={locale}>
       <Router>
         <div className={styles.wrapper}>
-          <Header />
+          <Header locale={locale} setLocale={setLocale} />
           {nav.nav && <MobileMenu />}
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <HomePage />
             </Route>
-            <Route path="/cabinet">
-              {isAuth === false ? <Redirect to="/signin" /> : <Cabinet />}
+            <Route path='/cabinet'>
+              {isAuth === false ? <Redirect to='/signin' /> : <Cabinet />}
             </Route>
-            <Route path="/signup">
+            <Route path='/signup'>
               <Signup />
-              {isAuth === true && <Redirect to="/cabinet" />}
+              {isAuth === true && <Redirect to='/cabinet' />}
               {/* <Redirect to="/" /> */}
             </Route>
-            <Route path="/signin">
-              {isAuth === true && <Redirect to="/cabinet" />}
+            <Route path='/signin'>
+              {isAuth === true && <Redirect to='/cabinet' />}
               <Signin />
             </Route>
-            <Route path="/team">
+            <Route path='/team'>
               <Team />
             </Route>
-            <Route path="/forgottenThings">
-              <ForgottenThings/>
-            </Route>
-            {/* forgottenThings */}
-            <Route path="/logout">
-              {isAuth === false && <Redirect to="/" />}
+            <Route path='/logout'>
+              {isAuth === false && <Redirect to='/' />}
               <Logout />
             </Route>
-            <Route path="/cabinets/schedule">
-              {isAuth === false && <Redirect to="/" />}
+            <Route path='/cabinets/schedule'>
+              {isAuth === false && <Redirect to='/' />}
               <Schedule />
             </Route>
-            <Route path="/cabinets/admincabinet">
-              {isAuth === false && <Redirect to="/" />}
+            <Route path='/cabinets/admincabinet'>
+              {isAuth === false && <Redirect to='/' />}
               <AdminCabinet />
             </Route>
           </Switch>
         </div>
       </Router>
-    </>
+    </I18Provider>
   );
 }
 
