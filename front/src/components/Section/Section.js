@@ -1,4 +1,5 @@
 import React from 'react';
+import translate from '../i18n/translate';
 
 function Section(props) {
   return (
@@ -7,43 +8,43 @@ function Section(props) {
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Hotel</h3>
-            <p>Know more about your hotel for today</p>
+            <h3>{translate('hotel')}</h3>
+            <p>{translate('hotelInfo')}</p>
           </header>
         </article>
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Bus</h3>
-            <p>Bus parking information</p>
+            <h3>{translate('bus')}</h3>
+            <p>{translate('busInfo')}</p>
           </header>
         </article>
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Schedule</h3>
-            <p>Be aware of the schedule</p>
+            <h3>{translate('schedule')}</h3>
+            <p>{translate('scheduleInfo')}</p>
           </header>
         </article>
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Restaurants</h3>
-            <p>Find out your place to eat</p>
+            <h3>{translate('restaurants')}</h3>
+            <p>{translate('restaurantsInfo')}</p>
           </header>
         </article>
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Plan</h3>
-            <p>Plan your free time in advance</p>
+            <h3>{translate('plan')}</h3>
+            <p>{translate('planInfo')}</p>
           </header>
         </article>
         <article>
           <span className='image'></span>
           <header className='major'>
-            <h3>Forgotten things</h3>
-            <p>Don't worry about forgotten things</p>
+            <h3>{translate('things')}</h3>
+            <p>{translate('thingsInfo')}</p>
           </header>
         </article>
       </section>

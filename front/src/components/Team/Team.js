@@ -3,19 +3,20 @@ import Anton from './Anton.jpg';
 import Asya from './Asya.jpeg';
 import KGB from './KGB.jpg';
 import Andrey from './Andrey.jpg';
+import translate from '../i18n/translate';
 
 function Team(props) {
   return (
     <div>
       <br />
       <br />
-      <h2>Developers Team</h2>
+      <h2>{translate('developers')}</h2>
       <div className='box alt'>
         <div className='row gtr-50 gtr-uniform'>
           <div className='col-3'>
             <span className='image fit'>
               <img src={Andrey} alt='' />
-              <h4>Andrey Kuznetsov</h4>
+              <h4>{translate('Andrey')}</h4>
               <div>
                 <a href='https://t.me/Andrey1087'>
                   <svg width='24px' height='24px'>
@@ -44,7 +45,7 @@ function Team(props) {
           <div className='col-3'>
             <span className='image fit'>
               <img src={Anton} alt='' />
-              <h4>Anton Ryskin</h4>
+              <h4>{translate('Anton')}</h4>
               <div>
                 <a href='https://t.me/antonryskin'>
                   <svg width='24px' height='24px'>
@@ -73,7 +74,7 @@ function Team(props) {
           <div className='col-3'>
             <span className='image fit'>
               <img src={Asya} alt='' />
-              <h4>Asya Amosova</h4>
+              <h4>{translate('Asya')}</h4>
               <div>
                 <a href='https://t.me/aamosova'>
                   <svg width='24px' height='24px'>
@@ -102,7 +103,7 @@ function Team(props) {
           <div className='col-3'>
             <span className='image fit'>
               <img src={KGB} alt='' />
-              <h4>Alexander Polonsky</h4>
+              <h4>{translate('Alex')}</h4>
               <div>
                 <a href='https://t.me/polonsky13'>
                   <svg width='24px' height='24px'>
