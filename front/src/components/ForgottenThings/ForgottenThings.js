@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import {addPictureAC} from '../../redux/actionCreators'
 
 function ForgottenThings(props) {
-    const [formData, setFormData] = useState("");
-
+    // const [formData, setFormData] = useState("");
+    const dispatch = useDispatch()
+    const store = useSelector(state => state.pictures.formData)
+    // const store = useSelector(state => state.pictures)
     const [info, setInfo] = useState({
       name: "",
       image: "",
@@ -20,7 +24,9 @@ function ForgottenThings(props) {
       let data = new FormData();
       data.append('categoryImage', files[0]);
       data.append('name', files[0] && files[0].name);
-      setFormData(data);
+      // setFormData(data);
+      // dispatch({type: 'ADD_PICTURE', payload: data})
+      dispatch(addPictureAC(data))
     };
   
     function handleSubmit(event) {
@@ -40,7 +46,8 @@ function ForgottenThings(props) {
       };
   
       axios
-        .post("http://localhost:3000/api/category", formData, options)
+        // .post("http://localhost:3000/api/category", formData, options)
+        .post("http://localhost:3000/api/category", store, options)
         .then((res) => {
           setTimeout(() => {
             setInfo(res.data.category);
