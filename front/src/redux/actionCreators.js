@@ -8,7 +8,64 @@ import {
   DELETE_CITY,
   ERROR,
   SET_DEFAULT_CITY,
+  ADD_PICTURE,
+  ADD_NAME,
+  ADD_IMAGE,
+  CHANGE_PROGRESS,
+  ERROR_FOUND,
+  ERROR_MESSAGE,
+  INIT_PHOTOS
 } from './actionTypes';
+
+export const addPictureAC = (payload) => {
+  return {
+    type: ADD_PICTURE,
+    payload,
+  };
+};
+
+export const initPhotosAC = (payload) => {
+  return {
+    type: INIT_PHOTOS,
+    payload,
+  };
+};
+
+export const errorFoundAC = (payload) => {
+  return {
+    type: ERROR_FOUND,
+    payload,
+  };
+};
+
+export const errorMessageAC = (payload) => {
+  return {
+    type: ERROR_MESSAGE,
+    payload,
+  };
+};
+
+export const progressAC = (payload) => {
+  return {
+    type: CHANGE_PROGRESS,
+    payload,
+  };
+};
+
+
+export const addNameAC = (payload) => {
+  return {
+    type: ADD_NAME,
+    payload,
+  };
+};
+
+export const addImageAC = (payload) => {
+  return {
+    type: ADD_IMAGE,
+    payload,
+  };
+};
 
 export const signupAC = (payload) => {
   return {
