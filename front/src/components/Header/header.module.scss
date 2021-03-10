@@ -1,10 +1,11 @@
 .wrapper {
   list-style: none;
   display: flex;
+  
   &__link {
     text-decoration: none;
     border: 0;
-    margin-left: 16px;
+    margin-left: 32px;
   }
   li {
     padding-left: 0;
