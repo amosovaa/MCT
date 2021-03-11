@@ -22,6 +22,7 @@ import Bus from '../Bus/Bus';
 import Footer from '../Footer/Footer';
 import { I18Provider, LOCALES } from '../i18n';
 import translate from '../i18n/translate';
+// import ForgottenThings from '../ForgottenThings/ForgottenThings.js'
 
 function App() {
   const isAuth = useSelector((store) => store.auth.isAuth);
@@ -50,6 +51,9 @@ function App() {
               <Signup />
               {isAuth === true && <Redirect to='/cabinet' />}
               {/* <Redirect to="/" /> */}
+            </Route>
+            <Route path="/forgottenThings">
+              <ForgottenThings/>
             </Route>
             <Route path='/signin'>
               {isAuth === true && <Redirect to='/cabinet' />}
