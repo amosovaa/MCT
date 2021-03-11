@@ -17,15 +17,20 @@ import Cabinet from '../Cabinet/Cabinet';
 import Schedule from '../Schedule/Schedule';
 import AdminCabinet from '../AdminCabinet/AdminCabinet';
 import Team from '../Team/Team';
+import ForgottenThings from '../ForgottenThings/ForgottenThings';
+import Bus from '../Bus/Bus';
+import Footer from '../Footer/Footer';
 import { I18Provider, LOCALES } from '../i18n';
 import translate from '../i18n/translate';
 import ForgottenThings from '../ForgottenThings/ForgottenThings.js'
 
 function App() {
   const isAuth = useSelector((store) => store.auth.isAuth);
+  // const isAdmin = useSelector((store => store.auth.auth.user.isAdmin))
   const nav = useSelector((store) => store.state);
   const [locale, setLocale] = useState(LOCALES.ENGLISH);
 
+  // console.log(isAdmin);
   return (
     <I18Provider locale={locale}>
       <Router>
@@ -38,6 +43,9 @@ function App() {
             </Route>
             <Route path='/cabinet'>
               {isAuth === false ? <Redirect to='/signin' /> : <Cabinet />}
+            </Route>
+            <Route path='/bus'>
+              <Bus />
             </Route>
             <Route path='/signup'>
               <Signup />
@@ -54,6 +62,9 @@ function App() {
             <Route path='/team'>
               <Team />
             </Route>
+            <Route path='/forgottenThings'>
+              <ForgottenThings />
+            </Route>
             <Route path='/logout'>
               {isAuth === false && <Redirect to='/' />}
               <Logout />
@@ -67,6 +78,7 @@ function App() {
               <AdminCabinet />
             </Route>
           </Switch>
+          <Footer />
         </div>
       </Router>
     </I18Provider>
