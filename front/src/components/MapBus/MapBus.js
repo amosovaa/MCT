@@ -26,7 +26,6 @@ function Map(props) {
   const dispatch = useDispatch();
   const bus = useSelector((store) => store.coords.coords);
   const coords = useSelector((store) => store.state.coords);
-  console.log(coords);
 
   useEffect(() => {
     fetch("/location")
@@ -38,10 +37,6 @@ function Map(props) {
     lat: bus && bus.latitude,
     lng: bus && bus.longitude,
   };
-
-  // const [map, setMap] = React.useState(null);
-
-  // const [selected, setSelected] = React.useState(false)
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyDWnA7aqKKpfCx4s2fIkuksLdkqu9jDORA",
@@ -57,10 +52,7 @@ function Map(props) {
         mapContainerStyle={containerStyle}
         center={center}
         options={options}
-        // onLoad={onLoad}
-        // onUnmount={onUnmount}
       >
-        <></>
         <Marker
           position={center}
           icon={{

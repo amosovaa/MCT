@@ -40,6 +40,7 @@ function Schedule(props) {
   const history = useHistory();
   const defaultCity = useSelector((state) => state.cities.defaultCity);
   const cities = useSelector((state) => state.cities.cities);
+  console.log(defaultCity)
 
   const handlerDelete = (e) => {
     e.preventDefault();
