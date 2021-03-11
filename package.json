@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-   "build": "cd front && npm install && npm run-script build",
+   "build": "cd front && npm install && npm run-scripts build",
    "start": "cd back && npm install && npm start"
   },
   "repository": {
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/ijustnothing/MCT/issues"
   },
-  "homepage": "https://github.com/ijustnothing/MCT#readme"
+  "homepage": "https://github.com/ijustnothing/MCT#readme",
+  "engines": {
+    "node": "14.x"
+  }
 }
