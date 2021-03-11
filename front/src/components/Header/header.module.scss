@@ -1,7 +1,7 @@
 .wrapper {
   list-style: none;
   display: flex;
-  &__linkFirst{
+  &__linkFirst {
     text-decoration: none;
     border: 0;
     margin-left: 14px;
@@ -11,20 +11,29 @@
     border: 0;
     margin-left: 32px;
   }
+  &__linkRight {
+    position: absolute;
+    right: 30px;
+  }
+  &__btnL {
+    cursor: pointer;
+  }
   li {
     padding-left: 0;
   }
 }
 
-.mobile{
-    display: none;
+.mobile {
+  display: none;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1000px) {
   .wrapper {
     display: none;
   }
-  .mobile{
-      display: block;
+  .mobile {
+    display: flex;
+    align-items: center;
+    padding-left: 14px;
   }
 }
