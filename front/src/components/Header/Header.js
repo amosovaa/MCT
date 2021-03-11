@@ -66,7 +66,7 @@ function Header({ locale, setLocale }) {
             </Link>
           )}
         </li>
-        <li>
+        <li style={{marginLeft: '450px'}}>
           <button onClick={() => setLocale(LOCALES.ENGLISH)}> English </button>
           <button onClick={() => setLocale(LOCALES.RUSSIAN)}> Русский </button>
         </li>

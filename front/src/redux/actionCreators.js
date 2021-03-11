@@ -14,12 +14,20 @@ import {
   CHANGE_PROGRESS,
   ERROR_FOUND,
   ERROR_MESSAGE,
-  INIT_PHOTOS
+  INIT_PHOTOS,
+  DELETE_PHOTOS
 } from './actionTypes';
 
 export const addPictureAC = (payload) => {
   return {
     type: ADD_PICTURE,
+    payload,
+  };
+};
+
+export const deletePhotosAC = (payload) => {
+  return {
+    type: DELETE_PHOTOS,
     payload,
   };
 };
