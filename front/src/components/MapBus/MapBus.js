@@ -10,8 +10,8 @@ import { INIT_COORDS } from "../../redux/actionTypes";
 // import image from "./bus-stop.svg";
 
 const containerStyle = {
-  width: "70vw",
-  height: "70vh",
+  width: "80vw",
+  height: "80vh",
   borderRadius: "4px",
 };
 const options = {
