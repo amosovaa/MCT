@@ -19,7 +19,6 @@ import AdminCabinet from '../AdminCabinet/AdminCabinet';
 import Team from '../Team/Team';
 import ForgottenThings from '../ForgottenThings/ForgottenThings';
 import Bus from '../Bus/Bus';
-import Footer from '../Footer/Footer';
 import { I18Provider, LOCALES } from '../i18n';
 import translate from '../i18n/translate';
 // import ForgottenThings from '../ForgottenThings/ForgottenThings.js'
@@ -78,7 +77,6 @@ function App() {
               <AdminCabinet />
             </Route>
           </Switch>
-          <Footer />
         </div>
       </Router>
     </I18Provider>

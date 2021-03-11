@@ -5,6 +5,7 @@ import styles from './header.module.scss';
 import { navAC } from '../../redux/actionCreators';
 import { I18Provider, LOCALES } from '../i18n';
 import translate from '../i18n/translate';
+import './header.css';
 
 function Header({ locale, setLocale }) {
   const isAuth = useSelector((store) => store.auth.isAuth);
@@ -16,63 +17,86 @@ function Header({ locale, setLocale }) {
   };
 
   return (
-    <header className={styles.visibleMenu} id='header'>
+    <header className={styles.visibleMenu} id="header">
       <ul className={styles.wrapper}>
         <li>
-          <Link className={styles.wrapper__linkFirst} to='/'>
+          <Link className={styles.wrapper__linkFirst} to="/">
             {translate('home')}
           </Link>
         </li>
         <li>
           {isAuth === true && (
-            <Link className={styles.wrapper__link} to='/cabinet'>
+            <Link className={styles.wrapper__link} to="/cabinet">
               {translate('cabinet')}
             </Link>
           )}
         </li>
         <li>
-          <Link className={styles.wrapper__link} to='/bus'>
-            {translate('bus')}
-          </Link>
+          {isAuth === true && (
+            <Link className={styles.wrapper__link} to="/bus">
+              {translate('bus')}
+            </Link>
+          )}
         </li>
         <li>
-          <Link className={styles.wrapper__link} to='/team'>
+          <Link className={styles.wrapper__link} to="/team">
             {translate('team')}
           </Link>
         </li>
         <li>
-          <Link className={styles.wrapper__link} to='/forgottenThings'>
-            {translate('thing')}
-          </Link>
+          {isAuth === true && (
+            <Link className={styles.wrapper__link} to="/forgottenThings">
+              {translate('thing')}
+            </Link>
+          )}
         </li>
         <li>
           {isAuth === false && (
-            <Link Link className={styles.wrapper__link} to='/signup'>
+            <Link Link className={styles.wrapper__link} to="/signup">
               {translate('signup')}
             </Link>
           )}
         </li>
         <li>
           {isAuth === false && (
-            <Link className={styles.wrapper__link} to='/signin'>
+            <Link className={styles.wrapper__link} to="/signin">
               {translate('signin')}
             </Link>
           )}
         </li>
         <li>
           {isAuth === true && (
-            <Link className={styles.wrapper__link} to='/logout'>
+            <Link className={styles.wrapper__link} to="/logout">
               {translate('logout')}
             </Link>
           )}
         </li>
-        <li style={{marginLeft: '450px'}}>
-          <button onClick={() => setLocale(LOCALES.ENGLISH)}> English </button>
-          <button onClick={() => setLocale(LOCALES.RUSSIAN)}> Русский </button>
+        <li className={styles.wrapper__linkRight}>
+          <span
+            className={styles.wrapper__btnL}
+            onClick={() => setLocale(LOCALES.ENGLISH)}
+          >
+            {' '}
+            Eng{' '}
+          </span>
+          {' / '}
+          <span
+            className={styles.wrapper__btnL}
+            onClick={() => setLocale(LOCALES.RUSSIAN)}
+          >
+            {' '}
+            Рус{' '}
+          </span>
         </li>
       </ul>
       <div onClick={handlerMobile} className={styles.mobile}>
-        MenuMobile
+        <div id="menuB">
+          <div id="pencet" className={nav.nav === true && 'Diam'}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
       </div>
     </header>
   );

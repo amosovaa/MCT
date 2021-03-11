@@ -10,8 +10,8 @@ import { INIT_COORDS } from "../../redux/actionTypes";
 // import image from "./bus-stop.svg";
 
 const containerStyle = {
-  width: "70vw",
-  height: "70vh",
+  width: "80vw",
+  height: "80vh",
   borderRadius: "4px",
 };
 const options = {
@@ -20,11 +20,14 @@ const options = {
   streetViewControl: true,
   navigation: true,
   fullscreenControl: true,
+  myLocation: true,
 };
+
 
 function Map(props) {
   const dispatch = useDispatch();
   const bus = useSelector((store) => store.coords.coords);
+
 
   useEffect(() => {
     fetch("/location")
@@ -48,6 +51,22 @@ function Map(props) {
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading maps";
 
+
+  const getLocation = () =>{
+    const pos = {};
+    const geolocation = navigator.geolocation;
+    if (geolocation) {
+       geolocation.getCurrentPosition(findLocal, showEror);
+    }
+    function findLocal(position){
+       pos.lat = position.coords.latitude;
+       pos.lng = position.coords.longitude;
+      //  console.log(pos)
+    }
+    function showEror(){console.log(Error)}
+    return pos;
+ };
+
   return isLoaded ? (
     <GoogleMap
       zoom={15}
@@ -62,8 +81,12 @@ function Map(props) {
         position={center}
         icon={{
           url: "./bus-stop.svg",
-          scaledSize: new window.google.maps.Size(60,60)
+          scaledSize: new window.google.maps.Size(60, 60),
+        //  styles = {customStyles}
         }}
+      />
+      <Marker
+        position={{lat: getLocation().lat, lng: getLocation().lng}}
       />
     </GoogleMap>
   ) : (

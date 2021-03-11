@@ -1,13 +1,11 @@
-import React from 'react';
-import MapBus from '../MapBus/MapBus';
+import React from "react";
+import MapBus from "../MapBus/MapBus";
+import styles from "./bus.module.scss";
 
 function Bus(props) {
   return (
-    <div>
-    <br/>
-    <br/>
-    <br/>
-      <MapBus/>
+    <div className={styles.wrapper}>
+      <MapBus />
     </div>
   );
 }
