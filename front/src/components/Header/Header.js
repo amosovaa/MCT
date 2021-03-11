@@ -19,7 +19,7 @@ function Header({ locale, setLocale }) {
     <header className={styles.visibleMenu} id='header'>
       <ul className={styles.wrapper}>
         <li>
-          <Link className={styles.wrapper__link} to='/'>
+          <Link className={styles.wrapper__linkFirst} to='/'>
             {translate('home')}
           </Link>
         </li>
@@ -41,8 +41,8 @@ function Header({ locale, setLocale }) {
           </Link>
         </li>
         <li>
-          <Link className={styles.wrapper__link} to="/forgottenThings">
-            ForgottenThings
+          <Link className={styles.wrapper__link} to='/forgottenThings'>
+            {translate('thing')}
           </Link>
         </li>
         <li>

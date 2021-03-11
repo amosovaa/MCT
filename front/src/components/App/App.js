@@ -17,15 +17,20 @@ import Cabinet from '../Cabinet/Cabinet';
 import Schedule from '../Schedule/Schedule';
 import AdminCabinet from '../AdminCabinet/AdminCabinet';
 import Team from '../Team/Team';
-import Bus from '../Bus/Bus'
+import ForgottenThings from '../ForgottenThings/ForgottenThings';
+import Bus from '../Bus/Bus';
+import Footer from '../Footer/Footer';
 import { I18Provider, LOCALES } from '../i18n';
 import translate from '../i18n/translate';
+// import ForgottenThings from '../ForgottenThings/ForgottenThings.js'
 
 function App() {
   const isAuth = useSelector((store) => store.auth.isAuth);
+  // const isAdmin = useSelector((store => store.auth.auth.user.isAdmin))
   const nav = useSelector((store) => store.state);
   const [locale, setLocale] = useState(LOCALES.ENGLISH);
 
+  // console.log(isAdmin);
   return (
     <I18Provider locale={locale}>
       <Router>
@@ -40,12 +45,15 @@ function App() {
               {isAuth === false ? <Redirect to='/signin' /> : <Cabinet />}
             </Route>
             <Route path='/bus'>
-              <Bus/>
+              <Bus />
             </Route>
             <Route path='/signup'>
               <Signup />
               {isAuth === true && <Redirect to='/cabinet' />}
               {/* <Redirect to="/" /> */}
+            </Route>
+            <Route path="/forgottenThings">
+              <ForgottenThings/>
             </Route>
             <Route path='/signin'>
               {isAuth === true && <Redirect to='/cabinet' />}
@@ -53,6 +61,9 @@ function App() {
             </Route>
             <Route path='/team'>
               <Team />
+            </Route>
+            <Route path='/forgottenThings'>
+              <ForgottenThings />
             </Route>
             <Route path='/logout'>
               {isAuth === false && <Redirect to='/' />}
@@ -67,6 +78,7 @@ function App() {
               <AdminCabinet />
             </Route>
           </Switch>
+          <Footer />
         </div>
       </Router>
     </I18Provider>

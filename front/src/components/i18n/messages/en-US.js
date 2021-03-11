@@ -63,5 +63,6 @@ export default {
     hotelAddress: 'Hotel address',
     hallAddress: 'Concert hall address',
     lunchTime: 'Lunch time',
+    thing: 'Things',
   },
 };
