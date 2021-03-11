@@ -2,7 +2,7 @@ import {ADD_PICTURE, ADD_NAME, ADD_IMAGE, CHANGE_PROGRESS, ERROR_FOUND, ERROR_ME
 
 let initialState = {
     formData: {},
-    name: '',
+    // name: '',
     image: '',
     progressPercent: 0,
     errorFound: false,
@@ -16,8 +16,8 @@ function reducerForgotten(state = initialState, action) {
         case ADD_PICTURE:
             return {...state, formData:action.payload}
 
-        case ADD_NAME:
-            return {...state, name: action.payload}
+        // case ADD_NAME:
+        //     return {...state, name: action.payload}
 
         case ADD_IMAGE:
             // const copy = {...state, image: action.payload}
@@ -37,7 +37,7 @@ function reducerForgotten(state = initialState, action) {
             return {...state, photos: action.payload}
 
         case DELETE_PHOTOS:
-            return {...state, photos: [...state.photos.uploadFiles.filter(el => el._id !== action.payload)]}
+            return {...state, photos: {uploadFiles: [...state.photos.uploadFiles.filter(el => el._id !== action.payload)]}}
                 
         default:
             return state
