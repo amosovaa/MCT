@@ -17,8 +17,9 @@ import Cabinet from '../Cabinet/Cabinet';
 import Schedule from '../Schedule/Schedule';
 import AdminCabinet from '../AdminCabinet/AdminCabinet';
 import Team from '../Team/Team';
-import ForgottenThings from '../ForgottenThings/ForgottenThings'
-import Bus from '../Bus/Bus'
+import ForgottenThings from '../ForgottenThings/ForgottenThings';
+import Bus from '../Bus/Bus';
+import Footer from '../Footer/Footer';
 import { I18Provider, LOCALES } from '../i18n';
 import translate from '../i18n/translate';
 
@@ -36,43 +37,44 @@ function App() {
           <Header locale={locale} setLocale={setLocale} />
           {nav.nav && <MobileMenu />}
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <HomePage />
             </Route>
-            <Route path="/cabinet">
-              {isAuth === false ? <Redirect to="/signin" /> : <Cabinet />}
+            <Route path='/cabinet'>
+              {isAuth === false ? <Redirect to='/signin' /> : <Cabinet />}
             </Route>
             <Route path='/bus'>
-              <Bus/>
+              <Bus />
             </Route>
             <Route path='/signup'>
               <Signup />
-              {isAuth === true && <Redirect to="/cabinet" />}
+              {isAuth === true && <Redirect to='/cabinet' />}
               {/* <Redirect to="/" /> */}
             </Route>
-            <Route path="/signin">
-              {isAuth === true && <Redirect to="/cabinet" />}
+            <Route path='/signin'>
+              {isAuth === true && <Redirect to='/cabinet' />}
               <Signin />
             </Route>
-            <Route path="/team">
+            <Route path='/team'>
               <Team />
             </Route>
-            <Route path="/forgottenThings">
+            <Route path='/forgottenThings'>
               <ForgottenThings />
             </Route>
-            <Route path="/logout">
-              {isAuth === false && <Redirect to="/" />}
+            <Route path='/logout'>
+              {isAuth === false && <Redirect to='/' />}
               <Logout />
             </Route>
-            <Route path="/cabinets/schedule">
-              {isAuth === false && <Redirect to="/" />}
+            <Route path='/cabinets/schedule'>
+              {isAuth === false && <Redirect to='/' />}
               <Schedule />
             </Route>
-            <Route path="/cabinets/admincabinet">
-              {isAuth === false && <Redirect to="/" />}
+            <Route path='/cabinets/admincabinet'>
+              {isAuth === false && <Redirect to='/' />}
               <AdminCabinet />
             </Route>
           </Switch>
+          <Footer />
         </div>
       </Router>
     </I18Provider>

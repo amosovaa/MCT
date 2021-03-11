@@ -4,7 +4,7 @@ import { LOCALES } from '../locales';
 export default {
   [LOCALES.RUSSIAN]: {
     home: 'Главная',
-    cabinet: 'Личный кабинет',
+    cabinet: 'Кабинет',
     team: 'Разработчики',
     logout: 'Выйти',
     signin: 'Войти',
@@ -12,7 +12,6 @@ export default {
     started: 'Начать',
     create: 'Создай свой собственный тур для оркестра',
     createfor: 'или туристической группы',
-    hotel: 'Отель',
     hotelInfo: 'Узнать подробнее об отеле',
     bus: 'Автобус',
     busInfo: 'Геопозиция автобуса',
@@ -64,5 +63,6 @@ export default {
     hotelAddress: 'Адрес отеля',
     hallAddress: 'Адрес концертного зала',
     lunchTime: 'Время обеда',
+    thing: 'Вещи',
   },
 };
