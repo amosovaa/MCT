@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import {addPictureAC, addNameAC, addImageAC, progressAC, errorFoundAC, errorMessageAC, initPhotosAC} from '../../redux/actionCreators'
+import {addPictureAC, addNameAC, addImageAC, progressAC, errorFoundAC, errorMessageAC, initPhotosAC, deletePhotosAC} from '../../redux/actionCreators'
 
 function ForgottenThings(props) {
     const dispatch = useDispatch()
@@ -12,7 +12,9 @@ function ForgottenThings(props) {
     const errorFound = useSelector(state => state.pictures.errorFound)
     const errorMessage = useSelector(state => state.pictures.errorMessage)
     // rewrite photos[0] to photos (need to use null instead [] in reducerForgotten)
-    const initPicture = useSelector(state => state.pictures.photos[0])
+    // const initPicture = useSelector(state => state.pictures.photos[0])
+    const initPicture = useSelector(state => state.pictures.photos)
+    console.log(initPicture);
   
     const upload = ({ target: { files } }) => {
       let data = new FormData();
@@ -64,6 +66,11 @@ function ForgottenThings(props) {
           .then(data => dispatch(initPhotosAC(data)))
       }, [dispatch])
       console.log(initPicture);
+
+      function buttonHandler() {
+        dispatch(deletePhotosAC())
+      }
+
     return (
       <div
         style={{ width: "100%", height: "100%"}}
@@ -79,9 +86,9 @@ function ForgottenThings(props) {
           </div>
         )}
   
-        <form onSubmit={handleSubmit} style={{ width: "359px" ,  marginTop: '75px' }}>
+        <form onSubmit={handleSubmit} style={{ width: "359px" ,  margin: '75px 0 0 40%' }}>
           <div className="progress mb-3 w-100">
-            <div
+            {/* <div
               className="progress-bar"
               role="progressbar"
               style={{ width: `${progress}%` }}
@@ -90,9 +97,9 @@ function ForgottenThings(props) {
               aria-valuemax={100}
             >
               {progress}
-            </div>
+            </div> */}
           </div>
-          <div className="custom-file mb-3">
+          <div className="custom-file mb-3" style={{textAlign: 'center'}}>
             <input
               type="file"
               className="custom-file-input"
@@ -101,18 +108,19 @@ function ForgottenThings(props) {
               onChange={upload}
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100" style={{marginTop: '20px'}}>
+          <button type="submit" className="btn btn-primary w-100" style={{margin: '20px 30%'}}>
             Submit
           </button>
         </form>
-        <img
+        {/* <img
           className="mt-3"
           src={`http://localhost:3000/${storeImage && storeImage.image}`}
           alt={`${name && name.name}`}
           style={{ width: "359px" }}
-        />
-        <div style={{display: 'flex', flexWrap: 'wrap', alignContent: 'space-between'}}>
-        {initPicture && initPicture.uploadFiles.map(el =><> <div><img src={el.image} style={{ width: '200px', height: '200px', marginTop: '40px'}}></img><button>Delete</button></div></>)}
+        /> */}
+        {/* marginLeft: '70px' */}
+        <div style={{display: 'flex', flexWrap: 'wrap', alignContent: 'space-between', margin: '0 70px 50px'}} >
+        {initPicture && initPicture.uploadFiles.map(el =><> <div style={{paddingRight: '20px'}}><img src={el.image} key={el._id} style={{ width: '200px', height: '200px', marginTop: '40px', display: 'flex', justifyContent: 'center', borderRadius: '8px'}}></img><button onClick={buttonHandler} style={{marginTop: '20px', marginLeft: '30px'}}>Delete</button></div></>)}
         </div>
       </div>
     );
