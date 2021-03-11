@@ -25,8 +25,8 @@ function ForgottenThings(props) {
   
     function handleSubmit(event) {
       event.preventDefault();
-      dispatch(addNameAC(name))
-      dispatch(addImageAC(storeImage))
+      // dispatch(addNameAC(name))
+      // dispatch(addImageAC(storeImage))
       dispatch(progressAC(0))
       const options = {
         onUploadProgress: (progressEvent) => {
@@ -40,11 +40,9 @@ function ForgottenThings(props) {
       axios
         .post("http://localhost:4000/api/category", store.formData, options)
         .then((res) => {
-          setTimeout(() => {
-            dispatch(addNameAC(res.data.category))
+            // dispatch(addNameAC(res.data.category))
             dispatch(addImageAC(res.data.category))
             dispatch(progressAC(0))
-          }, 1000);
         })
         .catch((err) => {
           console.log(err.response);
@@ -65,10 +63,17 @@ function ForgottenThings(props) {
           .then(response => response.json())
           .then(data => dispatch(initPhotosAC(data)))
       }, [dispatch])
-      console.log(initPicture);
 
-      function buttonHandler() {
-        dispatch(deletePhotosAC())
+      function buttonHandler(event) {
+        event.preventDefault()
+        let buttonId = event.target.parentElement.id
+        fetch(`http://localhost:4000/api/category/${buttonId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          } 
+        })
+        dispatch(deletePhotosAC(buttonId))
       }
 
     return (
@@ -102,10 +107,12 @@ function ForgottenThings(props) {
           <div className="custom-file mb-3" style={{textAlign: 'center'}}>
             <input
               type="file"
-              className="custom-file-input"
+              // className="custom-file-input"
+              className="custom-file mb-3"
               id="inputGroupFile04"
               aria-describedby="inputGroupFileAddon04"
               onChange={upload}
+              style={{marginLeft: '95px', marginTop: '60px'}}
             />
           </div>
           <button type="submit" className="btn btn-primary w-100" style={{margin: '20px 30%'}}>
@@ -120,7 +127,7 @@ function ForgottenThings(props) {
         /> */}
         {/* marginLeft: '70px' */}
         <div style={{display: 'flex', flexWrap: 'wrap', alignContent: 'space-between', margin: '0 70px 50px'}} >
-        {initPicture && initPicture.uploadFiles.map(el =><> <div style={{paddingRight: '20px'}}><img src={el.image} key={el._id} style={{ width: '200px', height: '200px', marginTop: '40px', display: 'flex', justifyContent: 'center', borderRadius: '8px'}}></img><button onClick={buttonHandler} style={{marginTop: '20px', marginLeft: '30px'}}>Delete</button></div></>)}
+        {initPicture && initPicture.uploadFiles.map(el =><div key={el._id}> <div id={el._id} style={{paddingRight: '20px'}}><img src={el.image} key={el._id} style={{ width: '200px', height: '200px', marginTop: '40px', display: 'flex', justifyContent: 'center', borderRadius: '8px'}}></img><button onClick={buttonHandler} style={{marginTop: '20px', marginLeft: '30px'}}>Delete</button></div></div>)}
         </div>
       </div>
     );
