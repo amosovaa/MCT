@@ -76,17 +76,17 @@ function Menu(props) {
           )}
         </li>
         <li>
-          <li>
-            {isAuth === true && (
-              <Link
-                onClick={handlerMobile}
-                className={styles.links__link}
-                to="/forgottenThings"
-              >
-                Things
-              </Link>
-            )}
-          </li>
+          {isAuth === true && (
+            <Link
+              onClick={handlerMobile}
+              className={styles.links__link}
+              to="/forgottenThings"
+            >
+              Things
+            </Link>
+          )}
+        </li>
+        <li>
           {isAuth === true && (
             <Link
               onClick={handlerMobile}
