@@ -59,11 +59,18 @@ export const fetchAdminFormAC = (
   timeRepetitionEnd,
   timeConcert,
   timeConcertSecond,
-  lunchAddress,
-  timeLunch
+  nameLunch,
+  nameBreakFast,
+  nameDinner,
+  timeLunch,
+  timeLunchEnd,
+  timeBreakfast,
+  timeBreakfastEnd,
+  timeDinner,
+  timeDinnerEnd,
 ) => {
   return (dispatch) => {
-    fetch('/cities', {
+    fetch('http://localhost:4000/cities', {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
@@ -79,8 +86,15 @@ export const fetchAdminFormAC = (
         timeRepetitionEnd,
         timeConcert,
         timeConcertSecond,
-        lunchAddress,
+        nameLunch,
+        nameBreakFast,
+        nameDinner,
         timeLunch,
+        timeLunchEnd,
+        timeBreakfast,
+        timeBreakfastEnd,
+        timeDinner,
+        timeDinnerEnd,
       }),
     })
       .then((res) => res.json())
