@@ -22,7 +22,7 @@ import Bus from '../Bus/Bus';
 import Footer from '../Footer/Footer';
 import { I18Provider, LOCALES } from '../i18n';
 import translate from '../i18n/translate';
-import ForgottenThings from '../ForgottenThings/ForgottenThings.js'
+// import ForgottenThings from '../ForgottenThings/ForgottenThings.js'
 
 function App() {
   const isAuth = useSelector((store) => store.auth.isAuth);
