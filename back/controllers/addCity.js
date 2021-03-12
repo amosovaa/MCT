@@ -5,12 +5,16 @@ import Tour from "../models/Tour.js";
 import Hotel from "../models/Hotel.js";
 import Lunch from "../models/Lunch.js";
 import Hall from "../models/Hall.js";
+import Dinner from '../models/Dinner.js'
+import Breakfast from '../models/Breakfast.js'
 
 export const citiAdd_get = async (req, res) => {
   const citles = await City.find({})
     .populate("hotel")
     .populate("lunch")
-    .populate("hall");
+    .populate("breakfast")
+    .populate("dinner")
+    .populate("hall")
   res.json(citles);
 };
 
@@ -36,6 +40,10 @@ export const citiAdd_post = async (req, res) => {
     timeConcertSecond,
     lunchAddress,
     timeLunch,
+    timeBreakfast,
+    timeDinner,
+    dinnerAddress,
+    breakfastAddress
   } = req.body;
 
   const response = await fetch(
@@ -115,12 +123,33 @@ export const citiAdd_post = async (req, res) => {
           )}&results=1`
         );
         const respLunch = await responseLunch.json();
+        //______________________________________________________________________________________________
+
+        const responseBreakfast = await fetch(
+          `https://geocode-maps.yandex.ru/1.x/?apikey=c3411918-5071-411a-bf06-4a1ae2d170ab&format=json&geocode=${urlencode(
+            breakfastAddress
+          )}&results=1`
+        );
+        const respBreakfast = await responseBreakfast.json();
+
+        const responseDinner = await fetch(
+          `https://geocode-maps.yandex.ru/1.x/?apikey=c3411918-5071-411a-bf06-4a1ae2d170ab&format=json&geocode=${urlencode(
+            dinnerAddress
+          )}&results=1`
+        );
+        const respDinner = await responseDinner.json();
+
         if (
           respLunch.response.GeoObjectCollection.metaDataProperty
+            .GeocoderResponseMetaData.found == 0 ||
+          respBreakfast.response.GeoObjectCollection.metaDataProperty
+            .GeocoderResponseMetaData.found == 0 ||
+          respDinner.response.GeoObjectCollection.metaDataProperty
             .GeocoderResponseMetaData.found == 0
         ) {
           res.json({ error: "Что-то пошло не так" });
         } else {
+          // LUNCH
           const locationLunch =
             respLunch.response.GeoObjectCollection.featureMember[0].GeoObject
               .Point.pos;
@@ -131,12 +160,38 @@ export const citiAdd_post = async (req, res) => {
             respLunch.response.GeoObjectCollection.featureMember[0].GeoObject
               .metaDataProperty.GeocoderMetaData.text;
 
+          //BREAKFAST
+          const locationBreakfast =
+            respBreakfast.response.GeoObjectCollection.featureMember[0]
+              .GeoObject.Point.pos;
+          const longitudeBreakfast = locationBreakfast.split(" ")[0]; //долгота
+          const latitudeBreakfast = locationBreakfast.split(" ")[1]; //широта
+
+          const addressBreakfast =
+            respBreakfast.response.GeoObjectCollection.featureMember[0]
+              .GeoObject.metaDataProperty.GeocoderMetaData.text;
+
+          //DINNER
+          const locationDinner =
+            respDinner.response.GeoObjectCollection.featureMember[0].GeoObject
+              .Point.pos;
+          const longitudeDinner = locationDinner.split(" ")[0]; //долгота
+          const latitudeDinner = locationDinner.split(" ")[1]; //широта
+
+          const addressDinner =
+            respDinner.response.GeoObjectCollection.featureMember[0].GeoObject
+              .metaDataProperty.GeocoderMetaData.text;
+
           // TIMING________________________________________
 
           const dateTimeIn = dateIn + " " + timeIn;
           const dateTimeOut = dateOut + " " + timeOut;
 
           const timeLunchDate = dateIn + " " + timeLunch;
+
+          const timeBreakfastDate = dateIn + " " + timeBreakfast
+
+          const timeDinnerDate = dateIn + " " + timeDinner
 
           const timeRepetitionDate = dateIn + " " + timeRepetition;
           const timeRepetitionDateEnd = dateIn + " " + timeRepetitionEnd;
@@ -168,13 +223,34 @@ export const citiAdd_post = async (req, res) => {
           await hotel.save();
 
           const lunch = new Lunch({
-            name: addressLunch,
+            address: addressLunch,
             time: timeLunchDate,
             longitude: longitudeLunch,
             latitude: latitudeLunch,
+
+          });
+          
+          await lunch.save();
+
+          const dinner = new Dinner({
+            address: addressDinner,
+            time: timeDinnerDate, //
+            longitude: longitudeDinner,
+            latitude: latitudeDinner,
+
           });
 
-          await lunch.save();
+          await dinner.save()
+
+          const breakfast = new Breakfast({
+            address: addressBreakfast,
+            time: timeBreakfastDate, 
+            longitude: longitudeBreakfast,
+            latitude: latitudeBreakfast,
+
+          });
+
+          await breakfast.save()
 
           const city = new City({
             name: addressCity,
@@ -184,6 +260,8 @@ export const citiAdd_post = async (req, res) => {
             latitude: latitudeCity,
             hotel: hotel,
             lunch: lunch,
+            breakfast: breakfast,
+            dinner: dinner,
             hall: hall,
           });
 
