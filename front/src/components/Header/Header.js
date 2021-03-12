@@ -71,6 +71,8 @@ function Header({ locale, setLocale }) {
             </Link>
           )}
         </li>
+      </ul>
+      <ul style={{ listStyle: 'none' }}>
         <li className={styles.wrapper__linkRight}>
           <span
             className={styles.wrapper__btnL}
