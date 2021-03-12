@@ -8,6 +8,7 @@ import {
 } from "@react-google-maps/api";
 import { INIT_COORDS } from "../../redux/actionTypes";
 import Compass from "../Compass/Compass";
+import styles from './mapbus.module.scss'
 
 const containerStyle = {
   width: "80vw",
@@ -46,7 +47,7 @@ function Map(props) {
   if (!isLoaded) return "Loading maps";
 
   return isLoaded ? (
-    <>
+    <div className={styles.wrapper}>
       <GoogleMap
         zoom={15}
         mapContainerStyle={containerStyle}
@@ -69,7 +70,7 @@ function Map(props) {
         />
       </GoogleMap>
       <Compass />
-    </>
+    </div>
   ) : (
     <></>
   );
