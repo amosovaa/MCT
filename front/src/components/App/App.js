@@ -20,8 +20,6 @@ import Team from '../Team/Team';
 import ForgottenThings from '../ForgottenThings/ForgottenThings';
 import Bus from '../Bus/Bus';
 import { I18Provider, LOCALES } from '../i18n';
-import translate from '../i18n/translate';
-// import ForgottenThings from '../ForgottenThings/ForgottenThings.js'
 
 function App() {
   const isAuth = useSelector((store) => store.auth.isAuth);
