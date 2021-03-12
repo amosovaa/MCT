@@ -64,5 +64,8 @@ export default {
     hallAddress: 'Адрес концертного зала',
     lunchTime: 'Время обеда',
     thing: 'Вещи',
+    submit: 'Отправить',
+    breakfastTime: 'Время завтрака',
+    dinnerTime: 'Время ужина',
   },
 };

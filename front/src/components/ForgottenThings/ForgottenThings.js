@@ -11,6 +11,7 @@ import {
   initPhotosAC,
   deletePhotosAC,
 } from '../../redux/actionCreators';
+import translate from '../i18n/translate';
 
 function ForgottenThings(props) {
   const dispatch = useDispatch();
@@ -131,7 +132,7 @@ function ForgottenThings(props) {
           className='btn btn-primary w-100'
           style={{ margin: '20px 30%' }}
         >
-          Submit
+          {translate('submit')}
         </button>
       </form>
       {/* <img
@@ -170,7 +171,7 @@ function ForgottenThings(props) {
                   onClick={buttonHandler}
                   style={{ marginTop: '20px', marginLeft: '30px' }}
                 >
-                  Delete
+                  {translate('delete')}
                 </button>
               </div>
             </div>

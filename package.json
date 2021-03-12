@@ -1,5 +1,5 @@
 {
-  "name": "MCT",
+  "name": "mct",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,8 +17,5 @@
   "bugs": {
     "url": "https://github.com/ijustnothing/MCT/issues"
   },
-  "homepage": "https://github.com/ijustnothing/MCT#readme",
-  "engines": {
-    "node": "14.x"
-  }
+  "homepage": "https://github.com/ijustnothing/MCT#readme"
 }
