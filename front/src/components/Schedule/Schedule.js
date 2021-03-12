@@ -40,6 +40,7 @@ function Schedule(props) {
   const history = useHistory();
   const defaultCity = useSelector((state) => state.cities.defaultCity);
   const cities = useSelector((state) => state.cities.cities);
+  console.log(defaultCity)
 
   const handlerDelete = (e) => {
     e.preventDefault();
@@ -157,9 +158,11 @@ function Schedule(props) {
         <div className='box'>
           <h4> {translate('breakfast')} </h4>
           <p>
-            {translate('from')} ... {translate('to')} ...
+            {translate('from')} {defaultCity &&
+              new Date(defaultCity.breakfast.time).toLocaleString()} 
           </p>
-          <p> {translate('address')} </p>
+          <p> {translate('address')} {defaultCity &&
+              defaultCity.breakfast.address}</p>
         </div>
         <div className='box'>
           <h4> {translate('dinner')} </h4>
@@ -167,16 +170,19 @@ function Schedule(props) {
             {translate('from')}
             {defaultCity &&
               new Date(defaultCity.lunch.time).toLocaleString()}{' '}
-            {translate('to')}...
           </p>
-          <p> {translate('address')} </p>
+          <p> {translate('address')} {defaultCity &&
+              defaultCity.lunch.address} </p>
         </div>
         <div className='box'>
           <h4> {translate('supper')} </h4>
           <p>
-            {translate('from')} ... {translate('to')} ...
+            {translate('from')}
+            {defaultCity &&
+              new Date(defaultCity.dinner.time).toLocaleString()}
           </p>
-          <p> {translate('address')} </p>
+          <p> {translate('address')}  {defaultCity &&
+              defaultCity.dinner.address} </p>
         </div>
         <p> {translate('moreInfo')} </p>
         <div className={styles.card}>

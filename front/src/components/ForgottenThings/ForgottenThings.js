@@ -37,7 +37,7 @@ function ForgottenThings(props) {
       };
   
       axios
-        .post("http://localhost:4000/api/category", store.formData, options)
+        .post("/api/category", store.formData, options)
         .then((res) => {
             // dispatch(addNameAC(res.data.category))
             dispatch(addImageAC(res.data.category))
@@ -56,7 +56,7 @@ function ForgottenThings(props) {
     }
 
       useEffect(() => {
-        fetch('http://localhost:4000/api/category')
+        fetch('/api/category')
           .then(response => response.json())
           .then(data => dispatch(initPhotosAC(data)))
       }, [dispatch])
@@ -64,7 +64,7 @@ function ForgottenThings(props) {
       function buttonHandler(event) {
         event.preventDefault()
         let buttonId = event.target.parentElement.id
-        fetch(`http://localhost:4000/api/category/${buttonId}`, {
+        fetch(`/api/category/${buttonId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json'

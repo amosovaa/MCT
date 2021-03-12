@@ -17,3 +17,4 @@ export const ERROR_FOUND = 'ERROR_FOUND'
 export const ERROR_MESSAGE = 'ERROR_MESSAGE'
 export const INIT_PHOTOS = 'INIT_PHOTOS'
 export const DELETE_PHOTOS = 'DELETE_PHOTOS'
+export const COORD_BUS = "COORD_BUS";

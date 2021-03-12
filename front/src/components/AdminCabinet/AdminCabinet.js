@@ -53,6 +53,20 @@ function AdminCabinet(props) {
     const {
       timeLunch: { value: timeLunch },
     } = event.target;
+
+    const {
+      timeBreakfast: { value: timeBreakfast },
+    } = event.target;
+    const {
+      timeDinner: { value: timeDinner },
+    } = event.target;
+    const {
+      dinnerAddress: { value: dinnerAddress },
+    } = event.target;
+    const {
+      breakfastAddress: { value: breakfastAddress },
+    } = event.target;
+
     dispatch(
       fetchAdminFormAC(
         cityName,
@@ -68,7 +82,11 @@ function AdminCabinet(props) {
         timeConcert,
         timeConcertSecond,
         lunchAddress,
-        timeLunch
+        timeLunch,
+        timeBreakfast,
+        timeDinner,
+        dinnerAddress,
+        breakfastAddress
       )
     );
     event.target.cityName.value = '';
@@ -212,12 +230,32 @@ function AdminCabinet(props) {
           </label>
         </fieldset>
         <fieldset className={styles.fieldset}>
+          <label htmlFor='breakfastAddress'>
+            {translate('address')}
+            <input
+              className={styles.input}
+              type='text'
+              placeholder='Адрес завтрака'
+              name='breakfastAddress'
+            />
+          </label>
+          <label htmlFor='timeBreakfast'>
+            {translate('breakfastTime')}
+            <input
+              className={styles.date}
+              type='time'
+              placeholder='Время еды'
+              name='timeBreakfast'
+            />
+          </label>
+        </fieldset>
+        <fieldset className={styles.fieldset}>
           <label htmlFor='lunchAddress'>
             {translate('address')}
             <input
               className={styles.input}
               type='text'
-              placeholder='Адрес еды'
+              placeholder='Адрес обеда'
               name='lunchAddress'
             />
           </label>
@@ -231,6 +269,28 @@ function AdminCabinet(props) {
             />
           </label>
         </fieldset>
+
+        <fieldset className={styles.fieldset}>
+          <label htmlFor='dinnerAddress'>
+            {translate('address')}
+            <input
+              className={styles.input}
+              type='text'
+              placeholder='Адрес ужина'
+              name='dinnerAddress'
+            />
+          </label>
+          <label htmlFor='timeDinner'>
+            {translate('dinnerTime')}
+            <input
+              className={styles.date}
+              type='time'
+              placeholder='Время еды'
+              name='timeDinner'
+            />
+          </label>
+        </fieldset>
+
         <button>{translate('createSchedule')} </button>
       </form>
     </div>
