@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-   "build": "cd front && npm install && npm run-script build",
-   "start": "cd back && npm install && npm start"
+    "build":"cd front && npm install && npm run-script build",
+    "start":"cd back && npm install && npm start"
   },
   "repository": {
     "type": "git",
