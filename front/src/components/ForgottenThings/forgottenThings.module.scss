@@ -1,0 +1,86 @@
+.customFile {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 359px;
+  margin: 10% 0px 0px 40%;
+}
+
+.btnPrimary {
+  margin-top: 30px;
+}
+
+.mainImgDiv {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  margin: 0 70px 50px;
+}
+
+.imgDiv {
+  padding-right: 20px;
+}
+
+.deleteButton {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.thingPicture {
+  width: 200px;
+  height: 200px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+// iPhone X
+@media (max-width: 480px) {
+    .customFile {
+        margin-top: 40px;
+        margin-left: 20px;
+    }
+
+    .form {
+        margin: 0;
+    }
+
+    .deleteButton {
+        margin-left: 60px;
+    }
+
+    .thingPicture {
+        margin-left: 20px;
+    }
+}
+
+// iPhone 7 Plus
+// @media (max-width: 415px) {
+//     @media (min-width: 405px) {
+
+//     .customFile {
+//         margin-top: 40px;
+//     }
+
+//     .form {
+//         padding-right: 250px;
+//     }
+
+//     .imgDiv {
+//         margin-left: 50px;
+//     }
+
+//     .deleteButton {
+//         margin-left: 45px;
+//     }
+
+//     .thingPicture {
+//         margin-right: 30px;
+//     }
+// }
+  
