@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './header.module.scss';
 import { navAC } from '../../redux/actionCreators';
-import { I18Provider, LOCALES } from '../i18n';
+import { LOCALES } from '../i18n';
 import translate from '../i18n/translate';
 import './header.css';
 

@@ -1,19 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './forgottenThings.module.scss'
-import {addPictureAC, addNameAC, addImageAC, progressAC, errorFoundAC, errorMessageAC, initPhotosAC, deletePhotosAC} from '../../redux/actionCreators'
+import {addPictureAC, addImageAC, progressAC, errorFoundAC, errorMessageAC, initPhotosAC, deletePhotosAC} from '../../redux/actionCreators'
 
 function ForgottenThings(props) {
     const dispatch = useDispatch()
-    const name = useSelector(state => state.pictures.name)
-    const storeImage = useSelector(state => state.pictures.image)
     const store = useSelector(state => state.pictures)
-    const progress = useSelector(state => state.pictures.progressPercent)
     const errorFound = useSelector(state => state.pictures.errorFound)
     const errorMessage = useSelector(state => state.pictures.errorMessage)
     const initPicture = useSelector(state => state.pictures.photos)
-    console.log(initPicture);
   
     const upload = ({ target: { files } }) => {
       let data = new FormData();
