@@ -64,5 +64,8 @@ export default {
     hallAddress: 'Concert hall address',
     lunchTime: 'Lunch time',
     thing: 'Things',
+    submit: 'Submit',
+    breakfastTime: 'Breakfast time',
+    dinnerTime: 'Dinner time',
   },
 };

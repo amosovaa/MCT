@@ -59,6 +59,7 @@ function AdminCabinet(props) {
     const {
       timeLunch: { value: timeLunch },
     } = event.target;
+<<<<<<< HEAD
     const {
       timeLunchEnd: { value: timeLunchEnd },
     } = event.target;
@@ -74,6 +75,22 @@ function AdminCabinet(props) {
     const {
       timeDinnerEnd: { value: timeDinnerEnd },
     } = event.target;
+=======
+
+    const {
+      timeBreakfast: { value: timeBreakfast },
+    } = event.target;
+    const {
+      timeDinner: { value: timeDinner },
+    } = event.target;
+    const {
+      dinnerAddress: { value: dinnerAddress },
+    } = event.target;
+    const {
+      breakfastAddress: { value: breakfastAddress },
+    } = event.target;
+
+>>>>>>> 69f0f8105404df8e2df8708d0a7f80d6b04ff7c1
     dispatch(
       fetchAdminFormAC(
         cityName,
@@ -88,6 +105,7 @@ function AdminCabinet(props) {
         timeRepetitionEnd,
         timeConcert,
         timeConcertSecond,
+<<<<<<< HEAD
         nameLunch,
         nameBreakFast,
         nameDinner,
@@ -97,6 +115,14 @@ function AdminCabinet(props) {
         timeBreakfastEnd,
         timeDinner,
         timeDinnerEnd,
+=======
+        lunchAddress,
+        timeLunch,
+        timeBreakfast,
+        timeDinner,
+        dinnerAddress,
+        breakfastAddress
+>>>>>>> 69f0f8105404df8e2df8708d0a7f80d6b04ff7c1
       )
     );
     event.target.cityName.value = '';
@@ -239,6 +265,7 @@ function AdminCabinet(props) {
           </label>
         </fieldset>
         <fieldset className={styles.fieldset}>
+<<<<<<< HEAD
           <label htmlFor="nameLunch">
             {translate('address')}
             <input
@@ -264,6 +291,35 @@ function AdminCabinet(props) {
               type="text"
               placeholder="Адрес еды"
               name="nameDinner"
+=======
+          <label htmlFor='breakfastAddress'>
+            {translate('address')}
+            <input
+              className={styles.input}
+              type='text'
+              placeholder='Адрес завтрака'
+              name='breakfastAddress'
+            />
+          </label>
+          <label htmlFor='timeBreakfast'>
+            {translate('breakfastTime')}
+            <input
+              className={styles.date}
+              type='time'
+              placeholder='Время еды'
+              name='timeBreakfast'
+            />
+          </label>
+        </fieldset>
+        <fieldset className={styles.fieldset}>
+          <label htmlFor='lunchAddress'>
+            {translate('address')}
+            <input
+              className={styles.input}
+              type='text'
+              placeholder='Адрес обеда'
+              name='lunchAddress'
+>>>>>>> 69f0f8105404df8e2df8708d0a7f80d6b04ff7c1
             />
           </label>
           <label htmlFor="timeLunch">
@@ -295,6 +351,28 @@ function AdminCabinet(props) {
             <input className={styles.date} type="time" name="timeDinnerEnd" />
           </label>
         </fieldset>
+
+        <fieldset className={styles.fieldset}>
+          <label htmlFor='dinnerAddress'>
+            {translate('address')}
+            <input
+              className={styles.input}
+              type='text'
+              placeholder='Адрес ужина'
+              name='dinnerAddress'
+            />
+          </label>
+          <label htmlFor='timeDinner'>
+            {translate('dinnerTime')}
+            <input
+              className={styles.date}
+              type='time'
+              placeholder='Время еды'
+              name='timeDinner'
+            />
+          </label>
+        </fieldset>
+
         <button>{translate('createSchedule')} </button>
       </form>
     </div>
