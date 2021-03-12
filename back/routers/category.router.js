@@ -10,5 +10,10 @@ router.get('/category', async (req, res) => {
     let uploadFiles = await Category.find()
     res.json({uploadFiles})
 })
+router.delete('/category/:id', async (req, res) => {
+    const {id} = req.params
+    await Category.findByIdAndDelete({_id: id})
+    res.status(200).json({id})
+})
 
 export default router

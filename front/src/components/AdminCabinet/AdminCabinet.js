@@ -1,9 +1,9 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { fetchAdminFormAC } from '../../redux/thunkAC';
-import styles from './adminCabinet.module.scss';
-import translate from '../i18n/translate';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { fetchAdminFormAC } from "../../redux/thunkAC";
+import styles from "./adminCabinet.module.scss";
+import translate from "../i18n/translate";
 
 function AdminCabinet(props) {
   const history = useHistory();
@@ -53,6 +53,20 @@ function AdminCabinet(props) {
     const {
       timeLunch: { value: timeLunch },
     } = event.target;
+
+    const {
+      timeBreakfast: { value: timeBreakfast },
+    } = event.target;
+    const {
+      timeDinner: { value: timeDinner },
+    } = event.target;
+    const {
+      dinnerAddress: { value: dinnerAddress },
+    } = event.target;
+    const {
+      breakfastAddress: { value: breakfastAddress },
+    } = event.target;
+
     dispatch(
       fetchAdminFormAC(
         cityName,
@@ -68,24 +82,28 @@ function AdminCabinet(props) {
         timeConcert,
         timeConcertSecond,
         lunchAddress,
-        timeLunch
+        timeLunch,
+        timeBreakfast,
+        timeDinner,
+        dinnerAddress,
+        breakfastAddress
       )
     );
-    event.target.cityName.value = '';
-    event.target.hotelName.value = '';
-    event.target.dateIn.value = '';
-    event.target.timeIn.value = '';
-    event.target.dateOut.value = '';
-    event.target.timeOut.value = '';
-    event.target.hotelAddress.value = '';
-    event.target.hallAddress.value = '';
-    event.target.timeRepetition.value = '';
-    event.target.timeRepetitionEnd.value = '';
-    event.target.timeConcert.value = '';
-    event.target.timeConcertSecond.value = '';
-    event.target.lunchAddress.value = '';
-    event.target.timeLunch.value = '';
-    history.push('/cabinet');
+    event.target.cityName.value = "";
+    event.target.hotelName.value = "";
+    event.target.dateIn.value = "";
+    event.target.timeIn.value = "";
+    event.target.dateOut.value = "";
+    event.target.timeOut.value = "";
+    event.target.hotelAddress.value = "";
+    event.target.hallAddress.value = "";
+    event.target.timeRepetition.value = "";
+    event.target.timeRepetitionEnd.value = "";
+    event.target.timeConcert.value = "";
+    event.target.timeConcertSecond.value = "";
+    event.target.lunchAddress.value = "";
+    event.target.timeLunch.value = "";
+    history.push("/cabinet");
   };
 
   return (
@@ -94,144 +112,187 @@ function AdminCabinet(props) {
         <br />
         <br />
         <br />
-        <h2> {translate('createCity')} </h2>
+        <h2> {translate("createCity")} </h2>
         <fieldset className={styles.fieldset}>
-          <label htmlFor='cityName'>
-            {translate('cityname')}
+          <label htmlFor="cityName">
+            {translate("cityname")}
             <input
               className={styles.input}
-              type='text'
-              placeholder='Город'
-              name='cityName'
+              type="text"
+              placeholder="Город"
+              name="cityName"
             />
           </label>
         </fieldset>
         <fieldset>
-          <label htmlFor='hotelName'>
-            {translate('hotel')}
+          <label htmlFor="hotelName">
+            {translate("hotel")}
             <input
               className={styles.input}
-              type='text'
-              placeholder='Название отеля'
-              name='hotelName'
+              type="text"
+              placeholder="Название отеля"
+              name="hotelName"
             />
           </label>
-          <label htmlFor='dateIn'>
-            {translate('dateIn')}
+          <label htmlFor="dateIn">
+            {translate("dateIn")}
             <input
               className={styles.date}
-              type='date'
-              placeholder='Дата приезда'
-              name='dateIn'
+              type="date"
+              placeholder="Дата приезда"
+              name="dateIn"
             />
           </label>
-          <label htmlFor='timeIn'>
-            {translate('timeIn')}
+          <label htmlFor="timeIn">
+            {translate("timeIn")}
             <input
               className={styles.date}
-              type='time'
-              placeholder='Время приезда'
-              name='timeIn'
+              type="time"
+              placeholder="Время приезда"
+              name="timeIn"
             />
           </label>
-          <label htmlFor='dateOut'>
-            {translate('dateOut')}
+          <label htmlFor="dateOut">
+            {translate("dateOut")}
             <input
               className={styles.date}
-              type='date'
-              placeholder='Дата выезда'
-              name='dateOut'
+              type="date"
+              placeholder="Дата выезда"
+              name="dateOut"
             />
           </label>
-          <label htmlFor='timeOut'>
-            {translate('timeOut')}
+          <label htmlFor="timeOut">
+            {translate("timeOut")}
             <input
               className={styles.date}
-              type='time'
-              placeholder='Время выезда'
-              name='timeOut'
+              type="time"
+              placeholder="Время выезда"
+              name="timeOut"
             />
           </label>
-          <label htmlFor='hotelAddress'>
-            {translate('hallAddress')}
+          <label htmlFor="hotelAddress">
+            {translate("hallAddress")}
             <input
               className={styles.input}
-              type='text'
-              placeholder='Адрес отеля'
-              name='hotelAddress'
+              type="text"
+              placeholder="Адрес отеля"
+              name="hotelAddress"
             />
           </label>
         </fieldset>
         <fieldset className={styles.fieldset}>
-          <label htmlFor='hallAddress'>
-            {translate('hallAddress')}
+          <label htmlFor="hallAddress">
+            {translate("hallAddress")}
             <input
               className={styles.input}
-              type='text'
-              placeholder='Адрес концертного зала'
-              name='hallAddress'
+              type="text"
+              placeholder="Адрес концертного зала"
+              name="hallAddress"
             />
           </label>
-          <label htmlFor='timeRepetition'>
-            {translate('rehearsal')} &nbsp;
-            {translate('from')}
+          <label htmlFor="timeRepetition">
+            {translate("rehearsal")} &nbsp;
+            {translate("from")}
             <input
               className={styles.date}
-              type='time'
-              placeholder='Время начала репетиции'
-              name='timeRepetition'
+              type="time"
+              placeholder="Время начала репетиции"
+              name="timeRepetition"
             />
           </label>
-          <label htmlFor='timeRepetitionEnd'>
-            {translate('rehearsal')} &nbsp;
-            {translate('to')}
+          <label htmlFor="timeRepetitionEnd">
+            {translate("rehearsal")} &nbsp;
+            {translate("to")}
             <input
               className={styles.date}
-              type='time'
-              placeholder='Время конца репетиции'
-              name='timeRepetitionEnd'
+              type="time"
+              placeholder="Время конца репетиции"
+              name="timeRepetitionEnd"
             />
           </label>
-          <label htmlFor='timeConcert'>
-            {translate('firstConcert')}
+          <label htmlFor="timeConcert">
+            {translate("firstConcert")}
             <input
               className={styles.date}
-              type='time'
-              placeholder='Время начала первого концерта'
-              name='timeConcert'
+              type="time"
+              placeholder="Время начала первого концерта"
+              name="timeConcert"
             />
           </label>
-          <label htmlFor='timeConcertSecond'>
-            {translate('secondConcert')}
+          <label htmlFor="timeConcertSecond">
+            {translate("secondConcert")}
             <input
               className={styles.date}
-              type='time'
-              placeholder='Время начала второго концерта'
-              name='timeConcertSecond'
+              type="time"
+              placeholder="Время начала второго концерта"
+              name="timeConcertSecond"
             />
           </label>
         </fieldset>
         <fieldset className={styles.fieldset}>
-          <label htmlFor='lunchAddress'>
-            {translate('address')}
+          <label htmlFor="lunchAddress">
+            {translate("address")}
             <input
               className={styles.input}
-              type='text'
-              placeholder='Адрес еды'
-              name='lunchAddress'
+              type="text"
+              placeholder="Адрес обеда"
+              name="lunchAddress"
             />
           </label>
-          <label htmlFor='timeLunch'>
-            {translate('lunchTime')}
+          <label htmlFor="timeLunch">
+            {translate("lunchTime")}
             <input
               className={styles.date}
-              type='time'
-              placeholder='Время еды'
-              name='timeLunch'
+              type="time"
+              placeholder="Время еды"
+              name="timeLunch"
             />
           </label>
         </fieldset>
-        <button>{translate('createSchedule')} </button>
+
+        <fieldset className={styles.fieldset}>
+          <label htmlFor="dinnerAddress">
+            {translate("address")}
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Адрес завтрака"
+              name="dinnerAddress"
+            />
+          </label>
+          <label htmlFor="timeDinner">
+            {translate("lunchTime")}
+            <input
+              className={styles.date}
+              type="time"
+              placeholder="Время еды"
+              name="timeDinner"
+            />
+          </label>
+        </fieldset>
+
+        <fieldset className={styles.fieldset}>
+          <label htmlFor="breakfastAddress">
+            {translate("address")}
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Адрес ужина"
+              name="breakfastAddress"
+            />
+          </label>
+          <label htmlFor="timeBreakfast">
+            {translate("lunchTime")}
+            <input
+              className={styles.date}
+              type="time"
+              placeholder="Время еды"
+              name="timeBreakfast"
+            />
+          </label>
+        </fieldset>
+
+        <button>{translate("createSchedule")} </button>
       </form>
     </div>
   );

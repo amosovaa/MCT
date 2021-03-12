@@ -7,7 +7,7 @@ import {
   Marker,
 } from "@react-google-maps/api";
 import { INIT_COORDS } from "../../redux/actionTypes";
-// import image from "./bus-stop.svg";
+import Compass from "../Compass/Compass";
 
 const containerStyle = {
   width: "80vw",
@@ -20,14 +20,12 @@ const options = {
   streetViewControl: true,
   navigation: true,
   fullscreenControl: true,
-  myLocation: true,
 };
-
 
 function Map(props) {
   const dispatch = useDispatch();
   const bus = useSelector((store) => store.coords.coords);
-
+  const coords = useSelector((store) => store.state.coords);
 
   useEffect(() => {
     fetch("/location")
@@ -40,10 +38,6 @@ function Map(props) {
     lng: bus && bus.longitude,
   };
 
-  // const [map, setMap] = React.useState(null);
-
-  // const [selected, setSelected] = React.useState(false)
-
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyDWnA7aqKKpfCx4s2fIkuksLdkqu9jDORA",
   });
@@ -51,44 +45,31 @@ function Map(props) {
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading maps";
 
-
-  const getLocation = () =>{
-    const pos = {};
-    const geolocation = navigator.geolocation;
-    if (geolocation) {
-       geolocation.getCurrentPosition(findLocal, showEror);
-    }
-    function findLocal(position){
-       pos.lat = position.coords.latitude;
-       pos.lng = position.coords.longitude;
-      //  console.log(pos)
-    }
-    function showEror(){console.log(Error)}
-    return pos;
- };
-
   return isLoaded ? (
-    <GoogleMap
-      zoom={15}
-      mapContainerStyle={containerStyle}
-      center={center}
-      options={options}
-      // onLoad={onLoad}
-      // onUnmount={onUnmount}
-    >
-      <></>
-      <Marker
-        position={center}
-        icon={{
-          url: "./bus-stop.svg",
-          scaledSize: new window.google.maps.Size(60, 60),
-        //  styles = {customStyles}
-        }}
-      />
-      <Marker
-        position={{lat: getLocation().lat, lng: getLocation().lng}}
-      />
-    </GoogleMap>
+    <>
+      <GoogleMap
+        zoom={15}
+        mapContainerStyle={containerStyle}
+        center={center}
+        options={options}
+      >
+        <Marker
+          position={center}
+          icon={{
+            url: "./bus-stop.svg",
+            scaledSize: new window.google.maps.Size(60, 60),
+          }}
+        />
+        <Marker
+          position={coords.lat && coords}
+          icon={{
+            url: "./location.svg",
+            scaledSize: new window.google.maps.Size(40, 40),
+          }}
+        />
+      </GoogleMap>
+      <Compass />
+    </>
   ) : (
     <></>
   );

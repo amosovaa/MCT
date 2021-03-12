@@ -9,6 +9,8 @@ const citySchema = mongoose.Schema({
   latitude: Number,
   hotel: { type: mongoose.Types.ObjectId, ref: "hotels" },
   lunch: { type: mongoose.Types.ObjectId, ref: "lunchs" },
+  dinner: { type: mongoose.Types.ObjectId, ref: "dinners" },
+  breakfast: { type: mongoose.Types.ObjectId, ref: "breakfasts" },
   hall:{ type: mongoose.Types.ObjectId, ref: "halls" },
 });
 

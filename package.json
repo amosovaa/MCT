@@ -1,0 +1,24 @@
+{
+  "name": "MCT",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+   "build": "cd front && npm install && npm run-scripts build",
+   "start": "cd back && npm install && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ijustnothing/MCT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ijustnothing/MCT/issues"
+  },
+  "homepage": "https://github.com/ijustnothing/MCT#readme",
+  "engines": {
+    "node": "14.x"
+  }
+}
