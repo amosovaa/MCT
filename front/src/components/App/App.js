@@ -21,7 +21,6 @@ import ForgottenThings from '../ForgottenThings/ForgottenThings';
 import Bus from '../Bus/Bus';
 import { I18Provider, LOCALES } from '../i18n';
 import translate from '../i18n/translate';
-// import ForgottenThings from '../ForgottenThings/ForgottenThings.js'
 
 function App() {
   const isAuth = useSelector((store) => store.auth.isAuth);
@@ -29,7 +28,6 @@ function App() {
   const nav = useSelector((store) => store.state);
   const [locale, setLocale] = useState(LOCALES.ENGLISH);
 
-  // console.log(isAdmin);
   return (
     <I18Provider locale={locale}>
       <Router>
@@ -49,7 +47,6 @@ function App() {
             <Route path='/signup'>
               <Signup />
               {isAuth === true && <Redirect to='/cabinet' />}
-              {/* <Redirect to="/" /> */}
             </Route>
             <Route path="/forgottenThings">
               <ForgottenThings/>

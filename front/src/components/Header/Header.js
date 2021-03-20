@@ -17,56 +17,56 @@ function Header({ locale, setLocale }) {
   };
 
   return (
-    <header className={styles.visibleMenu} id="header">
+    <header className={styles.visibleMenu} id='header'>
       <ul className={styles.wrapper}>
         <li>
-          <Link className={styles.wrapper__linkFirst} to="/">
+          <Link className={styles.wrapper__linkFirst} to='/'>
             {translate('home')}
           </Link>
         </li>
         <li>
           {isAuth === true && (
-            <Link className={styles.wrapper__link} to="/cabinet">
+            <Link className={styles.wrapper__link} to='/cabinet'>
               {translate('cabinet')}
             </Link>
           )}
         </li>
         <li>
           {isAuth === true && (
-            <Link className={styles.wrapper__link} to="/bus">
+            <Link className={styles.wrapper__link} to='/bus'>
               {translate('bus')}
             </Link>
           )}
         </li>
         <li>
-          <Link className={styles.wrapper__link} to="/team">
+          <Link className={styles.wrapper__link} to='/team'>
             {translate('team')}
           </Link>
         </li>
         <li>
           {isAuth === true && (
-            <Link className={styles.wrapper__link} to="/forgottenThings">
+            <Link className={styles.wrapper__link} to='/forgottenThings'>
               {translate('thing')}
             </Link>
           )}
         </li>
         <li>
           {isAuth === false && (
-            <Link Link className={styles.wrapper__link} to="/signup">
+            <Link Link className={styles.wrapper__link} to='/signup'>
               {translate('signup')}
             </Link>
           )}
         </li>
         <li>
           {isAuth === false && (
-            <Link className={styles.wrapper__link} to="/signin">
+            <Link className={styles.wrapper__link} to='/signin'>
               {translate('signin')}
             </Link>
           )}
         </li>
         <li>
           {isAuth === true && (
-            <Link className={styles.wrapper__link} to="/logout">
+            <Link className={styles.wrapper__link} to='/logout'>
               {translate('logout')}
             </Link>
           )}
@@ -78,22 +78,20 @@ function Header({ locale, setLocale }) {
             className={styles.wrapper__btnL}
             onClick={() => setLocale(LOCALES.ENGLISH)}
           >
-            {' '}
-            Eng{' '}
+            Eng
           </span>
           {' / '}
           <span
             className={styles.wrapper__btnL}
             onClick={() => setLocale(LOCALES.RUSSIAN)}
           >
-            {' '}
-            Рус{' '}
+            Рус
           </span>
         </li>
       </ul>
       <div onClick={handlerMobile} className={styles.mobile}>
-        <div id="menuB">
-          <div id="pencet" className={nav.nav === true && 'Diam'}>
+        <div id='menuB'>
+          <div id='pencet' className={nav.nav === true && 'Diam'}>
             <span></span>
             <span></span>
             <span></span>

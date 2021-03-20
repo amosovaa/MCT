@@ -34,8 +34,6 @@ function ForgottenThings(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // dispatch(addNameAC(name))
-    // dispatch(addImageAC(storeImage))
     dispatch(progressAC(0));
     const options = {
       onUploadProgress: (progressEvent) => {
@@ -49,7 +47,6 @@ function ForgottenThings(props) {
     axios
       .post('/api/category', store.formData, options)
       .then((res) => {
-        // dispatch(addNameAC(res.data.category))
         dispatch(addImageAC(res.data.category));
         dispatch(progressAC(0));
       })
@@ -116,7 +113,6 @@ function ForgottenThings(props) {
         {initPicture &&
           initPicture.uploadFiles.map((el) => (
             <div key={el._id}>
-              {' '}
               <div id={el._id} className={styles.imgDiv}>
                 <img
                   src={el.image}
