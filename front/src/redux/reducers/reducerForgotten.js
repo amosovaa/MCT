@@ -30,7 +30,7 @@ function reducerForgotten(state = initialState, action) {
 
         case DELETE_PHOTOS:
             return {...state, photos: {uploadFiles: [...state.photos.uploadFiles.filter(el => el._id !== action.payload)]}}
-                
+   
         default:
             return state
     }
