@@ -33,16 +33,18 @@ function Section(props) {
             <p>{translate('restaurantsInfo')}</p>
           </header>
         </article>
-        {/* <article>
+        <article style={{ width: '100%' }}>
           <span className='image'></span>
-          <header className='major'>
-            <h3>{translate('plan')}</h3>
-            <p>{translate('planInfo')}</p>
-          </header>
-        </article> */}
-        <article style={{width: '100%'}}>
-          <span className='image'></span>
-          <header className='major' style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center',margin:'0 auto'}}>
+          <header
+            className='major'
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              alignItems: 'center',
+              margin: '0 auto',
+            }}
+          >
             <h3>{translate('things')}</h3>
             <p>{translate('thingsInfo')}</p>
           </header>

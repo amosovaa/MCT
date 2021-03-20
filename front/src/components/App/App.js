@@ -48,8 +48,8 @@ function App() {
               <Signup />
               {isAuth === true && <Redirect to='/cabinet' />}
             </Route>
-            <Route path="/forgottenThings">
-              <ForgottenThings/>
+            <Route path='/forgottenThings'>
+              <ForgottenThings />
             </Route>
             <Route path='/signin'>
               {isAuth === true && <Redirect to='/cabinet' />}

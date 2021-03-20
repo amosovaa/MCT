@@ -132,7 +132,6 @@ function Team(props) {
                   </svg>
                 </a>
                 <a className={styles.wrapper__link} href='#'>
-                  {' '}
                   <svg
                     className={styles.wrapper__svg}
                     xmlns='http://www.w3.org/2000/svg'
