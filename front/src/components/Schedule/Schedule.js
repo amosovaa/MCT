@@ -40,7 +40,7 @@ function Schedule(props) {
   const history = useHistory();
   const defaultCity = useSelector((state) => state.cities.defaultCity);
   const cities = useSelector((state) => state.cities.cities);
-  console.log(defaultCity)
+  console.log(defaultCity);
 
   const handlerDelete = (e) => {
     e.preventDefault();
@@ -96,14 +96,12 @@ function Schedule(props) {
         </p>
         <p>
           {translate('address')} {defaultCity && defaultCity.hotel.address}
-          {/* {defaultCity && defaultCity.longitude} */}
         </p>
         <p> {translate('moreInfo')} </p>
         <div className={styles.card}>
           <button onClick={openModal}>{translate('map')}</button>
           <Modal
             isOpen={modalIsOpen}
-            // onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}
             contentLabel='Example Modal'
@@ -141,7 +139,6 @@ function Schedule(props) {
           <button onClick={openModal}>{translate('map')}</button>
           <Modal
             isOpen={modalIsOpen}
-            // onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}
             contentLabel='Example Modal'
@@ -158,11 +155,15 @@ function Schedule(props) {
         <div className='box'>
           <h4> {translate('breakfast')} </h4>
           <p>
-            {translate('from')} {defaultCity &&
-              new Date(defaultCity.breakfast.time).toLocaleString()} 
+            {translate('from')}{' '}
+            {defaultCity &&
+              new Date(defaultCity.breakfast.time).toLocaleString()}
           </p>
-          <p> {translate('address')} {defaultCity &&
-              defaultCity.breakfast.address}</p>
+          <p>
+            {' '}
+            {translate('address')}{' '}
+            {defaultCity && defaultCity.breakfast.address}
+          </p>
         </div>
         <div className='box'>
           <h4> {translate('dinner')} </h4>
@@ -171,25 +172,27 @@ function Schedule(props) {
             {defaultCity &&
               new Date(defaultCity.lunch.time).toLocaleString()}{' '}
           </p>
-          <p> {translate('address')} {defaultCity &&
-              defaultCity.lunch.address} </p>
+          <p>
+            {' '}
+            {translate('address')} {defaultCity && defaultCity.lunch.address}{' '}
+          </p>
         </div>
         <div className='box'>
           <h4> {translate('supper')} </h4>
           <p>
             {translate('from')}
-            {defaultCity &&
-              new Date(defaultCity.dinner.time).toLocaleString()}
+            {defaultCity && new Date(defaultCity.dinner.time).toLocaleString()}
           </p>
-          <p> {translate('address')}  {defaultCity &&
-              defaultCity.dinner.address} </p>
+          <p>
+            {' '}
+            {translate('address')} {defaultCity && defaultCity.dinner.address}{' '}
+          </p>
         </div>
         <p> {translate('moreInfo')} </p>
         <div className={styles.card}>
           <button onClick={openModal}>{translate('map')}</button>
           <Modal
             isOpen={modalIsOpen}
-            // onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}
             contentLabel='Example Modal'

@@ -108,7 +108,6 @@ function ForgottenThings(props) {
         {initPicture &&
           initPicture.uploadFiles.map((el) => (
             <div key={el._id}>
-              {' '}
               <div id={el._id} className={styles.imgDiv}>
                 <img
                   src={el.image}
